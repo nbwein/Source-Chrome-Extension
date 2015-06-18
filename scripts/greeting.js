@@ -1,3 +1,47 @@
+'use strict';
+
+/*var googlePlusUserLoader = (function() {
+
+  var STATE_START=1;
+  var STATE_ACQUIRING_AUTHTOKEN=2;
+  var STATE_AUTHTOKEN_ACQUIRED=3;
+
+  var state = STATE_START;
+
+  var signin_button, xhr_button, revoke_button, user_info_div;
+
+ function disableButton(button) {
+    button.setAttribute('disabled', 'disabled');
+  }
+
+  function enableButton(button) {
+    button.removeAttribute('disabled');
+  }
+
+  function changeState(newState) {
+    state = newState;
+    switch (state) {
+      case STATE_START:
+        enableButton(signin_button);
+        disableButton(xhr_button);
+        disableButton(revoke_button);
+        break;
+      case STATE_ACQUIRING_AUTHTOKEN:
+        sampleSupport.log('Acquiring token...');
+        disableButton(signin_button);
+        disableButton(xhr_button);
+        disableButton(revoke_button);
+        break;
+      case STATE_AUTHTOKEN_ACQUIRED:
+        disableButton(signin_button);
+        enableButton(xhr_button);
+        enableButton(revoke_button);
+        break;
+    }
+  }*/
+
+
+var googlePlusUserLoader  = (function() {
 function xhrWithAuth(method, url, interactive, callback) {
     var access_token;
 
@@ -6,9 +50,10 @@ function xhrWithAuth(method, url, interactive, callback) {
     getToken();
 
     function getToken() {
-      chrome.identity.getAuthToken({ interactive: interactive }, function(token) {
-        if (chrome.runtime.lastError) {
+      chrome.identity.getAuthToken({ interactive: true}, function(token) {
+       if (chrome.runtime.lastError) {
           callback(chrome.runtime.lastError);
+          console.log(chrome.runtime.lastError);
           return;
         }
 
@@ -43,13 +88,28 @@ function xhrWithAuth(method, url, interactive, callback) {
                 onUserInfoFetched);
   }
 
-chrome.identity.getAuthToken({ 'interactive': true }, function(token) {
-  if (chrome.runtime.lastError) {
-    sampleSupport.log(chrome.runtime.lastError);
-    changeState(STATE_START);
-  } else {
-    sampleSupport.log('Token acquired:'+token+
-      '. See chrome://identity-internals for details.');
-    changeState(STATE_AUTHTOKEN_ACQUIRED);
+  function onUserInfoFetched(error, status, response) {
+    if (!error && status == 200) {
+      //changeState(STATE_AUTHTOKEN_ACQUIRED);
+      //sampleSupport.log(response);
+      var user_info = JSON.parse(response);
+      populateUserInfo(user_info);
+    } else {
+      console.log(response);
+      console.log("error on user info fetch");
+	//changeState(STATE_START);
+    }
   }
-});
+
+  function populateUserInfo(user_info) {
+    main_greeting.innerHTML = "Welcome, " + user_info.displayName;
+  }
+
+return{
+	onload: function() {
+		getUserInfo(false);
+	}
+};
+})();
+
+window.onload = googlePlusUserLoader.onload;

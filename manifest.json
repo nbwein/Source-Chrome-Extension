@@ -4,13 +4,13 @@
 	"name": "Project Internal", 
 	"description": "Stellaservice Internal Homepage", 
 	"version": "1.0",
-	"key": "AIzaSyBF7I8UCtUjETSu_1owm74goEyz63J-xiU",
+	"key": "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCyvZeHm4aW1ISOdXGNCA+16AImVn8TnkOWD/4hIerPgIMMJfdyCMij+BmIEaEeyJVAlx6/B+T7Ih1QutZEHQRbCc5W6K3eE4hjlZEI2ESQLYF/z958nkAoSVBx07BKDcWpsxhLgU9XaECL7RcvWY/2DHw71ijzvGPoqmVhUulZhuMCFu97mdCy4xmr/yYCfSGXJI3HQ6W4N9QeKIJPkH2lsznIfU9gMOYoU8C1ZlYLl1TnTUkpBUOzZkUxCuUq3IteL5Jcfdzfgo9G15OV9uQIGprHeXoTfqM8LxqbrLQMN9X18cXv19jG1ldLAG3RkYY5r8yg0yl55jRxYxU5EB9vAgMBAAECggEASnuzH3Fx/nyE2JCcRvbrBRSvgKZewiAbbfcwIUJvBRU6ht9zY/PBGIMUsJ0YFSnk+EuBJn31r6khqjiRfUTSQdWuRI0llvtwxH7ZN2RX/fTYmBhZUHjpp2AVw7lBJzrh+buGDkDOfVAWRbkBBlw+H3xIcO7nldoVkCkhohLY5tMaeD9ZMOPXxOyN+1IGtvll2ghf1rdZ7MZwxjtBK2OZfEKLMOvgkyhahzU5f9v27Q/pagglRrSedBhL7iE5LBFq0ta5BMZamw9GbyGJ3CazRkGSmOvKk3Z8G25auFKDJPYpUnwzp/ios5Mzfh9KHHJFClQpEdGwDHrPuEXBgCLWwQKBgQDdQt0lHcUUym3bMrG9DLhkcTpHx4HEHVy0aSBbDKE0/KbvkUaGRMS58P1weYRWOyoKT73s3AyDvADLixo2joAuURxw5DCBngN5XUP5H1QtarUZf+YcJrII47SkXg1eJ6XR4HanoPWQ6YFfjXJ9alyWzbqaJqGk0hOoBjTj7dB2nwKBgQDOzbNf6i93fY41HrHSiasL+ATD4TTHrPZ7Iil5QgcRBLla7MaMOT3QBN7iRLfPP3sCnr6Xr3kfkrIFmIsh3A9bt7Ov/qd2uguavHN6sF+QfeR03S3CTqb/wLYY0ISWaJ30oTZLUdyhoF2BthEYi2LkBHpZXDo8s0TtKlsTotW1MQKBgQCxAqME5JIcle3ZJO9IvPpvcJ4deqB4Er1tn4TBEpONXmr20ZRIKo/v6bn3119l1SNG6JCbA1gHs8o3DGvGJa6qXz2Pmx6rM4y39UNB9CxVwT5szgN7lgFsVy7XKF8tai6gfyCt7nlGm2hi1zg22XaFNsUIOcurnl0XWQ/LISBbJQKBgQDGKef7Pb10Q5SUJDCDLTYBBw0R4eggegXJ4edZ8UIyNZOjpAVxcpxfi3tD2FNFvW+TCChb02I+NeRuZkjUDjmNSo9dUqiHpSjfgjsp0n4QSAI1VYe2jIWLxs73IkAanG7Xbe9H506CddeEJsFlApOlKQFQRYbsiV+/3vlc7IjZ0QKBgAX/GGa8jYAZgMD+tXfSzi44Si0cm2LgYjDbabAuCfMNYtNbLKVzUVAJ+AqGzAO6N0Ltn7aeJnyLjhEhO6sWO0ewGFsnJcX/7YwZCVOvub/kfInQsHrQgBj++ckTSBM3Jn8i48WzGX+8scMNtEWRpEB4WVxbV9Lxi1x0aQELFTcM",
 	"chrome_url_overrides": {
    		 "newtab": "main.html"
   	}, 
-        "permissions": ["identity", "https://accounts.google.com/*", "https://googleapis.com"], 
+        "permissions": ["identity", "https://accounts.google.com/*", "https://www.googleapis.com/*"], 
 	"oauth2": {
-		"client_id": "847225712349-ci1mds9sf7ln7skdbuh6vnro0tnlc397.apps.googleusercontent.com"
+		"client_id": "847225712349-afs3e8aobcglbi1ml1gjkcr764ri1jvk.apps.googleusercontent.com",
 		"scopes": ["https://www.googleapis.com/auth/plus.login"]
 	}
 }
