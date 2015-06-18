@@ -108,8 +108,25 @@ function xhrWithAuth(method, url, interactive, callback) {
 return{
 	onload: function() {
 		getUserInfo(false);
+		showTime();
 	}
 };
 })();
 
+//function ShowTime(){
+        //var dt = new Date();
+     	//cument.getElementById("main_greeting").innerHTML = "hello";
+	//var date = new Date();
+	//date = date.toLocaleString();
+	//var elements = date.split(",");
+	//var time = elements[0];
+	//var date = elements[1];
+        //document.write('<h2 id="date-time" align="center">', time , '<\/h2>');
+	//document.write('<h2 id="date-time" align="center">', date , '<\/h2>');
+ // }
+
+
+
+
 window.onload = googlePlusUserLoader.onload;
+
