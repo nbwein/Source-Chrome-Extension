@@ -1,0 +1,16 @@
+{
+	"manifest_version": 2,
+	"minimum_chrome_version": "29", 
+	"name": "Project Internal", 
+	"description": "Stellaservice Internal Homepage", 
+	"version": "1.0",
+	"key": "AIzaSyBF7I8UCtUjETSu_1owm74goEyz63J-xiU",
+	"chrome_url_overrides": {
+   		 "newtab": "main.html"
+  	}, 
+        "permissions": ["identity", "https://accounts.google.com/*", "https://googleapis.com"], 
+	"oauth2": {
+		"client_id": "847225712349-ci1mds9sf7ln7skdbuh6vnro0tnlc397.apps.googleusercontent.com"
+		"scopes": ["https://www.googleapis.com/auth/plus.login"]
+	}
+}
