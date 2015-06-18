@@ -102,7 +102,7 @@ function xhrWithAuth(method, url, interactive, callback) {
   }
 
   function populateUserInfo(user_info) {
-    main_greeting.innerHTML = "Welcome, " + user_info.displayName;
+    main_greeting.innerHTML = "Welcome, " + user_info.name.givenName;
   }
 
 return{
