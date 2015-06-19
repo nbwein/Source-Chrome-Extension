@@ -42,13 +42,22 @@ function formatDate(date_str){
 	result = result + " " + elements[1];
 	return result;
 }	
+function formatTime(time_str){
+	var elements = time_str.split(" ");
+	var time = elements[1].split(":");
+	var result = time[0] + ":" + time[1] + " " + elements[2];
+	return result
+}
+
 function showTime(){
 	var date = new Date();
         date = date.toLocaleString();
         var elements = date.split(",");
         var time = elements[1];
         var date = elements[0];
-	document.getElementById("time").innerHTML = time;
+	document.getElementById("time").innerHTML = formatTime(time);
 	document.getElementById("date").innerHTML = formatDate(date);
+	t = setTimeout(showTime, 1000);
 }
+
 
