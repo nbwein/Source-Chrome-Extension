@@ -55,8 +55,7 @@ function showTime(){
         var elements = date.split(",");
         var time = elements[1];
         var date = elements[0];
-	document.getElementById("time").innerHTML = formatTime(time);
-	document.getElementById("date").innerHTML = formatDate(date);
+	document.getElementById("date-time").innerHTML = formatDate(date) + ", " + formatTime(time);
 	t = setTimeout(showTime, 1000);
 }
 
