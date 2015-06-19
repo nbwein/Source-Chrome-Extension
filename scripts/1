@@ -1,0 +1,18 @@
+/* Javascript for the message board */
+/*function loadXMLDoc(url)
+{i
+var xmlhttp;
+xmlhttp = new XMLHttpRequest();
+if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+	console.log("got it");
+}
+xmlhttp.open("GET",url,true);
+xmlhttp.send();
+}*/
+ 
+function loadFeed(){
+	var feed = google.feeds.Feed('https://groups.google.com/a/stellaservice.com/forum/feed/newyork/msgs/rss_v2_0.xml?num=50');
+	console.log("plz");
+}
+
+

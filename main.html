@@ -2,8 +2,10 @@
 <html> 
 <head> 
 <title>Internal</title>
+<script src="scripts/message-board.js"></script> 
 <script src="scripts/greeting.js"> </script> 
 <script src="scripts/date-time.js"></script> 
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <link rel="stylesheet" type="text/css" href="styles/main.css"></link>
 <body>
 <div id="greeting">
@@ -11,5 +13,9 @@
 <h2 align="center" id="date-time"></h2>
 </div>
 <div align = "center" id="message-board"></div> 
+<form method="post" action="mail.php">
+<input type="text" name="message"/>
+<input type="submit" value="post" /> 
+</form>
 </body>
 </html>

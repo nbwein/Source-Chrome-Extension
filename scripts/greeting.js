@@ -109,6 +109,7 @@ return{
 	onload: function() {
 		getUserInfo(false);
 		showTime();
+		google.load("feeds", 1, {callback: loadFeed});
 	}
 };
 })();
