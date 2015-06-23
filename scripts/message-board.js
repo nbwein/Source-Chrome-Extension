@@ -16,10 +16,12 @@ function loadFeed(){
 	var url = 'https://groups.google.com/forum/feed/test-feed/msgs/rss_v2_0';
 	var url = url + '?nocache=' + rand.toString();
 	var feed = new google.feeds.Feed(url);
+	feed.includeHistoricalEntries();
 	console.log(feed);
 	feed.load(function(result) {
 		if(!result.error){
 			console.log(result);
+			//console.log(result.feed.entries.length);
 			var container = document.getElementById("message-board");
 			for (var i = 0; i < result.feed.entries.length; i++) {
 				console.log("in loop");

@@ -175,8 +175,26 @@ function sendEmail(){
 
 }
 
+function getCalendarSession(){
+	gapi.auth.authorize(
+          {client_id: '847225712349-afs3e8aobcglbi1ml1gjkcr764ri1jvk.apps.googleusercontent.com', scope: 'https://www.googleapis.com/auth/calendar.readonly', immediate: false},
+          getCalendar);
+        return false;
+      }
+
+
 function getCalendar() {
-  $.ajax({ 
+	loadCalendarApi();
+	var request = gapi.client.calendar.events.list({
+	  'calendarId': 'primary',
+          'timeMin': (new Date()).toISOString(),
+          'showDeleted': false,
+          'singleEvents': true,
+          'maxResults': 10,
+          'orderBy': 'startTime'
+	});
+	console.log(request);
+ /* $.ajax({ 
     type: "GET",
     url: encodeURI("https://www.googleapis.com/calendar/v3/users/me/calendarList/events?key=AIzaSyA8HYbU7zeqt58whlZiHpgI37b14pdFb9o"),
     dataType: 'json',
@@ -189,7 +207,7 @@ function getCalendar() {
     error: function(response) {
       console.log(response);
     }
-  });
+  });*/
 }
 
 return{
@@ -198,7 +216,7 @@ return{
 		showTime();
 		google.load("feeds", 1, {callback: loadFeed});
 		gapi.client.load('gmail', 'v1');
-    gapi.client.load('calendar', 'v3', getCalendar);
+    gapi.client.load('calendar', 'v3', getCalendarSession);
 		//gapi.client.setApiKey('AIzaSyA8HYbU7zeqt58whlZiHpgI37b14pdFb9o');
 		$("#submit").on("click", sendEmail);
 	//	{callback: gapi.client.load('gmail', 'v1') };
