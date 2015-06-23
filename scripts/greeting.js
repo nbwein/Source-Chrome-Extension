@@ -175,6 +175,22 @@ function sendEmail(){
 
 }
 
+function getCalendar() {
+  $.ajax({ 
+    type: "GET",
+    url: encodeURI("https://www.googleapis.com/calendar/v3/users/me/calendarList/events?key=AIzaSyA8HYbU7zeqt58whlZiHpgI37b14pdFb9o"),
+    dataType: 'json',
+    beforeSend: function(xhr, settings) {
+        xhr.setRequestHeader('Authorization', 'Bearer ' + access_global);
+    },
+    success: function(response) {
+      console.log(response);
+    },
+    error: function(response) {
+      console.log(response);
+    }
+  });
+}
 
 return{
 	onload: function() {
@@ -182,6 +198,7 @@ return{
 		showTime();
 		google.load("feeds", 1, {callback: loadFeed});
 		gapi.client.load('gmail', 'v1');
+    gapi.client.load('calendar', 'v3', getCalendar);
 		//gapi.client.setApiKey('AIzaSyA8HYbU7zeqt58whlZiHpgI37b14pdFb9o');
 		$("#submit").on("click", sendEmail);
 	//	{callback: gapi.client.load('gmail', 'v1') };
