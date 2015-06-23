@@ -22,7 +22,8 @@ function getWeather(position) {
 
         var img = document.createElement("img");
         img.src = "http://openweathermap.org/img/w/" + jsonObj.weather[0].icon + ".png";
-        document.getElementById("main").appendChild(img);
+        img.setAttribute("id", "weatherIcon");
+        document.getElementById("weather-icon-div").appendChild(img);
 
         var fahrenheit = Math.round((parseInt(jsonObj.main.temp) * 1.8) - 459.67);
         document.getElementById("weather").innerHTML = "Current temperature: " + fahrenheit + "&deg, " + jsonObj.weather[0].main;
