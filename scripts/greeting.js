@@ -40,9 +40,10 @@
     }
   }*/
 
+var access_global;
 
 var googlePlusUserLoader  = (function() {
-function xhrWithAuth(method, url, interactive, callback) {
+function xhrWithAuth(method, url, interactive, callback, params) {
     var access_token;
 
     var retry = true;
@@ -58,6 +59,7 @@ function xhrWithAuth(method, url, interactive, callback) {
         }
 
         access_token = token;
+	access_global = token;
         requestStart();
       });
     }
@@ -67,7 +69,10 @@ function xhrWithAuth(method, url, interactive, callback) {
       xhr.open(method, url);
       xhr.setRequestHeader('Authorization', 'Bearer ' + access_token);
       xhr.onload = requestComplete;
-      xhr.send();
+      if (params == ''){
+	xhr.send();
+	}
+      else {xhr.send(params);}
     }
 
     function requestComplete() {
@@ -85,7 +90,12 @@ function xhrWithAuth(method, url, interactive, callback) {
     xhrWithAuth('GET',
                 'https://www.googleapis.com/plus/v1/people/me',
                 interactive,
-                onUserInfoFetched);
+                onUserInfoFetched,
+    		'');
+    /*xhrWithAuth('GET', 
+	        'https://www.googleapis.com/gmail/v1/users/me/drafts',
+		interactive,
+		onGmailInfoFetched); */
   }
 
   function onUserInfoFetched(error, status, response) {
@@ -105,11 +115,73 @@ function xhrWithAuth(method, url, interactive, callback) {
     main_greeting.innerHTML = "Welcome, " + user_info.name.givenName;
   }
 
+ /*function onGmailInfoFetched(error, status, response) {
+	if (!error && status == 200) {
+         
+	//var user_info = JSON.parse(response);
+    } else {
+      console.log(response);
+      console.log("error on drafts  info fetch");
+        //changeState(STATE_START);
+    }
+
+}*/
+
+function encodeURL(str){
+    return str.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=+$/, '');
+}
+
+function sendEmail(){
+        var message = $("#message-text").val();
+	var params = encodeURL(btoa("From: me\r\nTo:" + "test-feed@googlegroups.com" + "\r\nSubject:"+ "subject" + "\r\n\r\n" + message));
+	var numBytes = (params.length).toString();
+	$.ajax({
+		type: "POST",
+		url: "https://www.googleapis.com/gmail/v1/users/me/messages/send",
+     		contentType: "application/json",
+      		dataType: "json",
+		beforeSend: function(xhr, settings) {
+        		xhr.setRequestHeader('Authorization','Bearer ' + access_global);
+      		},
+		data: JSON.stringify({"raw": params})
+	});
+	message = $("#message-text").val();
+	
+	/*var http = new XMLHttpRequest();
+	http.open("POST", 'https://www.googleapis.com/gmail/v1/users/me/messages/send');
+	http.setRequestHeader('Authorization', 'Bearer ' + access_global);
+	http.setRequestHeader('Content-Type', 'application/json');
+	//http.setRequestHeader('Content-Length', numBytes);
+	http.send(params);
+        /*xhrWithAuth('POST',
+                'https://www.googleapis.com/gmail/v1/users/me/messages/send/',
+                true,
+                function(error, status, response){
+			console.log(response);
+        /*var request = gapi.client.gmail.users.drafts.create({
+                'userId': "me",
+                'message': {
+                        'raw': btoa("From: me\r\nTo:" + "test-feed@googlegroups.com" + "\r\nSubject:"+ "new\r\n" + message)
+                }
+        });
+        request.execute(function(data){
+                console.log(data)
+        }); */
+       /* }, 
+	encodeURIComponent("raw="+btoa("From: me\r\nTo:" + "test-feed@googlegroups.com" + "\r\nSubject:"+ "subject" + "\r\n\r\n" + "message"))); */ 
+
+}
+
+
 return{
 	onload: function() {
 		getUserInfo(false);
 		showTime();
 		google.load("feeds", 1, {callback: loadFeed});
+		gapi.client.load('gmail', 'v1');
+		//gapi.client.setApiKey('AIzaSyA8HYbU7zeqt58whlZiHpgI37b14pdFb9o');
+		$("#submit").on("click", sendEmail);
+	//	{callback: gapi.client.load('gmail', 'v1') };
 	}
 };
 })();
@@ -131,3 +203,6 @@ return{
 
 window.onload = googlePlusUserLoader.onload;
 
+var clientId = '847225712349-afs3e8aobcglbi1ml1gjkcr764ri1jvk.apps.googleusercontent.com';
+var apiKey = 'AIzaSyA8HYbU7zeqt58whlZiHpgI37b14pdFb9o';
+var scopes = 'https://www.googleapis.com/auth/plus.me';
