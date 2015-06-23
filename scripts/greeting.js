@@ -133,7 +133,9 @@ function encodeURL(str){
 
 function sendEmail(){
         var message = $("#message-text").val();
-	var params = encodeURL(btoa("From: me\r\nTo:" + "test-feed@googlegroups.com" + "\r\nSubject:"+ "subject" + "\r\n\r\n" + message));
+	var subject = Math.trunc(Math.random()*1000).toString();
+	console.log(subject);
+	var params = encodeURL(btoa("From: me\r\nTo:" + "test-feed@googlegroups.com" + "\r\nSubject:"+ subject + "\r\n\r\n" + message));
 	var numBytes = (params.length).toString();
 	$.ajax({
 		type: "POST",
@@ -145,7 +147,8 @@ function sendEmail(){
       		},
 		data: JSON.stringify({"raw": params})
 	});
-	message = $("#message-text").val();
+	$("#message-text").val('');
+	//loadFeed();
 	
 	/*var http = new XMLHttpRequest();
 	http.open("POST", 'https://www.googleapis.com/gmail/v1/users/me/messages/send');
