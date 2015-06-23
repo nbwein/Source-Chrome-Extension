@@ -112,7 +112,7 @@ function xhrWithAuth(method, url, interactive, callback, params) {
   }
 
   function populateUserInfo(user_info) {
-    main_greeting.innerHTML = "Welcome, " + user_info.name.givenName + ".";
+    main_greeting.innerHTML = "Welcome, " + user_info.name.givenName;
   }
 
  /*function onGmailInfoFetched(error, status, response) {
@@ -240,10 +240,12 @@ chrome.webRequest.onHeadersReceived.addListener(
     ['blocking', 'responseHeaders']
 );
 
+console.log(encodeURIComponent(window.location.href));
+
 document.getElementById("forum_embed").src =
-  "https://groups.google.com/forum/embed/?place=forum/test-feed-private" +
-  "&showsearch=true&showpopout=true&parenturl=" +
-  encodeURIComponent(window.location.href) + "&output=embed";
+  "https://groups.google.com/forum/embed/?place=forum/test-feed" +
+  "&parenturl=" +
+  encodeURIComponent(window.location.href); 
 
 }
 
