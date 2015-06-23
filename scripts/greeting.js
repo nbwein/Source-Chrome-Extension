@@ -112,7 +112,7 @@ function xhrWithAuth(method, url, interactive, callback, params) {
   }
 
   function populateUserInfo(user_info) {
-    main_greeting.innerHTML = "Welcome, " + user_info.name.givenName;
+    main_greeting.innerHTML = "Welcome, " + user_info.name.givenName + ".";
   }
 
  /*function onGmailInfoFetched(error, status, response) {
@@ -148,7 +148,8 @@ function sendEmail(){
 		data: JSON.stringify({"raw": params})
 	});
 	$("#message-text").val('');
-	//loadFeed();
+	$("#message-board").empty();
+	loadFeed();
 	
 	/*var http = new XMLHttpRequest();
 	http.open("POST", 'https://www.googleapis.com/gmail/v1/users/me/messages/send');
@@ -177,37 +178,54 @@ function sendEmail(){
 
 function getCalendarSession(){
 	gapi.auth.authorize(
-          {client_id: '847225712349-afs3e8aobcglbi1ml1gjkcr764ri1jvk.apps.googleusercontent.com', scope: 'https://www.googleapis.com/auth/calendar.readonly', immediate: false},
+          {client_id: '847225712349-afs3e8aobcglbi1ml1gjkcr764ri1jvk.apps.googleusercontent.com', scope: ['https://www.googleapis.com/auth/calendar.readonly'], immediate: true},
           getCalendar);
         return false;
       }
 
 
 function getCalendar() {
-	loadCalendarApi();
 	var request = gapi.client.calendar.events.list({
 	  'calendarId': 'primary',
           'timeMin': (new Date()).toISOString(),
           'showDeleted': false,
           'singleEvents': true,
-          'maxResults': 10,
+          'maxResults': 5,
           'orderBy': 'startTime'
 	});
-	console.log(request);
- /* $.ajax({ 
-    type: "GET",
-    url: encodeURI("https://www.googleapis.com/calendar/v3/users/me/calendarList/events?key=AIzaSyA8HYbU7zeqt58whlZiHpgI37b14pdFb9o"),
-    dataType: 'json',
-    beforeSend: function(xhr, settings) {
-        xhr.setRequestHeader('Authorization', 'Bearer ' + access_global);
-    },
-    success: function(response) {
-      console.log(response);
-    },
-    error: function(response) {
-      console.log(response);
-    }
-  });*/
+	request.execute(function(resp){
+		var events = resp.items;
+		
+		appendPre('Upcoming Events: ');
+
+          if (events.length > 0) {
+            for (var i = 0; i < events.length; i++) {
+              var event = events[i];
+              var when = event.start.dateTime;
+              if (!when) {
+                when = event.start.date;
+              }
+              appendPre(event.summary + ' (' + when + ')')
+            }
+          } else {
+            appendPre('No upcoming events found.');
+          }
+	});
+}
+
+function appendPre(message) {
+        var pre = document.getElementById('upcoming-events');
+        var textContent = document.createTextNode(message + '\n');
+        pre.appendChild(textContent);
+      }
+
+
+function tryPrivate(){
+document.getElementById("forum_embed").src =
+  "https://groups.google.com/forum/embed/?place=forum/test-feed-private" +
+  "&showsearch=true&showpopout=true&parenturl=" +
+  encodeURIComponent(window.location.href) + "&output=embed";
+
 }
 
 return{
@@ -220,21 +238,11 @@ return{
 		//gapi.client.setApiKey('AIzaSyA8HYbU7zeqt58whlZiHpgI37b14pdFb9o');
 		$("#submit").on("click", sendEmail);
 	//	{callback: gapi.client.load('gmail', 'v1') };
+		tryPrivate();
 	}
 };
 })();
 
-//function ShowTime(){
-        //var dt = new Date();
-     	//cument.getElementById("main_greeting").innerHTML = "hello";
-	//var date = new Date();
-	//date = date.toLocaleString();
-	//var elements = date.split(",");
-	//var time = elements[0];
-	//var date = elements[1];
-        //document.write('<h2 id="date-time" align="center">', time , '<\/h2>');
-	//document.write('<h2 id="date-time" align="center">', date , '<\/h2>');
- // }
 
 
 

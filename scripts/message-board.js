@@ -11,11 +11,12 @@ xmlhttp.send();
 }*/
  
 function loadFeed(){
-	var rand = Math.trunc(Math.random() * 1000);
+	var rand = Math.trunc(Math.random() * 10000);
 	console.log(rand);
 	var url = 'https://groups.google.com/forum/feed/test-feed/msgs/rss_v2_0';
-	var url = url + '?nocache=' + rand.toString();
+	url = url + '?nocache=' + rand.toString();
 	var feed = new google.feeds.Feed(url);
+	feed.setNumEntries(100);
 	feed.includeHistoricalEntries();
 	console.log(feed);
 	feed.load(function(result) {
@@ -28,6 +29,10 @@ function loadFeed(){
 				var entry = result.feed.entries[i];
 				var div = document.createElement("div");
 				div.appendChild(document.createTextNode(entry.content));
+				div.className = "post";
+				if (i == 0){
+					div.setAttribute("style", "border-top-left-radius: 15px; border-top-right-radius: 15px");
+				}
 				container.appendChild(div);
 			}
 		}
