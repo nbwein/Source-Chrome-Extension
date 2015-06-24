@@ -112,7 +112,7 @@ function xhrWithAuth(method, url, interactive, callback, params) {
   }
 
   function populateUserInfo(user_info) {
-    main_greeting.innerHTML = "Welcome, " + user_info.name.givenName;
+    main_greeting.innerHTML = "Welcome, " + user_info.name.givenName + ".";
   }
 
  /*function onGmailInfoFetched(error, status, response) {
@@ -185,18 +185,21 @@ function getCalendarSession(){
 
 
 function getCalendar() {
+	var midnight = new Date((new Date().getTime() + 24*60*60*1000));
+	midnight.setHours(0,0,0,0);
 	var request = gapi.client.calendar.events.list({
 	  'calendarId': 'primary',
           'timeMin': (new Date()).toISOString(),
           'showDeleted': false,
           'singleEvents': true,
-          'maxResults': 5,
+          'maxResults': 1, 
+	  'timeMax' : midnight.toISOString(),
           'orderBy': 'startTime'
 	});
 	request.execute(function(resp){
 		var events = resp.items;
 		
-		appendPre('Upcoming Events: ');
+	
 
           if (events.length > 0) {
             for (var i = 0; i < events.length; i++) {
@@ -205,10 +208,19 @@ function getCalendar() {
               if (!when) {
                 when = event.start.date;
               }
-              appendPre(event.summary + ' (' + when + ')')
+	     // console.log((new Date()).getTime() -  event.start.dateTime.getTime()); 
+	      var startDate = new Date(event.start.dateTime);
+	      var diff = startDate.getTime() - (new Date()).getTime();
+	      var x = Math.trunc(diff / (60*1000));
+	      var minutes = x % 60;
+	      x = Math.trunc(x/60);
+	      var hours = x % 24;
+	      var hours_until = hours + ":" + minutes + " until " + event.summary;
+	      document.getElementById("next-meeting").innerHTML = hours_until;
+	      setTimeout(getCalendar, 1000);	     	
             }
           } else {
-            appendPre('No upcoming events found.');
+           // appendPre('No upcoming events found.');
           }
 	});
 }
@@ -240,12 +252,10 @@ chrome.webRequest.onHeadersReceived.addListener(
     ['blocking', 'responseHeaders']
 );
 
-console.log(encodeURIComponent(window.location.href));
-
 document.getElementById("forum_embed").src =
-  "https://groups.google.com/forum/embed/?place=forum/test-feed" +
-  "&parenturl=" +
-  encodeURIComponent(window.location.href); 
+  "https://groups.google.com/forum/embed/?place=forum/test-feed-private" +
+  "&showsearch=true&showpopout=true&parenturl=" +
+  encodeURIComponent(window.location.href) + "&output=embed";
 
 }
 
@@ -259,7 +269,7 @@ return{
 		//gapi.client.setApiKey('AIzaSyA8HYbU7zeqt58whlZiHpgI37b14pdFb9o');
 		$("#submit").on("click", sendEmail);
 	//	{callback: gapi.client.load('gmail', 'v1') };
-		tryPrivate();
+		//tryPrivate();
 	}
 };
 })();

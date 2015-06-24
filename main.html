@@ -15,21 +15,23 @@
 <body id="main">
 <div id="greeting">
 <h1 align="center" id="main_greeting"</h1>
-<h2 align="center" id="date-time"></h2>
+<h2 align="center" id="next-meeting"></h2>
 </div>
+<h2 align="center" id="date-time"></h2>
 <h3 align="center" id="weather"></h3>
 <div id="weather-icon-div"></div>
-<div align = "center" id="message-board"></div> 
-<div> 
+<div id ="post-message" align="center"> 
 <input id = "message-text" type="text" name="message" placeholder="New message..."/>
-<input id = "submit" type="submit" />
+<input id = "submit-m" type="submit" value="post" />
 </div>
+<div align = "center" id="message-board"></div> 
 <div> 
 <input id = "shoutout-text" type="text" name="shoutout" placeholder="Enter a shout-out"/>
 <input id = "submit" type="submit" />
 </div>
 <div id="upcoming-events"></div>
 <iframe id="forum_embed"
+ sandbox="allow-forms allow-scripts allow-same-origin"
  scrolling="no"
  frameborder="0"
  width="900"
