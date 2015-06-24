@@ -13,9 +13,46 @@ xmlhttp.send();
 function loadFeed(){
 	var rand = Math.trunc(Math.random() * 10000);
 	console.log(rand);
-	var url = 'https://groups.google.com/forum/feed/test-feed/msgs/rss_v2_0';
-	url = url + '?nocache=' + rand.toString();
-	var feed = new google.feeds.Feed(url);
+	//var url = 'https://groups.google.com/forum/feed/test-feed/msgs/rss_v2_0';
+	//url = url + '?nocache=' + rand.toString();
+	var rss = '';
+	$.ajax({
+        method: "GET",
+        url: "https://groups.google.com/forum/feed/test-feed/msgs/rss_v2_0" ,
+	dataType: "html",
+        success:function(data){
+		data.replace('</item>', '');
+		var items = data.split("<item>");
+		delete items[0];
+		var container = document.getElementById("message-board");
+		for (var i = 1; i < items.length; i++){
+			var elements = items[i].split("</title>");
+			var description = elements[1].split("<description>")[1].split("</description>")[0];
+			var entry = description;
+			var div = document.createElement("div");
+                                div.appendChild(document.createTextNode(entry));
+                                div.className = "post";
+                                if (i == 0){
+                                        div.setAttribute("style", "border-top-left-radius: 15px; border-top-right-radius: 15px");
+                                }
+                                container.appendChild(div);
+
+			
+		}
+		/*xml = new XMLHttpRequest();
+		xml.open("GET", data, false);
+		xml.send();
+		response = xhttp.responseXML; */
+        }
+       });
+	//var el = document.createElement('html');
+	//el.innerHTML = rss;
+	//console.log(rss);
+	//var items = rss.getElementsByTagName("item");
+	//console.log(items);
+
+	//document.getElementById("rss").innerHTML = rss;
+	/*var feed = new google.feeds.Feed(rss);
 	feed.setNumEntries(100);
 	feed.includeHistoricalEntries();
 	console.log(feed);
@@ -39,6 +76,6 @@ function loadFeed(){
 		else{
 		console.log(":(", result.error);
 		}
-	});	
+	});*/	
 }
 

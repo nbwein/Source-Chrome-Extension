@@ -57,7 +57,7 @@
           console.log(chrome.runtime.lastError);
           return;
         }
-
+	
         access_token = token;
         access_global = token;
 
@@ -119,6 +119,10 @@ function populateUserInfo(user_info) {
   console.log(user_info.name.givenName);
   console.log("HERE");
 }
+
+  function populateUserInfo(user_info) {
+    main_greeting.innerHTML = "Welcome, " + user_info.name.givenName + ".";
+  }
 
  /*function onGmailInfoFetched(error, status, response) {
 	if (!error && status == 200) {
@@ -209,6 +213,8 @@ function getCalendarSession(){
 
 
 function getCalendar() {
+	var midnight = new Date((new Date().getTime() + 24*60*60*1000));
+	midnight.setHours(0,0,0,0);
 	var request = gapi.client.calendar.events.list({
    'calendarId': 'primary',
    'timeMin': (new Date()).toISOString(),
@@ -217,11 +223,20 @@ function getCalendar() {
    'maxResults': 5,
    'orderBy': 'startTime'
  });
+
+	  'calendarId': 'primary',
+          'timeMin': (new Date()).toISOString(),
+          'showDeleted': false,
+          'singleEvents': true,
+          'maxResults': 1, 
+	  'timeMax' : midnight.toISOString(),
+          'orderBy': 'startTime'
+	});
+
 	request.execute(function(resp){
 		var events = resp.items;
 		
-		appendPre('Upcoming Events: ');
-
+	
     if (events.length > 0) {
       for (var i = 0; i < events.length; i++) {
         var event = events[i];
@@ -235,26 +250,83 @@ function getCalendar() {
       appendPre('No upcoming events found.');
     }
   });
+          if (events.length > 0) {
+            for (var i = 0; i < events.length; i++) {
+              var event = events[i];
+              var when = event.start.dateTime;
+              if (!when) {
+                when = event.start.date;
+              }
+	     // console.log((new Date()).getTime() -  event.start.dateTime.getTime()); 
+	      var startDate = new Date(event.start.dateTime);
+	      var diff = startDate.getTime() - (new Date()).getTime();
+	      var x = Math.trunc(diff / (60*1000));
+	      var minutes = x % 60;
+	      x = Math.trunc(x/60);
+	      var hours = x % 24;
+	      var hours_until = hours + ":" + minutes + " until " + event.summary;
+	      document.getElementById("next-meeting").innerHTML = hours_until;
+	      setTimeout(getCalendar, 1000);	     	
+            }
+          } else {
+           // appendPre('No upcoming events found.');
+          }
+	});
 }
+
 
 function appendPre(message) {
   var pre = document.getElementById('upcoming-events');
   var textContent = document.createTextNode(message + '\n');
   pre.appendChild(textContent);
+        var pre = document.getElementById('upcoming-events');
+        var textContent = document.createTextNode(message + '\n');
+        pre.appendChild(textContent);
+      }
+
+
+function tryPrivate(){
+
+chrome.webRequest.onHeadersReceived.addListener(
+    function(info) {
+        var headers = info.responseHeaders;
+        for (var i=headers.length-1; i>=0; --i) {
+            var header = headers[i].name.toLowerCase();
+            if (header == 'x-frame-options' || header == 'frame-options') {
+                headers.splice(i, 1); // Remove header
+            }
+        }
+        return {responseHeaders: headers};
+    },
+    {
+        urls: [ '*://*/*' ], // Pattern to match all http(s) pages
+        types: [ 'sub_frame' ]
+    },
+    ['blocking', 'responseHeaders']
+);
+
+document.getElementById("forum_embed").src =
+  "https://groups.google.com/forum/embed/?place=forum/test-feed-private" +
+  "&showsearch=true&showpopout=true&parenturl=" +
+  encodeURIComponent(window.location.href) + "&output=embed";
+
 }
 
 return {
 	onload: function() {
 		getUserInfo(false);
 		showTime();
-		google.load("feeds", 1, {callback: loadFeed});
+		loadFeed();
+		//google.load("feeds", 1, {callback: loadFeed});
 		gapi.client.load('gmail', 'v1');
-    gapi.client.load('calendar', 'v3', getCalendarSession);
+    		gapi.client.load('calendar', 'v3', getCalendarSession);
 		//gapi.client.setApiKey('AIzaSyA8HYbU7zeqt58whlZiHpgI37b14pdFb9o');
 		$("#submit").on("click", sendEmail);
     $("#submit-shoutout").on("click", sendShoutout);
 	//	{callback: gapi.client.load('gmail', 'v1') };
 }
+		$("#submit-m").on("click", sendEmail);
+	}
 };
 })();
 
