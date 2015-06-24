@@ -18,7 +18,7 @@ function loadFeed(){
 	var rss = '';
 	$.ajax({
         method: "GET",
-        url: "https://groups.google.com/a/stellaservice.com/forum/feed/newyork/msgs/rss_v2_0" ,
+        url: "https://groups.google.com/forum/feed/test-feed/msgs/rss_v2_0" ,
 	dataType: "html",
         success:function(data){
 		data.replace('</item>', '');

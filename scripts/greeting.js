@@ -57,7 +57,7 @@ function xhrWithAuth(method, url, interactive, callback, params) {
           console.log(chrome.runtime.lastError);
           return;
         }
-
+	
         access_token = token;
 	access_global = token;
         requestStart();
@@ -225,6 +225,7 @@ function getCalendar() {
 	});
 }
 
+
 function appendPre(message) {
         var pre = document.getElementById('upcoming-events');
         var textContent = document.createTextNode(message + '\n');
@@ -263,13 +264,12 @@ return{
 	onload: function() {
 		getUserInfo(false);
 		showTime();
-		google.load("feeds", 1, {callback: loadFeed});
+		loadFeed();
+		//google.load("feeds", 1, {callback: loadFeed});
 		gapi.client.load('gmail', 'v1');
-    gapi.client.load('calendar', 'v3', getCalendarSession);
+    		gapi.client.load('calendar', 'v3', getCalendarSession);
 		//gapi.client.setApiKey('AIzaSyA8HYbU7zeqt58whlZiHpgI37b14pdFb9o');
-		$("#submit").on("click", sendEmail);
-	//	{callback: gapi.client.load('gmail', 'v1') };
-		//tryPrivate();
+		$("#submit-m").on("click", sendEmail);
 	}
 };
 })();

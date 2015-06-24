@@ -2,6 +2,7 @@
 <html> 
 <head> 
 <title>Internal</title>
+<link href="http://fonts.googleapis.com/css?family=Merienda+One" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script src="https://apis.google.com/js/client.js"> </script>
 <script src="scripts/jquery.min.js"></script>
@@ -21,21 +22,29 @@
 <h3 align="center" id="weather"></h3>
 <div id="weather-icon-div"></div>
 <div id ="post-message" align="center"> 
-<input id = "message-text" type="text" name="message" placeholder="New message..."/>
+<textarea id = "message-text" type="text" name="message" placeholder="New message..."></textarea>
 <input id = "submit-m" type="submit" value="post" />
 </div>
 <div align = "center" id="message-board"></div> 
-<div> 
+<div id="lunch"></div>
+<div id="submissions">
+<div id="stella-shoutout"> 
 <input id = "shoutout-text" type="text" name="shoutout" placeholder="Enter a shout-out"/>
 <input id = "submit" type="submit" />
 </div>
+<div id="gong-show"> 
+<input id = "gong-text" type="text" name="gongtext" placeholder="Submit to Gong Show"/>
+<input id = "submit" type="submit" />
+</div>
+</div>
 <div id="upcoming-events"></div>
-<iframe id="forum_embed"
- sandbox="allow-forms allow-scripts allow-same-origin"
- scrolling="no"
- frameborder="0"
- width="900"
- height="700">
-</iframe>
+<div id="bdays-annivs">
+<h3> Birthdays and Anniversaries </h3>
+</div>
+<div id="jobs">
+<h3> Open Positions </h3>
+</div>
+</div>
+<h2 align = "center" id ="stella-daily-value" contenteditable="true"><i>Work Hard to Keep it Simple</i></div>
 </body>
 </html>
