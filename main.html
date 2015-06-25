@@ -11,52 +11,63 @@
 	<script src="scripts/greeting.js"> </script> 
 	<script src="scripts/date-time.js"></script>
 	<script src="scripts/weather.js"></script> 
+	<script src="lunch.js"></script>
 	<!--<script type="text/javascript" src="https://www.google.com/jsapi"></script>-->
 	<link rel="stylesheet" type="text/css" href="styles/main.css"></link>
 	<body id="main">
 		<div id ="wrapper"> 
 			<div id="greeting">
-				<h1 align="center" id="main_greeting"</h1>
-					<h3 align="center" id="next-meeting"></h3>
-				</div>
-				<h2 align="center" id="date-time"></h2>
+				<h1 align="center" id="main_greeting"></h1>
+				<h3 align="center" id="next-meeting"></h3>
+			</div>
+			<h2 align="center" id="date-time"></h2>
+			<div align="center" id="weather-wrapper">
 				<h3 align="center" id="weather"></h3>
 				<div id="weather-icon-div"></div>
-				<div id = "middle-column">
-					<div id ="post-message" align="center"> 
-						<textarea id = "message-text" type="text" name="message" placeholder="New message..."></textarea>
-						<input id = "submit-message" type="submit" value="post" />
-					</div>
-					<div align = "center" id="message-board"></div>
-					<h2 align = "center" id ="stella-daily-value"><i>Work Hard to Keep it Simple</i></h2>
-				</div>
-				<div id = "left-column"> 
-					<div id="lunch">
-						<div id = "lunch-header" text-align:"center">
-							<h3>Stella Lunch</h3>
-						</div>
-						<div id="submissions">
-							<div id="stella-shoutout"> 
-								<input id = "shoutout-text" type="text" name="shoutout" placeholder="Enter a shout-out"/>
-								<input id = "submit" type="submit" />
-							</div>
-							<div id="gong-show"> 
-								<input id = "gong-text" type="text" name="gongtext" placeholder="Submit to Gong Show"/>
-								<input id = "submit" type="submit" />
-							</div>
-						</div>
-					</div>
-					<div id = "right-column">
-						<div id="upcoming-events"></div>
-						<div id="bdays-annivs">
-							<h3> Birthdays and Anniversaries </h3>
-						</div>
-						<div id="jobs">
-							<h3> Open Positions </h3>
-						</div>
-					</div>
-				</div>
-				<!--<h2 align = "center" id ="stella-daily-value"><i>Work Hard to Keep it Simple</i></h2> -->
 			</div>
-		</body>
-		</html>
+			<div id = "middle-column">
+				<div id ="post-message" align="center"> 
+					<textarea id = "message-text" type="text" name="message" placeholder="New message..."></textarea>
+					<input id = "submit-message" type="submit" value="post" />
+				</div>
+				<div align = "center" id="message-board"></div>
+				<h2 align = "center" id ="stella-daily-value"><i>Work Hard to Keep it Simple</i></h2>
+			</div>
+			<div id = "left-column"> 
+				<div id="lunch">
+					<div id = "lunch-header" text-align:"center">
+						<h3>Stella Lunch</h3>
+					</div>
+				</div>
+				<div id ="lunch-form">
+					<label for="location">Where?</label>
+					<input id = "location" type="text"/>
+					<label for="location">When?</label>
+					<input id = "time" type = "text" label = "When?" />
+					<input id = "submit-lunch" type="submit" value="schedule"/>
+				</div >
+				<div id="submissions">
+					<div id="stella-shoutout"> 
+						<input id = "shoutout-text" type="text" name="shoutout" placeholder="Enter a shout-out"/>
+						<input id = "submit" type="submit" />
+					</div>
+					<div id="gong-show"> 
+						<input id = "gong-text" type="text" name="gongtext" placeholder="Submit to Gong Show"/>
+						<input id = "submit" type="submit" />
+					</div>
+				</div>
+			</div>
+			<div id = "right-column">
+				<div id="upcoming-events"></div>
+				<div id="bdays-annivs">
+					<h3> Birthdays and Anniversaries </h3>
+				</div>
+				<div id="jobs">
+					<h3> Open Positions </h3>
+				</div>
+			</div>
+		</div>
+		<!--<h2 align = "center" id ="stella-daily-value"><i>Work Hard to Keep it Simple</i></h2> -->
+	</div>
+</body>
+</html>
