@@ -8,7 +8,6 @@
 	"chrome_url_overrides": {
    		 "newtab": "main.html"
   	}, 
-        "permissions": ["identity", "https://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js", "https://accounts.google.com/*", "https://www.googleapis.com/*"], 
         "permissions": ["https://groups.google.com/forum/feed/test-private-feed/msgs/rss_v2_0", "webRequest", "webRequestBlocking", "*://*.google.com/", "identity", "https://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js", "https://accounts.google.com/*", "https://www.googleapis.com/*"], 
 	"oauth2": {
 		"client_id": "847225712349-afs3e8aobcglbi1ml1gjkcr764ri1jvk.apps.googleusercontent.com",
@@ -16,7 +15,3 @@
 	},
 	"content_security_policy": "script-src 'self' https://www.google.com/uds/ https://www.google.com/jsapi https://apis.google.com/js/client.js https://apis.google.com; object-src 'self'"
 }
-
-
-
-//https://www.google.com/uds/?file=feeds&v=1
