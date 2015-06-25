@@ -26,7 +26,7 @@ function getWeather(position) {
         document.getElementById("weather-icon-div").appendChild(img);
 
         var fahrenheit = Math.round((parseInt(jsonObj.main.temp) * 1.8) - 459.67);
-        document.getElementById("weather").innerHTML = "Current temperature: " + fahrenheit + "&deg, " + jsonObj.weather[0].main;
+        document.getElementById("weather").innerHTML = fahrenheit + "&deg, " + jsonObj.weather[0].main;
       }
    }
    http_request.open("GET", url, true);
