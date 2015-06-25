@@ -15,7 +15,3 @@
 	},
 	"content_security_policy": "script-src 'self' https://www.google.com/uds/ https://www.google.com/jsapi https://apis.google.com/js/client.js https://apis.google.com; object-src 'self'"
 }
-
-
-
-//https://www.google.com/uds/?file=feeds&v=1
