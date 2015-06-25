@@ -105,7 +105,6 @@ function onUserInfoFetched(error, status, response) {
 
   function sendShoutout(){
     var message = $("#shoutout-text").val();
-    $("#shoutout-text").val('');
     var subject = Math.trunc(Math.random()*1000).toString();
     var params = encodeURL(btoa("From: me\r\nTo:" + "shoutout-feed@googlegroups.com" + "\r\nSubject:"+ subject + "\r\n\r\n" + message));
     var numBytes = (params.length).toString();
@@ -119,6 +118,7 @@ function onUserInfoFetched(error, status, response) {
       },
       data: JSON.stringify({"raw": params})
     });
+    $("#shoutout-text").val('');
   }
 
 

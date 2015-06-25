@@ -24,10 +24,16 @@ function loadFeed(){
 					div.setAttribute("style", "border-top-left-radius: 15px; border-top-right-radius: 15px");
 				}
 				container.appendChild(div);
-
-				
 			}
 		}
 	});
 }
 
+
+function addMessage(msg) {
+	var container = document.getElementById("message-board");
+	var div = document.createElement("div");
+	div.appendChild(document.createTextNode(msg));
+	div.className = "post";
+	container.appendChild(div);
+}
