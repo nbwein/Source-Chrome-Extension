@@ -1,5 +1,5 @@
-html { height: 100%; -webkit-user-select: none; overflow-x:hidden; overflow-y:auto}
-body { height: 100%; min-height: 100%; min-width: 736px; overflow-y: hidden; overflow-x:hidden; background: #fff;font-family: "HelveticaNeue-Medium", "Helvetica Neue Medium", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+html {height: 100%; min-width:896px; -webkit-user-select: none; overflow-x:auto; overflow-y:auto}
+body { height: 100%; min-height: 100%; min-width: 736px;  overflow:hidden; background: #fff;font-family: "HelveticaNeue-Medium", "Helvetica Neue Medium", "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
 #greeting {
   position:relative; 	
@@ -7,6 +7,33 @@ body { height: 100%; min-height: 100%; min-width: 736px; overflow-y: hidden; ove
   height:100px;
   margin-left:auto;
   margin-right:auto;
+}
+
+#left-column {
+  float:left;
+  height:100%;
+  width:30%;
+  min-width:260px;
+  text-align:center;
+  display:inline-block;
+}
+
+#right-column {
+  float:right;
+  width:30%;
+  height:100%;
+  min-width:260px;
+  text-align:center;
+  display:inline-block;
+}
+
+#middle-column{
+  height:100%;
+  width:40%;
+  min-width:350px;
+  margin-left:auto;
+  margin-right:auto;
+  display:inline-block;
 }
 
 #main_greeting{
@@ -20,7 +47,7 @@ body { height: 100%; min-height: 100%; min-width: 736px; overflow-y: hidden; ove
 #date-time {
   font-size: 16px;
   color:#808599;
-  position:fixed;
+  position:absolute;
   top:5px;
 }
 
@@ -33,20 +60,20 @@ body { height: 100%; min-height: 100%; min-width: 736px; overflow-y: hidden; ove
   border-top-right-radius: 15px; 
   border: solid 1px #808599;
   height: 500px;
-  width: 40%;
+  width: 100%;
   margin-left:auto;
   margin-right:auto;
 }
 
 #weather {
-    position:fixed;
+    position:absolute;
     top:5px;
     right: 5px;
 
 }
 
 #weather-icon-div {
-  position:fixed;
+  position:absolute;
   top: 25px;
   right: 80px;
 }
@@ -68,61 +95,61 @@ body { height: 100%; min-height: 100%; min-width: 736px; overflow-y: hidden; ove
   top:90px;
 }
 #message-text{
-  width:35%;
+  width:85%;
   height:50px;
-  position: relative;
-  top: 23px;
+  top:25px;
+  position: relative; 
   border-radius: 5px;
 }
 
 #submit-m{
+  position:relative;
   height:55px;
   border-radius:5px;
 }
 #stella-daily-value{
   font: 'Merienda One', Helvetica, sans-serif;
-  position:absolute;
-  bottom:5px;
+  position: relative; 
+  top: 80%;
   left: 50%; width: 400px; margin-left:-200px
   
 }
 
 #bdays-annivs{
- position:absolute;
- right:4%;
- width:25%;
- top: 235px;
+ position:relative;
+ width:90%;
+ top: 50px;
  text-align:center;
 }
 
 #jobs{
- position:absolute;
- right:5%;
- width:25%;
+ position:relative;
+ width:90%;
  text-align:center;
- top: 535px;
+ top: 300px;
 }
 
 #lunch{
  
  border: solid 1px #808599;
  border-radius:15px;
+ display:inline-block;
  height: 300px;
- width: 23%;
- position:absolute;
- left: 3%;
- top: 250px;
+ width: 85%;
+ position:relative;
+ top:115px;
 
 }
 
 #submissions{
- position: absolute;
+ position: relative;
  left: 3%;
+ top:25%
 }
 
 #wrapper{
     margin-left:auto;
     margin-right:auto;
-    overflow:hidden;
+    height:100%;
     min-width:760px;
 }
