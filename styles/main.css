@@ -1,6 +1,5 @@
-html { height: 100%; -webkit-user-select: none; overflow-x:auto;}
-body { height: 100%; min-height: 100%; min-width: 736px; overflow: auto; background: #fff;
-    font-family: "HelveticaNeue-Medium", "Helvetica Neue Medium", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+html { height: 100%; -webkit-user-select: none; overflow-x:hidden; overflow-y:auto}
+body { height: 100%; min-height: 100%; min-width: 736px; overflow-y: hidden; overflow-x:hidden; background: #fff;font-family: "HelveticaNeue-Medium", "Helvetica Neue Medium", "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
 #greeting {
   position:relative; 	
@@ -90,13 +89,17 @@ body { height: 100%; min-height: 100%; min-width: 736px; overflow: auto; backgro
 
 #bdays-annivs{
  position:absolute;
- right:50px;
+ right:4%;
+ width:25%;
  top: 235px;
+ text-align:center;
 }
 
 #jobs{
  position:absolute;
- right:100px;
+ right:5%;
+ width:25%;
+ text-align:center;
  top: 535px;
 }
 
@@ -120,5 +123,6 @@ body { height: 100%; min-height: 100%; min-width: 736px; overflow: auto; backgro
 #wrapper{
     margin-left:auto;
     margin-right:auto;
+    overflow:hidden;
     min-width:760px;
 }
