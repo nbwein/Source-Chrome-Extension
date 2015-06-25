@@ -217,6 +217,8 @@ return {
     gapi.client.load('calendar', 'v3', getCalendarSession);
     $("#submit-message").on("click", sendEmail);
     $("#submit-shoutout").on("click", sendShoutout);
+	fetchLunches();
+	$("#submit-lunch").on("click", scheduleLunch);
   }
 };
 })();

@@ -15,6 +15,8 @@ function loadFeed(){
 			var container = document.getElementById("message-board");
 			for (var i = 1; i < items.length; i++){
 				var elements = items[i].split("</title>");
+   				var subject = elements[0].replace("<title>", "");
+  				if (subject != "Lunch"){
 				var description = elements[1].split("<description>")[1].split("</description>")[0];
 				var entry = description;
 				var div = document.createElement("div");
@@ -24,6 +26,7 @@ function loadFeed(){
 					div.setAttribute("style", "border-top-left-radius: 15px; border-top-right-radius: 15px");
 				}
 				container.appendChild(div);
+			}
 			}
 		}
 	});
