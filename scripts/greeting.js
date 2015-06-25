@@ -264,7 +264,10 @@ function getCalendar() {
 	      var minutes = x % 60;
 	      x = Math.trunc(x/60);
 	      var hours = x % 24;
-	      var hours_until = hours + ":" + minutes + " until " + event.summary;
+	      var hours_until = minutes + " minutes until " + event.summary;
+              if (hours != 0){
+	      	hours_until = hours + " hours, " + hours_until  
+	      }
 	      document.getElementById("next-meeting").innerHTML = hours_until;
 	      setTimeout(getCalendar, 1000);	     	
             }
