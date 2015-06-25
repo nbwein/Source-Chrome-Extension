@@ -214,11 +214,13 @@ return {
 		showTime();
 		loadFeed();
 		gapi.client.load('gmail', 'v1');
-    gapi.client.load('calendar', 'v3', getCalendarSession);
-    $("#submit-message").on("click", sendEmail);
-    $("#submit-shoutout").on("click", sendShoutout);
-	fetchLunches();
-	$("#submit-lunch").on("click", scheduleLunch);
+   		gapi.client.load('calendar', 'v3', getCalendarSession);
+    		$("#submit-message").on("click", sendEmail);
+    		$("#submit-shoutout").on("click", sendShoutout);
+		fetchLunches();
+		$("#submit-lunch").on("click", scheduleLunch);
+		$(".join").on("click", addEvent);
+
   }
 };
 })();

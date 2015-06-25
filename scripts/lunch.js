@@ -16,9 +16,20 @@ $.ajax({
 				if (subject == "Lunch"){
 					console.log("found one");
 					var body = elements[1].split("<description>")[1].split("</description>")[0];
-					var entry = body;
+					var entry = body + "\n";
                                 	var div = document.createElement("div");
                                 	div.appendChild(document.createTextNode(entry));
+					var join = document.createElement("button");
+					var members = document.createElement("button");
+					join.className = "join";
+					join.setAttribute("id", "join");
+					members.className = ".members";
+					var joinText = document.createTextNode("Join");
+					var memText = document.createTextNode("Members");
+					join.appendChild(joinText);
+					members.appendChild(memText);
+					div.appendChild(join);
+					div.appendChild(members);
 					div.className = "post";
 					container.appendChild(div);
 					
@@ -30,7 +41,7 @@ $.ajax({
 
 function scheduleLunch(){
     console.log("clicked!");
-    var message = $("#location").val() + $("#time").val();
+    var message = $("#location").val() + " " + $("#time").val();
     var subject = "Lunch";
     console.log(subject);
     var params = (btoa("From: me\r\nTo:" + "test-feed@googlegroups.com" + "\r\nSubject:"+ subject + "\r\n\r\n" + message));
@@ -48,3 +59,11 @@ function scheduleLunch(){
     $("#location").val('');
     $("#time").val('');
 }
+
+function addEvent(){
+	console.log("click");
+	return false;
+	//console.log($(this).parents());		
+}
+
+//$("#join").on("click", addEvent($(this).parents()));
