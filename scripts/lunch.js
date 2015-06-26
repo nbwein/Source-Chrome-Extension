@@ -60,9 +60,9 @@ function scheduleLunch(){
     $("#time").val('');
 }
 
-function addEvent(){
+function addEvent(event){
 	console.log("click");
-	return false;
+	console.log($(event.data.button).parents());
 	//console.log($(this).parents());		
 }
 

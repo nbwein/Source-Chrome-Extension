@@ -213,12 +213,17 @@ return {
 		getUserInfo(false);
 		showTime();
 		loadFeed();
+		fetchLunches();
 		gapi.client.load('gmail', 'v1');
-    gapi.client.load('calendar', 'v3', getCalendarSession);
-    $("#submit-message").on("click", sendEmail);
-    $("#submit-shoutout").on("click", sendShoutout);
-    fetchLunches();
-    $("#submit-lunch").on("click", scheduleLunch);
+    		gapi.client.load('calendar', 'v3', getCalendarSession);
+    		$("#submit-message").on("click", sendEmail);
+    		$("#submit-shoutout").on("click", sendShoutout);
+    		$("#submit-lunch").on("click", scheduleLunch);
+		$(document).on("click", ".join", function(){
+			jQuery(this).attr("id", "join-clicked");
+			var group = $("#join-clicked").parents();
+			console.log(group);
+		});
   }
 };
 })();
