@@ -11,7 +11,7 @@
         "permissions": ["https://groups.google.com/forum/feed/test-private-feed/msgs/rss_v2_0", "webRequest", "webRequestBlocking", "*://*.google.com/", "identity", "https://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js", "https://accounts.google.com/*", "https://www.googleapis.com/*"], 
 	"oauth2": {
 		"client_id": "847225712349-afs3e8aobcglbi1ml1gjkcr764ri1jvk.apps.googleusercontent.com",
-		"scopes": ["https://www.googleapis.com/auth/calendar.readonly", "https://www.googleapis.com/auth/plus.login", "https://www.googleapis.com/auth/gmail.compose", "https://www.googleapis.com/auth/userinfo.email", "https://www.googleapis.com/auth/userinfo.email"]
+		"scopes": ["https://www.googleapis.com/auth/calendar", "https://www.googleapis.com/auth/plus.login", "https://www.googleapis.com/auth/gmail.compose", "https://www.googleapis.com/auth/userinfo.email", "https://www.googleapis.com/auth/userinfo.email"]
 	},
 	"content_security_policy": "script-src 'self' https://www.google.com/uds/ https://www.google.com/jsapi https://apis.google.com/js/client.js https://apis.google.com; object-src 'self'"
 }

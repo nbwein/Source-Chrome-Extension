@@ -28,7 +28,8 @@ function loadFeed(){
 					container.appendChild(div);
 				}
 			}
-		}
+			}
+		
 	});
 }
 
