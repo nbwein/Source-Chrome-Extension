@@ -71,7 +71,6 @@ function onUserInfoFetched(error, status, response) {
   function populateUserInfo(user_info) {
     main_greeting.innerHTML = "Welcome, " + user_info.name.givenName;
     console.log(user_info.name.givenName);
-    console.log("HERE");
   }
 
   function populateUserInfo(user_info) {
