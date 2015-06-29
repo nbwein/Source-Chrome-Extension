@@ -11,7 +11,7 @@
 	<script src="scripts/greeting.js"> </script> 
 	<script src="scripts/date-time.js"></script>
 	<script src="scripts/weather.js"></script> 
-	<script src="scripts/lunch.js"></script>
+	<script src="lunch.js"></script>
 	<!--<script type="text/javascript" src="https://www.google.com/jsapi"></script>-->
 	<link rel="stylesheet" type="text/css" href="styles/main.css"></link>
 	<body id="main">
@@ -26,34 +26,34 @@
 				<div id="weather-icon-div"></div>
 			</div>
 			<div id = "middle-column">
-				<div id ="post-message" align="center"> 
+				<div id ="post-message"> 
 					<textarea id = "message-text" type="text" name="message" placeholder="New message..."></textarea>
-					<input id = "submit-message" type="submit" value="post" />
+					<a href="#" id ="submit-message" class="btn btn-lg">Post</a>
 				</div>
 				<div align = "center" id="message-board"></div>
 				<h2 align = "center" id ="stella-daily-value"><i>Work Hard to Keep it Simple</i></h2>
 			</div>
 			<div id = "left-column"> 
 				<div id="lunch">
-					<div id = "lunch-header" text-align:"center">
+					<div id="lunch-header" text-align:"center">
 						<h3>Stella Lunch</h3>
 					</div>
+					<div id ="lunch-form">
+						<label for="location">Where?</label>
+						<input id = "location" type="text"/>
+						<label for="location">When?</label>
+						<input id = "time" type = "text"/>
+						<a href="#" class="btn btn-sm">Schedule</a>
+					</div >
 				</div>
-				<div id ="lunch-form">
-					<label for="location">Where?</label>
-					<input id = "location" type="text"/>
-					<label for="location">When?</label>
-					<input id = "time" type = "text" label = "When?" />
-					<input id = "submit-lunch" type="submit" value="schedule"/>
-				</div >
 				<div id="submissions">
 					<div id="stella-shoutout"> 
 						<input id = "shoutout-text" type="text" name="shoutout" placeholder="Enter a shout-out"/>
-						<input id = "submit" type="submit" />
+						<a href="#" id="submit-shoutout" class="btn btn-sm">Submit</a>
 					</div>
 					<div id="gong-show"> 
 						<input id = "gong-text" type="text" name="gongtext" placeholder="Submit to Gong Show"/>
-						<input id = "submit" type="submit" />
+						<a href="#" id ="submit" class="btn btn-sm">Submit</a>
 					</div>
 				</div>
 			</div>

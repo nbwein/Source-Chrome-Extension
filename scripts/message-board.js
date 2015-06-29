@@ -24,6 +24,7 @@ function loadFeed(){
 					if (i == 0){
 						div.setAttribute("style", "border-top-left-radius: 15px; border-top-right-radius: 15px");
 					}
+					div.setAttribute("align","center");
 					container.appendChild(div);
 				}
 			}
