@@ -72,7 +72,7 @@ function onUserInfoFetched(error, status, response) {
   }
 
   function populateUserInfo(user_info) {
-    document.getElementById("main-greeting").innerHTML = "Welcome, " + user_info.name.givenName + ".";
+    document.getElementById("main_greeting").innerHTML = "Welcome, " + user_info.name.givenName + ".";
   }
 
   function encodeURL(str){
@@ -186,6 +186,7 @@ function nextMeeting() {
 }
 
 function fetchLunches(){
+	console.log("here");
 	var request = getLunchCalendar(); 
 	request.execute(function(resp){
 		var events = resp.items;
