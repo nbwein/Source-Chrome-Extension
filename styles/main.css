@@ -148,6 +148,8 @@ body { height: 100%; min-height: 100%; min-width: 736px;  overflow:hidden; backg
  height: 300px;
  width: 85%;
  top:115px;
+ overflow-y:auto;
+ overflow-x:hidden;
 }
 
 #lunch-form{

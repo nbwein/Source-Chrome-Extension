@@ -1,6 +1,8 @@
 'use strict';
 
   var access_global;
+  var user_info_global;
+  var email_global;
 
   var googlePlusUserLoader  = (function() {
     function xhrWithAuth(method, url, interactive, callback, params) {
@@ -59,8 +61,9 @@
 
 function onUserInfoFetched(error, status, response) {
   if (!error && status == 200) {
-      console.log("here");
       var user_info = JSON.parse(response);
+      user_info_global = user_info;
+      email_global = user_info_global.emails[0].value;
       populateUserInfo(user_info);
     } else {
       console.log(response);
@@ -70,8 +73,6 @@ function onUserInfoFetched(error, status, response) {
 
   function populateUserInfo(user_info) {
     main_greeting.innerHTML = "Welcome, " + user_info.name.givenName;
-    console.log(user_info.name.givenName);
-    console.log("HERE");
   }
 
   function populateUserInfo(user_info) {
@@ -124,35 +125,50 @@ function onUserInfoFetched(error, status, response) {
 
 function getCalendarSession(){
 	gapi.auth.authorize(
-    {client_id: '847225712349-afs3e8aobcglbi1ml1gjkcr764ri1jvk.apps.googleusercontent.com', scope: ['https://www.googleapis.com/auth/calendar.readonly'], immediate: true},
-    getCalendar);
+    {client_id: '847225712349-afs3e8aobcglbi1ml1gjkcr764ri1jvk.apps.googleusercontent.com', scope: ['https://www.googleapis.com/auth/calendar'], immediate: true},
+    fetchLunches);
   return false;
 }
 
 
-function getCalendar() {
+function getCalendar() {	
 	var midnight = new Date((new Date().getTime() + 24*60*60*1000));
 	midnight.setHours(0,0,0,0);
 	var request = gapi.client.calendar.events.list({
-   'calendarId': 'primary',
-   'timeMin': (new Date()).toISOString(),
-   'showDeleted': false,
-   'singleEvents': true,
-   'maxResults': 1, 
-   'timeMax' : midnight.toISOString(),
-   'orderBy': 'startTime'
+   		'calendarId': 'primary',
+   		'timeMin': (new Date()).toISOString(),
+   		'showDeleted': false,
+  		'singleEvents': true,
+   		'maxResults': 1, 
+   		'timeMax' : midnight.toISOString(),
+   		'orderBy': 'startTime'
  });
+	return request;
+}
 
+function getLunchCalendar() {
+	var midnight = new Date((new Date().getTime() + 24*60*60*1000));
+        midnight.setHours(0,0,0,0);
+        var request = gapi.client.calendar.events.list({
+                'calendarId': 'stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com',
+                'timeMin': (new Date()).toISOString(),
+                'showDeleted': false,
+                'singleEvents': true,
+                'maxResults': 5,
+                'timeMax' : midnight.toISOString(),
+                'orderBy': 'startTime'
+ });
+        return request;
+
+}
+
+function nextMeeting() {
+	var request = getCalendar();
 	request.execute(function(resp){
 		var events = resp.items;
-		
     if (events.length > 0) {
-      for (var i = 0; i < events.length; i++) {
-        var event = events[i];
-        var when = event.start.dateTime;
-        if (!when) {
-          when = event.start.date;
-        }
+        var event = events[0];
+        
 
         var startDate = new Date(event.start.dateTime);
         var diff = startDate.getTime() - (new Date()).getTime();
@@ -167,10 +183,46 @@ function getCalendar() {
         document.getElementById("next-meeting").innerHTML = hours_until;
         setTimeout(getCalendar, 1000);	     	
       }
-    } else {
-           // appendPre('No upcoming events found.');
+     else {
          }
        });
+	
+}
+
+function fetchLunches(){
+	var request = getLunchCalendar(); 
+	request.execute(function(resp){
+		var events = resp.items;
+		if (events.length > 0){
+		var container = document.getElementById("lunch");
+		for (var i = 0; i < events.length; i++){
+			var id = events[i].id;
+			console.log(id);
+			var time = events[i].start.dateTime;
+			var times = ((time.split("T")[1]).split("-")[0]).split(":");
+			time = times[0] + ":" + times[1];
+			var entry = events[i].location + " " + time + " ";
+			var div = document.createElement("div");
+                        div.appendChild(document.createTextNode(entry));
+			var join = document.createElement("button");
+                        var members = document.createElement("button");
+                      	join.className = "join";
+                        join.setAttribute("id", "join");
+                        members.className = "members";
+                        var joinText = document.createTextNode("Join");
+                        var memText = document.createTextNode("Members");
+                        join.appendChild(joinText);
+                        members.appendChild(memText);
+                        div.appendChild(join);
+                        div.appendChild(members);
+                        div.className = "post";
+                        div.setAttribute("id", id);
+                       container.appendChild(div);
+		}
+
+		}
+	});
+	nextMeeting();
 }
 
 
@@ -210,19 +262,26 @@ document.getElementById("forum_embed").src =
 
 return {
 	onload: function() {
+		gapi.client.load('gmail', 'v1');
+                gapi.client.load('calendar', 'v3', getCalendarSession);
 		getUserInfo(false);
 		showTime();
 		loadFeed();
-		fetchLunches();
-		gapi.client.load('gmail', 'v1');
-    		gapi.client.load('calendar', 'v3', getCalendarSession);
     		$("#submit-message").on("click", sendEmail);
     		$("#submit-shoutout").on("click", sendShoutout);
     		$("#submit-lunch").on("click", scheduleLunch);
 		$(document).on("click", ".join", function(){
 			jQuery(this).attr("id", "join-clicked");
 			var group = $("#join-clicked").parents();
-			console.log(group);
+			var id = group.attr('id');
+			addEvent(id);
+		});
+	        $(document).on("click", ".members", function(){
+			console.log("mems");
+			jQuery(this).attr("id", "members-clicked");
+			var group = $("#members-clicked").parents();
+			var id = group.attr('id');
+			viewMembers(id);
 		});
   }
 };
