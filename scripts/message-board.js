@@ -21,7 +21,7 @@ function loadFeed(){
 					var div = document.createElement("div");
 					div.appendChild(document.createTextNode(entry));
 					div.className = "post";
-					if (i == 0){
+					if (i == 0) {
 						div.setAttribute("style", "border-top-left-radius: 15px; border-top-right-radius: 15px");
 					}
 					div.setAttribute("align","center");
