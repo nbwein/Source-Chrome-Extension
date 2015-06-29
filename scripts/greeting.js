@@ -72,11 +72,7 @@ function onUserInfoFetched(error, status, response) {
   }
 
   function populateUserInfo(user_info) {
-    main_greeting.innerHTML = "Welcome, " + user_info.name.givenName;
-  }
-
-  function populateUserInfo(user_info) {
-    main_greeting.innerHTML = "Welcome, " + user_info.name.givenName + ".";
+    document.getElementById("main-greeting").innerHTML = "Welcome, " + user_info.name.givenName + ".";
   }
 
   function encodeURL(str){
@@ -217,7 +213,7 @@ function fetchLunches(){
                         div.appendChild(members);
                         div.className = "post";
                         div.setAttribute("id", id);
-                       container.appendChild(div);
+                        container.appendChild(div);
 		}
 
 		}

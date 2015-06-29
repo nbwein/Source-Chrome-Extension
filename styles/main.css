@@ -30,7 +30,7 @@ body { height: 100%; min-height: 100%; min-width: 736px;  overflow:hidden; backg
   display:inline-block;
 }
 
-#middle-column{
+#middle-column {
   height:100%;
   width:40%;
   min-width:350px;
@@ -39,13 +39,13 @@ body { height: 100%; min-height: 100%; min-width: 736px;  overflow:hidden; backg
   display:inline-block;
 }
 
-#main_greeting{
+#main-greeting {
   font-size: 40px; letter-spacing: 0; white-space: nowrap;
   font-weight: 200;
   color:#232427;
 }
 
-#next-meeting{
+#next-meeting {
   position:relative;
 }
 
@@ -87,7 +87,7 @@ body { height: 100%; min-height: 100%; min-width: 736px;  overflow:hidden; backg
   margin-right:auto;
 }
 
-#upcoming-events{
+#upcoming-events {
   padding-bottom:50px;
 }
 
@@ -99,13 +99,13 @@ body { height: 100%; min-height: 100%; min-width: 736px;  overflow:hidden; backg
   overflow:auto;
 }
 
-#post-message{
+#post-message {
   position:relative;
   overflow: hidden;
   top:115px;
 }
 
-#message-text{
+#message-text {
   position: relative; 
   font-family: "Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
   font-weight: 200;
@@ -116,14 +116,14 @@ body { height: 100%; min-height: 100%; min-width: 736px;  overflow:hidden; backg
   resize: none;
 }
 
-#submit-message{
+#submit-message {
   position: relative;
   border-radius:10px;
   bottom:27px;
   width: 15%;
 }
 
-#stella-daily-value{
+#stella-daily-value {
   position: relative; 
   font-family: "Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
   font-weight: 200;
@@ -134,7 +134,7 @@ body { height: 100%; min-height: 100%; min-width: 736px;  overflow:hidden; backg
   
 }
 
-#bdays-annivs{
+#bdays-annivs {
   position:relative;
   border: solid 5px #808599;
   border-radius:15px;
@@ -205,14 +205,14 @@ body { height: 100%; min-height: 100%; min-width: 736px;  overflow:hidden; backg
   top: 130px;
 }
 
-#wrapper{
+#wrapper {
   margin-left:auto;
   margin-right:auto;
   height:100%;
   min-width:760px;
 }
 
-#lunch-header{
+#lunch-header {
   position:relative;
   border: solid 1px #808599;
   font-family: "Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
