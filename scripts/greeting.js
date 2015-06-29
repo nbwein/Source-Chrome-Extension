@@ -283,6 +283,7 @@ return {
 		getUserInfo(false);
 		showTime();
 		loadFeed();
+		getJobs();
     		$("#submit-message").on("click", sendEmail);
     		$("#submit-shoutout").on("click", sendShoutout);
     		$("#submit-lunch").on("click", scheduleLunch);

@@ -39,7 +39,7 @@ body { height: 100%; min-height: 100%; min-width: 736px;  overflow:hidden; backg
   display:inline-block;
 }
 
-#main-greeting {
+#main_greeting {
   font-size: 40px; letter-spacing: 0; white-space: nowrap;
   font-weight: 200;
   color:#232427;
