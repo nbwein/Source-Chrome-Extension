@@ -92,11 +92,11 @@ body { height: 100%; min-height: 100%; min-width: 736px;  overflow:hidden; backg
 }
 
 .post {
- position:relative;
- border: solid 1px #808599;
- width:100%;
- min-height:50px;
- overflow:auto;
+  position:relative;
+  border: solid 1px #808599;
+  width:100%;
+  min-height:50px;
+  overflow:auto;
 }
 
 #post-message{
@@ -135,34 +135,37 @@ body { height: 100%; min-height: 100%; min-width: 736px;  overflow:hidden; backg
 }
 
 #bdays-annivs{
- position:relative;
- border: solid 5px #808599;
- border-radius:15px;
- display:inline-block;
- width: 85%;
- top: 115px;
- text-align:center;
+  position:relative;
+  border: solid 5px #808599;
+  border-radius:15px;
+  display:inline-block;
+  width: 85%;
+  top: 67px;
+  text-align:center;
 }
 
 #jobs {
- position:relative;
- width:90%;
- text-align:center;
- top: 300px;
+  position:relative;
+  width:85%;
+  top: 300px;
+  text-align:center;
+  display:inline-block;
+  border: solid 5px #808599;
+  border-radius:15px;
 }
 
 #lunch {
- position:relative;
- font-family: "Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
- font-weight: 200;
- border: solid 5px #808599;
- border-radius:15px;
- display:inline-block;
- height: 300px;
- width: 85%;
- top: 115px;
- overflow-y:auto;
- overflow-x:hidden;
+  position:relative;
+  font-family: "Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
+  font-weight: 200;
+  border: solid 5px #808599;
+  border-radius:15px;
+  display:inline-block;
+  height: 300px;
+  width: 85%;
+  top: 115px;
+  overflow-y:auto;
+  overflow-x:hidden;
 }
 
 #lunch-form {
@@ -193,14 +196,13 @@ body { height: 100%; min-height: 100%; min-width: 736px;  overflow:hidden; backg
   margin-bottom: 5px;
 }
 
-
-#submissions{
- position: relative;
- border: solid 5px #808599;
- border-radius: 15px; 
- width: 85%;
- left: 6.5%;
- top: 15%
+#submissions {
+  position: relative;
+  border: solid 5px #808599;
+  border-radius: 15px; 
+  width: 85%;
+  left: 6.5%;
+  top: 130px;
 }
 
 #wrapper{
