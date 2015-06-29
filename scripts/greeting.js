@@ -206,7 +206,12 @@ function fetchLunches(){
                         div.appendChild(document.createTextNode(entry));
 			var join = document.createElement("button");
                         var members = document.createElement("button");
-                      	join.className = "join";
+			if (events[i].creator.email = email_global){
+				join.className = "join-clicked";
+			}
+			else{
+                      		join.className = "join";
+			}
                         join.setAttribute("id", "join");
                         members.className = "members";
                         var joinText = document.createTextNode("Join");
@@ -272,14 +277,16 @@ return {
     		$("#submit-lunch").on("click", scheduleLunch);
 		$(document).on("click", ".join", function(){
 			jQuery(this).attr("id", "join-clicked");
+			jQuery(this).attr("class", "join-clicked");
 			var group = $("#join-clicked").parents();
+			jQuery(this).attr("id", "join");
 			var id = group.attr('id');
 			addEvent(id);
 		});
 	        $(document).on("click", ".members", function(){
-			console.log("mems");
 			jQuery(this).attr("id", "members-clicked");
 			var group = $("#members-clicked").parents();
+			jQuery(this).attr("id", "members");
 			var id = group.attr('id');
 			viewMembers(id);
 		});
