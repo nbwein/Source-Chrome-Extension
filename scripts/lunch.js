@@ -111,24 +111,14 @@ function addEvent(id){
         req.execute(function(resp) {	
 		var attendees = [{'email': email_global}];
                 var members_list = resp.attendees;
-		console.log(members_list);
-		for (var i = 0; i < members_list.length; i++){
-			attendees = attendees.push(members_list[i]);
-
-		}
-		var end = resp.end;
-		var start = resp.start
+		var all = attendees.concat(resp.attendees);
+		console.log(all);
 		var request = gapi.client.calendar.events.patch({
 			'calendarId' : 'stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com',
                 	'eventId' : id,
-			'attendees': attendees,
-			'start' : start,
-			'end': end
-			
-
+			'attendees': all
 		});
-		request.execute( function(resp) { console.log(resp);});
-
+		request.execute( function(resp) {});
 		});
 }
 
@@ -140,10 +130,12 @@ function viewMembers(id){
 	request.execute(function(resp) {
 		var members = resp.attendees;
 		console.log(members);
+		var names = '';
 		for (var i = 0; i < members.length; i++){
 			console.log(members[i].displayName);
+			names = names + members[i].displayName + "\n";
 		}
+		alert(names);
 	});
 }
 
-//$("#join").on("click", addEvent($(this).parents()));
