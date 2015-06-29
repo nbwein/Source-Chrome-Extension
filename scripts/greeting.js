@@ -202,12 +202,25 @@ function fetchLunches(){
 			var div = document.createElement("div");
                         div.appendChild(document.createTextNode(entry));
 			var join = document.createElement("button");
+			var stat = document.createElement("span");
                         var members = document.createElement("button");
-			if (events[i].creator.email = email_global){
+			if (events[i].creator.email == email_global){
 				join.className = "join-clicked";
-			}
+				join.setAttribute("disabled", true);
+				join.setAttribute("hidden", true);
+				stat.innerHTML = "     joined!     ";
+			} 
 			else{
                       		join.className = "join";
+				for (var j in events[i].attendees){
+					console.log(events[i].attendees[j]);
+					if (events[i].attendees[j].email == email_global){
+						join.className = "join-clicked";
+                                		join.setAttribute("disabled", true);
+                                		join.setAttribute("hidden", true);
+                                		stat.innerHTML = "     joined!     ";
+					}
+				}
 			}
                         join.setAttribute("id", "join");
                         members.className = "members";
@@ -215,6 +228,7 @@ function fetchLunches(){
                         var memText = document.createTextNode("Members");
                         join.appendChild(joinText);
                         members.appendChild(memText);
+			div.appendChild(stat);
                         div.appendChild(join);
                         div.appendChild(members);
                         div.className = "post";
@@ -275,6 +289,7 @@ return {
 		$(document).on("click", ".join", function(){
 			jQuery(this).attr("id", "join-clicked");
 			jQuery(this).attr("class", "join-clicked");
+			jQuery(this).attr("disabled", true); 
 			var group = $("#join-clicked").parents();
 			jQuery(this).attr("id", "join");
 			var id = group.attr('id');

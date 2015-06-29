@@ -74,7 +74,8 @@ function createEvent(place, time){
 		'anyoneCanAddSelf' : true,	
 		'id': id,
 		'location': place,
-		'attendees' : [{'email' : email_global}]
+		'attendees' : [{'email' : email_global}],
+		'summary' : place
 	});
 	request.execute(function(resp) {});
 	return id;
@@ -118,7 +119,7 @@ function addEvent(id){
                 	'eventId' : id,
 			'attendees': all
 		});
-		request.execute( function(resp) {});
+		request.execute( function(resp) {console.log(resp);});
 		});
 }
 
