@@ -1,9 +1,12 @@
 /*Lunch scheduler js */
 
-function createEvent(place, time){
+function createEvent(place, time, ampm){
 	var id = Math.trunc( Math.random() * 100000);
 	var elements = time.split(":");
 	var miliseconds = elements[0]*60*60*1000;
+	if( ampm == "pm" && elements[0] != 12){
+		miliseconds = miliseconds + 12*60*60*1000;
+	}
 	miliseconds = miliseconds + elements[1]*60*1000;
 	var today = new Date();
 	today.setHours(0,0,0,0);
@@ -35,7 +38,11 @@ function createEvent(place, time){
 
 function scheduleLunch(){
     if (($("#location").val() != '') && ($("#time").val() != '')) {
-        var id = createEvent($("#location").val(), $("#time").val());
+	var timestr = $("#time").val();
+	var len = timestr.length;
+	var ampm = timestr[len-2] + timestr[len-1];
+	var time = timestr.replace(ampm, '');
+        var id = createEvent($("#location").val(), time, ampm);
         $("#location").val('');
         $("#time").val(''); 
     }

@@ -206,8 +206,16 @@ var googlePlusUserLoader  = (function() {
 					var id = events[i].id;
 					var time = events[i].start.dateTime;
 					var times = ((time.split("T")[1]).split("-")[0]).split(":");
+					var ampm = "am";
+					if (times[0] > 12) {
+						times[0] = times[0] - 12;
+						ampm = "pm"
+					}
+					else if (times[0] == 12){
+						ampm = "pm"
+					}
 					time = times[0] + ":" + times[1];
-					var entry = events[i].location + " " + time + " ";
+					var entry = events[i].location + " " + time + " " + ampm + " ";
 					var div = document.createElement("div");
 					div.appendChild(document.createTextNode(entry));
 
