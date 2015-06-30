@@ -4,10 +4,8 @@
 	<title>Internal</title>
 	<link href="http://fonts.googleapis.com/css?family=Merienda+One" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-	<script src="https://apis.google.com/js/client.js"></script>
+	<script src="https://apis.google.com/js/client.js"> </script>
 	<script src="scripts/jquery.min.js"></script>
-	<script src = "scripts/jquery.timepicker.js"></script>
-	<script src = "scripts/jquery.timepicker.min.js"></script> 
 	<script src="scripts/send-message.js"></script> 
 	<script src="scripts/message-board.js"></script> 
 	<script src="scripts/greeting.js"> </script> 
@@ -17,7 +15,6 @@
 	<script src="scripts/jobs.js"></script>
 	<!--<script type="text/javascript" src="https://www.google.com/jsapi"></script>-->
 	<link rel="stylesheet" type="text/css" href="styles/main.css"></link>
-	<link rel="stylesheet" type="text/css" href="styles/jquery.timepicker.css"></link>
 	<body id="main">
 		<div id ="wrapper"> 
 			<div id="greeting">
@@ -40,40 +37,38 @@
 			<div id = "left-column"> 
 				<div id="lunch">
 					<div id="lunch-header" text-align:"center">
-						<h3>Stella Lunch</h3>
+						<h3 id="lunch-text">Stella Lunch</h3>
 					</div>
 					<div id ="lunch-form">
 						<label for="location">Where?</label>
 						<input id = "location" type="text"/>
 						<label for="location">When?</label>
-						<input id = "time" type = "text"/> 
+						<input id = "time" type = "text"/>
 						<a href="#" id="submit-lunch" class="btn btn-sm">Schedule</a>
 					</div >
 				</div>
-				<div id="submissions" style="text-align:center">
+				<div id="submissions">
 					<div id="stella-shoutout"> 
 						<input id = "shoutout-text" type="text" name="shoutout" placeholder="Enter a shout-out"/>
 						<a href="#" id="submit-shoutout" class="btn btn-sm">Submit</a>
 					</div>
-					<div align = center id="gong-show">
-						<br> 
-						<a href="http://go.stellaservice.com/gongshow.html" class = "btn btn-sm" target="_blank">Submit to Gong Show</a>
-						<br><br><br>
+					<div id="gong-show"> 
+						<input id = "gong-text" type="text" name="gongtext" placeholder="Submit to Gong Show"/>
+						<a href="#" id ="submit-gong" class="btn btn-sm">Submit</a>
 					</div>
 				</div>
 			</div>
 			<div id = "right-column">
 				<div id="upcoming-events"></div>
 				<div id="bdays-annivs">
-					<h3> Birthdays and Anniversaries </h3>
+					<h3 id="bdays-text">Birthdays and Anniversaries</h3>
 				</div>
 				<div id="jobs">
-					<h3> Open Positions </h3>
+					<h3 id="jobs-text">Open Positions</h3>
 					<span id="job-list"></span>
 				</div>
 			</div>
 		</div>
-		<!--<h2 align = "center" id ="stella-daily-value"><i>Work Hard to Keep it Simple</i></h2> -->
 	</div>
 </body>
 </html>
