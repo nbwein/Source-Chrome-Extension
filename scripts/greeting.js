@@ -185,8 +185,9 @@ var googlePlusUserLoader  = (function() {
 	}
 
 	function fetchLunches(){
+		console.log("here");
 		var request = getLunchCalendar(); 
-		request.execute(function(resp) {
+		request.execute(function(resp){
 			var events = resp.items;
 
 			if (events.length > 0) {
@@ -218,6 +219,7 @@ var googlePlusUserLoader  = (function() {
 						join.className = "btn join";
 
 						for (var person in events[i].attendees) {
+							console.log(events[i].attendees[person]);
 							if (events[i].attendees[person].email == email_global) {
 								join.className = "join-clicked";
 								joinText = document.createTextNode("Joined!");
@@ -294,17 +296,16 @@ return {
 			jQuery(this).attr("id", "join-clicked");
 			jQuery(this).attr("class", "join-clicked");
 			jQuery(this).html("Joined!");
-			var group = $("#join").parents();
+			var group = $("#join-clicked").parents();
 			jQuery(this).attr("id", "join");
 			var id = group.attr('id');
 			addEvent(id);
 		});
 
 		$(document).on("click", ".join-clicked", function() {
-			jQuery(this).attr("id", "join");
 			jQuery(this).attr("class", "btn join");
 			jQuery(this).html("Join");
-			var group = $("#join").parents();
+			var group = jQuery(this).parents();
 			var id = group.attr('id');
 			removeMember(id, user_info_global.displayName);
 		});
@@ -312,6 +313,7 @@ return {
 		$(document).on("click", ".members", function() {
 			jQuery(this).attr("id", "members");
 			var group = $("#members").parents();
+			jQuery(this).attr("id", "members");
 			var id = group.attr('id');
 			viewMembers(id);
 		});

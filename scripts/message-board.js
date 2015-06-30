@@ -1,5 +1,7 @@
 /* Javascript for the message board */
 
+
+/* Load the RSS feed from Google Groups, display in the message board */
 function loadFeed(){
 	var rand = Math.trunc(Math.random() * 10000);
 	console.log(rand);
@@ -19,6 +21,9 @@ function loadFeed(){
 					var description = elements[1].split("<description>")[1].split("</description>")[0];
 					var entry = description;
 					var div = document.createElement("div");
+					entry = entry.replace("&amp;", "&");
+					entry = entry.replace("&apos;", "\'");
+					entry = entry.replace("&quot;", "\"");
 					div.appendChild(document.createTextNode(entry));
 					div.className = "post";
 					if (i == 0) {
