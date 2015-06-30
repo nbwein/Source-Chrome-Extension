@@ -276,7 +276,11 @@ return {
 		$("#submit-message").on("click", sendEmail);
 		$("#submit-shoutout").on("click", sendShoutout);
 		$("#submit-lunch").on("click", scheduleLunch);
-
+		$("#time").timepicker({
+			'minTime':"11:00am",
+			'scrollDefault':'now',
+			'step':15
+		});
 		$(document).on("click", ".join", function() {
 			jQuery(this).attr("id", "join-clicked");
 			jQuery(this).attr("class", "join-clicked");
