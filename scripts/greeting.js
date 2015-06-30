@@ -133,6 +133,7 @@ function getCalendarSession(){
 }
 
 /* Sets up the request to retrieve the user's PRIMARY calendar*/
+/* NOTE: time min does not seem to be working properly, had to loop through events to check if time is before in nextMeeting()*/
 function getCalendar() {	
 	var midnight = new Date((new Date().getTime() + 24*60*60*1000));
 	midnight.setHours(0,0,0,0);
