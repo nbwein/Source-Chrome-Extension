@@ -17,62 +17,91 @@ function createEvent(place, time){
 		'start' : {
 			'dateTime' : startstr,		
 			'timeZone' : "America/New_York"
-			},
-		'end' : {
-			'dateTime': endstr,
-			'timeZone': "America/New_York"
-			},
-		'anyoneCanAddSelf' : true,	
-		'id': id,
-		'location': place,
-		'attendees' : [{'email' : email_global}]
-	});
+       },
+       'end' : {
+         'dateTime': endstr,
+         'timeZone': "America/New_York"
+     },
+     'anyoneCanAddSelf' : true,	
+     'id': id,
+     'location': place,
+     'attendees' : [{'email' : email_global}],
+     'summary' : place
+ });
 	request.execute(function(resp) {});
 	return id;
 }
 
 
 function scheduleLunch(){
-    console.log("clicked!");
-    var id = createEvent($("#location").val(), $("#time").val());
-    $("#location").val('');
-    $("#time").val(''); 
+    if (($("#location").val() != '') && ($("#time").val() != '')) {
+        var id = createEvent($("#location").val(), $("#time").val());
+        $("#location").val('');
+        $("#time").val(''); 
+    }
+    else {
+        alert("Please fill out both forms.");
+    }
 }
 
 function addEvent(id){
-  var req = gapi.client.calendar.events.get({
-    'calendarId' : 'stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com',
-    'eventId' : id
-  });
-  req.execute(function(resp) {	
-    var attendees = [{'email': email_global}];
-    console.log(email_global);
-    var members_list = resp.attendees;
-    var all = attendees.concat(resp.attendees);
-    console.log(all);
-    var request = gapi.client.calendar.events.patch({
-     'calendarId' : 'stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com',
-     'eventId' : id,
-     'attendees': all
-   });
-    request.execute( function(resp) {});
-  });
+    console.log("addEvent: " + id);
+    var request = gapi.client.calendar.events.get({
+        'calendarId' : 'stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com',
+        'eventId' : id
+    });
+    request.execute(function(resp) {	
+        var attendees = [{'email': email_global}];
+        var all = attendees.concat(resp.attendees);
+        var req = gapi.client.calendar.events.patch({
+         'calendarId' : 'stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com',
+         'eventId' : id,
+         'attendees': all
+     });
+        req.execute( function(resp) {});
+    });
 }
 
-function viewMembers(id){
-	var request = gapi.client.calendar.events.get({
-		'calendarId' : 'stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com',
-		'eventId' : id
-	});	
-	request.execute(function(resp) {
-		var members = resp.attendees;
-		console.log(members);
-		var names = '';
-		for (var i = 0; i < members.length; i++){
-			console.log(members[i].displayName);
-			names = names + members[i].displayName + "\n";
-		}
-		alert(names);
-	});
+function viewMembers(id) {
+    console.log("viewmembers: " + id);
+    var request = gapi.client.calendar.events.get({
+      'calendarId' : 'stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com',
+      'eventId' : id
+  });	
+    request.execute(function(resp) {
+        var members = (typeof resp.attendees != 'undefined') ? resp.attendees : [];
+        var names = '';
+        for (var i = 0; i < members.length; i++) {
+            names = names + members[i].displayName + "\n";
+     }
+     alert(names);
+ });
+}
+
+function removeMember(id, name) {
+    console.log("removeMember: " + id);
+    var request = gapi.client.calendar.events.get({
+        'calendarId' : 'stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com',
+        'eventId' : id
+    }); 
+    // console.log("id: " + id);
+    request.execute(function(resp) {
+        var members = (typeof resp.attendees != 'undefined') ? resp.attendees : [];
+        var names = '';
+        for (var i = 0; i < members.length; i++){
+            if (members[i].displayName == name) {
+                members.splice(i, 1);
+                continue;
+            }
+            names = names + members[i].displayName + "\n";
+        }
+
+        var req = gapi.client.calendar.events.patch({
+         'calendarId' : 'stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com',
+         'eventId' : id,
+         'attendees': members
+     });
+        req.execute( function(resp) {});
+    });
 }
 
