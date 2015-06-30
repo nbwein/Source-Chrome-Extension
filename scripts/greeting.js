@@ -136,7 +136,7 @@ var googlePlusUserLoader  = (function() {
 			'timeMin': (new Date()).toISOString(),
 			'showDeleted': false,
 			'singleEvents': true,
-			'maxResults': 1, 
+			'maxResults': 5, 
 			'timeMax' : midnight.toISOString(),
 			'orderBy': 'startTime'
 		});
@@ -165,8 +165,16 @@ var googlePlusUserLoader  = (function() {
 			var events = resp.items;
 			if (events.length > 0) {
 				var event = events[0];
+				for (var i=0; i < events.length; i++){
+					var startDate = new Date(events[i].start.dateTime);
+					if ((diff > 0)){
+						var event = events[i];
+						break;
+					}
+				}
 				var startDate = new Date(event.start.dateTime);
 				var diff = startDate.getTime() - (new Date()).getTime();
+				if (!(diff < 0)){
 				var x = Math.trunc(diff / (60*1000));
 				var minutes = x % 60;
 				x = Math.trunc(x/60);
@@ -176,6 +184,7 @@ var googlePlusUserLoader  = (function() {
 					hours_until = hours + " hours, " + hours_until  
 				}
 				document.getElementById("next-meeting").innerHTML = hours_until;
+				}
 				setTimeout(getCalendar, 1000);	     	
 			}
 			else {
