@@ -12,6 +12,7 @@ function getJobs(){
 
 			}
 		}
+		joblist = joblist + "<br><br>"
 		document.getElementById("job-list").innerHTML = joblist;
 	});
 

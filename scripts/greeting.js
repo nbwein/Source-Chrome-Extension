@@ -1,9 +1,11 @@
 'use strict';
 
+/* Global variables stored from authorization*/
   var access_global;
   var user_info_global;
   var email_global;
 
+/* Google API Authentication flow */
   var googlePlusUserLoader  = (function() {
     function xhrWithAuth(method, url, interactive, callback, params) {
       
@@ -12,6 +14,7 @@
       var retry = true;
       getToken();
 
+	/* Request token from Google*/
       function getToken() {
 
         chrome.identity.getAuthToken({ interactive: true}, function(token) {
@@ -79,6 +82,7 @@ function onUserInfoFetched(error, status, response) {
     return str.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=+$/, '');
   }
 
+  /* Ajax post request that sends content in message-text field to the message board google group. Triggered when 'Post' is clicked, clears fields*/
   function sendEmail(){
     var message = $("#message-text").val();
     var subject = Math.trunc(Math.random()*1000).toString();
@@ -100,6 +104,7 @@ function onUserInfoFetched(error, status, response) {
     loadFeed();
   }
 
+/* Similar to above. NOTE: MAKE PRIVATE */
   function sendShoutout(){
     var message = $("#shoutout-text").val();
     var subject = Math.trunc(Math.random()*1000).toString();
@@ -119,6 +124,7 @@ function onUserInfoFetched(error, status, response) {
   }
 
 
+/* Reqquest a calendar session using gapi*/
 function getCalendarSession(){
 	gapi.auth.authorize(
     {client_id: '847225712349-afs3e8aobcglbi1ml1gjkcr764ri1jvk.apps.googleusercontent.com', scope: ['https://www.googleapis.com/auth/calendar'], immediate: true},
@@ -126,28 +132,32 @@ function getCalendarSession(){
   return false;
 }
 
-
+/* Sets up the request to retrieve the user's PRIMARY calendar*/
 function getCalendar() {	
 	var midnight = new Date((new Date().getTime() + 24*60*60*1000));
 	midnight.setHours(0,0,0,0);
+	var now = new Date((new Date().getTime()));
+	console.log(now.toISOString());
 	var request = gapi.client.calendar.events.list({
    		'calendarId': 'primary',
-   		'timeMin': (new Date()).toISOString(),
+   		'timeMin': (now.toISOString()),
    		'showDeleted': false,
   		'singleEvents': true,
-   		'maxResults': 1, 
+   		'maxResults': 5, 
    		'timeMax' : midnight.toISOString(),
    		'orderBy': 'startTime'
  });
 	return request;
 }
 
+
+/* Sets up a request to retrieve the SHARED LUNCH calendar*/
 function getLunchCalendar() {
 	var midnight = new Date((new Date().getTime() + 24*60*60*1000));
         midnight.setHours(0,0,0,0);
         var request = gapi.client.calendar.events.list({
                 'calendarId': 'stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com',
-                'timeMin': (new Date()).toISOString(),
+               'timeMin': (new Date(midnight - 24*60*60*1000)).toISOString(),
                 'showDeleted': false,
                 'singleEvents': true,
                 'maxResults': 5,
@@ -158,16 +168,26 @@ function getLunchCalendar() {
 
 }
 
+/* Populates time until next meeting text in greeting*/
 function nextMeeting() {
 	var request = getCalendar();
 	request.execute(function(resp){
 		var events = resp.items;
     if (events.length > 0) {
-        var event = events[0];
-        
-
+	var event = events[0]
+	for (var i = 0; i < events.length; i++){
+		var startDate = new Date(events[i].start.dateTime);
+     	        var diff = startDate.getTime() - (new Date()).getTime();
+		if ((diff > 0)){
+			console.log("passed");
+        		var event = events[i];
+			break;
+		}
+	}
+	console.log(event);
         var startDate = new Date(event.start.dateTime);
         var diff = startDate.getTime() - (new Date()).getTime();
+	if (!(diff < 0)){
         var x = Math.trunc(diff / (60*1000));
         var minutes = x % 60;
         x = Math.trunc(x/60);
@@ -177,7 +197,8 @@ function nextMeeting() {
           hours_until = hours + " hours, " + hours_until  
         }
         document.getElementById("next-meeting").innerHTML = hours_until;
-        setTimeout(getCalendar, 1000);	     	
+	}
+        setTimeout(nextMeeting, 1000);	     	
       }
      else {
          }
@@ -185,6 +206,7 @@ function nextMeeting() {
 	
 }
 
+/* Queries the shared lunch calendar to fetch all upcoming lunch event. Join and Message buttons are created here, with join buttons innactive replaced by 'joined!' text if the user is a member or the creator of the event */
 function fetchLunches(){
 	console.log("here");
 	var request = getLunchCalendar(); 
@@ -197,8 +219,16 @@ function fetchLunches(){
 			console.log(id);
 			var time = events[i].start.dateTime;
 			var times = ((time.split("T")[1]).split("-")[0]).split(":");
+			var ampm = "am";
+			if (times[0] > 12){
+				times[0] = times[0] - 12;
+				ampm = "pm"
+			}
+			else if (times[0] == 12){
+				ampm = "pm"
+			}
 			time = times[0] + ":" + times[1];
-			var entry = events[i].location + " " + time + " ";
+			var entry = events[i].location + " " + time + " "+ ampm + " ";
 			var div = document.createElement("div");
                         div.appendChild(document.createTextNode(entry));
 			var join = document.createElement("button");
@@ -241,49 +271,30 @@ function fetchLunches(){
 	nextMeeting();
 }
 
-
+/* Helper for fetchLunches()*/
 function appendPre(message) {
   var pre = document.getElementById('upcoming-events');
   var textContent = document.createTextNode(message + '\n');
   pre.appendChild(textContent);
 }
 
-
-function tryPrivate(){
-
-chrome.webRequest.onHeadersReceived.addListener(
-    function(info) {
-        var headers = info.responseHeaders;
-        for (var i=headers.length-1; i>=0; --i) {
-            var header = headers[i].name.toLowerCase();
-            if (header == 'x-frame-options' || header == 'frame-options') {
-                headers.splice(i, 1); // Remove header
-            }
-        }
-        return {responseHeaders: headers};
-    },
-    {
-        urls: [ '*://*/*' ], // Pattern to match all http(s) pages
-        types: [ 'sub_frame' ]
-    },
-    ['blocking', 'responseHeaders']
-);
-
-document.getElementById("forum_embed").src =
-  "https://groups.google.com/forum/embed/?place=forum/test-feed-private" +
-  "&showsearch=true&showpopout=true&parenturl=" +
-  encodeURIComponent(window.location.href) + "&output=embed";
-
-}
-
+ 
 return {
 	onload: function() {
+		/* load apis */
 		gapi.client.load('gmail', 'v1');
                 gapi.client.load('calendar', 'v3', getCalendarSession);
+		/* fetch all external data */
 		getUserInfo(false);
 		showTime();
 		loadFeed();
 		getJobs();
+		/* set up click events*/
+		$("#time").timepicker({
+			'minTime':"11:00am",
+			'scrollDefault':'now',
+			'step': 15
+		});
     		$("#submit-message").on("click", sendEmail);
     		$("#submit-shoutout").on("click", sendShoutout);
     		$("#submit-lunch").on("click", scheduleLunch);
@@ -307,7 +318,7 @@ return {
 };
 })();
 
-
+/* Begin authorization flow */
 window.onload = googlePlusUserLoader.onload;
 
 var clientId = '847225712349-afs3e8aobcglbi1ml1gjkcr764ri1jvk.apps.googleusercontent.com';

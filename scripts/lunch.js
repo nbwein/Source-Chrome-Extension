@@ -45,14 +45,14 @@
 		}
 	}); */
 
-
-function createEvent(place, time){
-	/*Event event = new Event()
-		.setSummary(place);
-		.setLocation(place); */
+/* Add an event to the Lunch google calendar */
+function createEvent(place, time, ampm){
 	var id = Math.trunc( Math.random() * 100000);
 	var elements = time.split(":");
 	var miliseconds = elements[0]*60*60*1000;
+	if (ampm == "pm" & elements[0] != 12){
+		miliseconds = miliseconds + 12*60*60*1000;
+        }
 	miliseconds = miliseconds + elements[1]*60*1000;
 	var today = new Date();
 	today.setHours(0,0,0,0);
@@ -81,29 +81,21 @@ function createEvent(place, time){
 	return id;
 }
 
-
+/* Triggered when schedule is clicked, creates an event and clears when and where fields*/
 function scheduleLunch(){
-    console.log("clicked!");
-    var id = createEvent($("#location").val(), $("#time").val());
-    /*var message = $("#location").val() + " " + $("#time").val() + "(id)" + id;
-    var subject = "Lunch";
-    console.log(message);
-    var params = (btoa("From: me\r\nTo:" + "test-feed@googlegroups.com" + "\r\nSubject:"+ subject + "\r\n\r\n" + message));
-    var numBytes = (params.length).toString();
-    $.ajax({
-      type: "POST",
-      url: "https://www.googleapis.com/gmail/v1/users/me/messages/send",
-      contentType: "application/json",
-      dataType: "json",
-      beforeSend: function(xhr, settings) {
-        xhr.setRequestHeader('Authorization','Bearer ' + access_global);
-      },
-      data: JSON.stringify({"raw": params})
-    }); */
+    var timestr = $("#time").val();
+    var len = timestr.length;
+    var ampm = timestr[len-2] + timestr[len-1];
+    var time = timestr.replace(ampm, '');
+    console.log(time);
+    var id = createEvent($("#location").val(), time, ampm);
     $("#location").val('');
     $("#time").val(''); 
+    $("#lunch").empty();
+    fetchLunches();
 }
 
+/* Triggered when a user joins an event, adds the member as a guest to the pre0existing event and adds it to their personal calendar */
 function addEvent(id){
         var req = gapi.client.calendar.events.get({
                 'calendarId' : 'stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com',
@@ -119,10 +111,12 @@ function addEvent(id){
                 	'eventId' : id,
 			'attendees': all
 		});
-		request.execute( function(resp) {console.log(resp);});
+		request.execute( function(resp) {
+		console.log(resp);});
 		});
 }
 
+/* Triggered when view members is clicked, queries the calendar and lists members attending the event clicked*/
 function viewMembers(id){
 	var request = gapi.client.calendar.events.get({
 		'calendarId' : 'stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com',
