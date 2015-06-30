@@ -20,11 +20,20 @@ function loadFeed(){
 				if (subject != "Lunch"){
 					var description = elements[1].split("<description>")[1].split("</description>")[0];
 					var entry = description;
+					var author = elements[1].split("<author>")[1].split("</author>")[0];
+					author = author.split("@")[0];
+					author = author.replace(".", " ");
+					console.log(author); 
 					var div = document.createElement("div");
-					entry = entry.replace("&amp;", "&");
-					entry = entry.replace("&apos;", "\'");
-					entry = entry.replace("&quot;", "\"");
+					entry = entry.replace(/&amp;/g, "&");
+					entry = entry.replace(/&apos;/g, "\'");
+					entry = entry.replace(/&quot;/g, "\"");
+					var auth = document.createElement("span");
+					auth.setAttribute("style", "float:left;");
+					auth.setAttribute("id", "message-author");
+					auth.innerHTML = author + ":";
 					div.appendChild(document.createTextNode(entry));
+					div.appendChild(auth);
 					div.className = "post";
 					if (i == 0) {
 						div.setAttribute("style", "border-top-left-radius: 15px; border-top-right-radius: 15px");
