@@ -153,12 +153,15 @@ body { height: 100%; min-height: 100%; min-width: 736px;  overflow:hidden; backg
 #jobs {
   position:relative;
   width:85%;
+  height: 300px;
   top: 300px;
   left: 8px;
   text-align:center;
   display:inline-block;
   border: solid 5px #808599;
   border-radius: 15px;
+  overflow-x:hidden;
+  overflow-y:auto;
 }
 
 #jobs-text {
