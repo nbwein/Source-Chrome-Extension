@@ -323,7 +323,7 @@ body { height: 100%; min-height: 100%; min-width: 736px;  overflow:hidden; backg
     font-size: 85%;
     padding: 5px 10px 5px 10px;
     margin-right: 5px;
-    margin-left: 10px;
+    /*margin-left: 10px;*/
 }
 
 .join-clicked {
@@ -342,10 +342,11 @@ body { height: 100%; min-height: 100%; min-width: 736px;  overflow:hidden; backg
     font-size: 85%;
     padding: 5px 10px 5px 10px;
     margin-right: 5px;
-    margin-left: 10px;
+    /*margin-left: 10px;*/
 }
 
 .members {
     font-size: 85%;
     padding: 5px 10px 5px 10px;
+    margin-right: 10px;
 }

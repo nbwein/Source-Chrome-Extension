@@ -159,10 +159,12 @@ function getLunchCalendar() {
                                         var join = document.createElement("a");
                                         join.setAttribute("id", "join");
                                         join.setAttribute("href", "#");
+                                        join.setAttribute("style", "float: right");
 
                                         var members = document.createElement("a");
                                         members.setAttribute("id", "members");
                                         members.setAttribute("href", "#");
+                                        members.setAttribute("style", "float: right");
 
                                         var joinText = document.createTextNode("Join");
 
@@ -184,10 +186,10 @@ function getLunchCalendar() {
 
                                         members.className = "btn members";
                                         var memText = document.createTextNode("Members");
-					join.appendChild(joinText);
+                                        join.appendChild(joinText);
                                         members.appendChild(memText);
-                                        div.appendChild(join);
                                         div.appendChild(members);
+                                        div.appendChild(join);
                                         div.className = "post";
                                         div.setAttribute("id", id);
                                         container.appendChild(div);
