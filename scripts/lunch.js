@@ -38,14 +38,15 @@ function createEvent(place, time, ampm){
 
 function scheduleLunch(){
     if (($("#location").val() != '') && ($("#time").val() != '')) {
-	var timestr = $("#time").val();
-	var len = timestr.length;
-	var ampm = timestr[len-2] + timestr[len-1];
-	var time = timestr.replace(ampm, '');
-        var id = createEvent($("#location").val(), time, ampm);
-        $("#location").val('');
-        $("#time").val(''); 
-    }
+       var timestr = $("#time").val();
+       var len = timestr.length;
+       var ampm = timestr[len-2] + timestr[len-1];
+       var time = timestr.replace(ampm, '');
+       var id = createEvent($("#location").val(), time, ampm);
+       $("#location").val('');
+       $("#time").val(''); 
+       location.reload();
+   }
     else {
         alert("Please fill out both forms.");
     }
