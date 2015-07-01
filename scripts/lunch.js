@@ -20,18 +20,18 @@ function createEvent(place, time, ampm){
 		'start' : {
 			'dateTime' : startstr,		
 			'timeZone' : "America/New_York"
-       },
-       'end' : {
-         'dateTime': endstr,
-         'timeZone': "America/New_York"
-     },
-     'anyoneCanAddSelf' : true,	
-     'id': id,
-     'location': place,
-     'attendees' : [{'email' : email_global}],
-     'summary' : place
+       		},
+       		'end' : {
+         		'dateTime': endstr,
+         		'timeZone': "America/New_York"
+     		},
+     		'anyoneCanAddSelf' : true,	
+     		'id': id,
+     		'location': place,
+     		'attendees' : [{'email' : email_global}],
+     		'summary' : place
  });
-	request.execute(function(resp) {});
+	request.execute(function(resp) { console.log(resp); location.reload();});
 	return id;
 }
 
@@ -45,7 +45,7 @@ function scheduleLunch(){
        var id = createEvent($("#location").val(), time, ampm);
        $("#location").val('');
        $("#time").val(''); 
-       location.reload();
+      // location.reload();
    }
     else {
         alert("Please fill out both forms.");

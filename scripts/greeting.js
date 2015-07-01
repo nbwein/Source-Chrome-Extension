@@ -290,6 +290,7 @@ return {
 		showTime();
 		loadFeed();
 		getJobs();
+		loadValues()
 		//testGet();
 		
 		$("#submit-message").on("click", sendEmail);
