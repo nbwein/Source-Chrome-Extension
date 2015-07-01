@@ -329,6 +329,7 @@ return {
 			var group = $("#join-clicked").parents();
 			jQuery(this).attr("id", "join");
 			var id = group.attr('id');
+			console.log(id);
 			addEvent(id);
 		});
 
@@ -341,8 +342,8 @@ return {
 		});
 
 		$(document).on("click", ".members", function() {
-			jQuery(this).attr("id", "members");
-			var group = $("#members").parents();
+			jQuery(this).attr("id", "members-clicked");
+			var group = $("#members-clicked").parents();
 			jQuery(this).attr("id", "members");
 			var id = group.attr('id');
 			viewMembers(id);
