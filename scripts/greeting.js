@@ -232,19 +232,17 @@ var googlePlusUserLoader  = (function() {
 
 					var joinText = document.createTextNode("Join");
 
-					if (events[i].creator.email == email_global) {
-						join.className = "join-clicked";
-						joinText = document.createTextNode("Joined!");
-					}
-					else {
-						join.className = "btn join";
+					// if (events[i].creator.email == email_global) {
+					// 	join.className = "join-clicked";
+					// 	joinText = document.createTextNode("Joined!");
+					// }
+					join.className = "btn join";
 
-						for (var person in events[i].attendees) {
-							console.log(events[i].attendees[person]);
-							if (events[i].attendees[person].email == email_global) {
-								join.className = "join-clicked";
-								joinText = document.createTextNode("Joined!");
-							}
+					for (var person in events[i].attendees) {
+						console.log(events[i].attendees[person]);
+						if (events[i].attendees[person].email == email_global) {
+							join.className = "join-clicked";
+							joinText = document.createTextNode("Joined!");
 						}
 					}
 
@@ -292,7 +290,7 @@ return {
 		showTime();
 		loadFeed();
 		getJobs();
-		testGet();
+		//testGet();
 		
 		$("#submit-message").on("click", sendEmail);
 		$("#submit-shoutout").on("click", sendShoutout);
