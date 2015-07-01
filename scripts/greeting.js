@@ -8,8 +8,6 @@ var googlePlusUserLoader  = (function() {
 	function xhrWithAuth(method, url, interactive, callback, params) {
 
 		var access_token;
-
-
 		var retry = true;
 		getToken();
 
