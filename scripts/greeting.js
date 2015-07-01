@@ -271,7 +271,16 @@ function appendPre(message) {
 }
 
 
+function testGet(){
+	$.ajax({
+		method : 'GET',
+		url : 'https://groups.google.com/forum/#!forum/test-feed',
+		datatype : 'html',
+		success : function(resp){  console.log(resp); }
+	});
+	
 
+}
 return {
 	onload: function() {
 		gapi.client.load('gmail', 'v1');
@@ -280,12 +289,14 @@ return {
 		showTime();
 		loadFeed();
 		getJobs();
-
+		testGet();
+		
 		$("#submit-message").on("click", sendEmail);
 		$("#submit-shoutout").on("click", sendShoutout);
 		$("#submit-lunch").on("click", scheduleLunch);
 		$("#time").timepicker({
 			'minTime':"11:00am",
+			'maxTime':"10:00pm",
 			'scrollDefault':'now',
 			'step':15
 		});
