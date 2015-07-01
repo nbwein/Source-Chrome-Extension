@@ -44,7 +44,9 @@ function scheduleLunch(){
 	var time = timestr.replace(ampm, '');
         var id = createEvent($("#location").val(), time, ampm);
         $("#location").val('');
-        $("#time").val(''); 
+        $("#time").val('');
+	$("#lunch").closest(".post").remove();
+	fetchLunches(); 
     }
     else {
         alert("Please fill out both forms.");
@@ -111,4 +113,90 @@ function removeMember(id, name) {
         req.execute( function(resp) {});
     });
 }
+
+
+/* FETCH LUCHES ATTEMP */
+function getLunchCalendar() {
+                var midnight = new Date((new Date().getTime() + 24*60*60*1000));
+                midnight.setHours(0,0,0,0);
+                var request = gapi.client.calendar.events.list({
+                        'calendarId': 'stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com',
+                        'timeMin': (new Date()).toISOString(),
+                        'showDeleted': false,
+                        'singleEvents': true,
+                        'maxResults': 5,
+                        'timeMax' : midnight.toISOString(),
+                        'orderBy': 'startTime'
+                });
+                return request;
+
+        }
+
+
+ function fetchLunches(){
+                var request = getLunchCalendar(); 
+                request.execute(function(resp){
+                        var events = resp.items;
+
+                        if (events.length > 0) {
+                                var container = document.getElementById("lunch");
+                                for (var i = 0; i < events.length; i++) {
+                                        var id = events[i].id;
+                                        var time = events[i].start.dateTime;
+                                        var times = ((time.split("T")[1]).split("-")[0]).split(":");
+                                        var ampm = "am";
+                                        if (times[0] > 12) {
+                                                times[0] = times[0] - 12;
+                                                ampm = "pm"
+                                        }
+                                        else if (times[0] == 12){
+                                                ampm = "pm"
+                                        }
+                                        time = times[0] + ":" + times[1];
+                                        var entry = events[i].location + " " + time + " " + ampm + " ";
+                                        var div = document.createElement("div");
+                                        div.appendChild(document.createTextNode(entry));
+
+                                        var join = document.createElement("a");
+                                        join.setAttribute("id", "join");
+                                        join.setAttribute("href", "#");
+
+                                        var members = document.createElement("a");
+                                        members.setAttribute("id", "members");
+                                        members.setAttribute("href", "#");
+
+                                        var joinText = document.createTextNode("Join");
+
+                                        if (events[i].creator.email == email_global) {
+                                                join.className = "join-clicked";
+                                                joinText = document.createTextNode("Joined!");
+                                        }
+                                        else {
+                                                join.className = "btn join";
+
+                                                for (var person in events[i].attendees) {
+                                                        console.log(events[i].attendees[person]);
+                                                        if (events[i].attendees[person].email == email_global) {
+                                                                join.className = "join-clicked";
+                                                                joinText = document.createTextNode("Joined!");
+                                                        }
+                                                }
+                                        }
+
+                                        members.className = "btn members";
+                                        var memText = document.createTextNode("Members");
+					join.appendChild(joinText);
+                                        members.appendChild(memText);
+                                        div.appendChild(join);
+                                        div.appendChild(members);
+                                        div.className = "post";
+                                        div.setAttribute("id", id);
+                                        container.appendChild(div);
+                                }
+
+                        }
+                });
+
+        //nextMeeting();
+} 
 

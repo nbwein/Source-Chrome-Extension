@@ -123,10 +123,14 @@ var googlePlusUserLoader  = (function() {
 	function getCalendarSession(){
 		gapi.auth.authorize(
 			{client_id: '847225712349-afs3e8aobcglbi1ml1gjkcr764ri1jvk.apps.googleusercontent.com', scope: ['https://www.googleapis.com/auth/calendar'], immediate: true},
-			fetchLunches);
+			calendarContent);
 		return false;
 	}
 
+	function calendarContent(){
+		fetchLunches();
+		nextMeeting();
+	}
 
 	function getCalendar() {	
 		var midnight = new Date((new Date().getTime() + 24*60*60*1000));
@@ -143,7 +147,7 @@ var googlePlusUserLoader  = (function() {
 		return request;
 	}
 
-	function getLunchCalendar() {
+	/*function getLunchCalendar() {
 		var midnight = new Date((new Date().getTime() + 24*60*60*1000));
 		midnight.setHours(0,0,0,0);
 		var request = gapi.client.calendar.events.list({
@@ -157,7 +161,7 @@ var googlePlusUserLoader  = (function() {
 		});
 		return request;
 
-	}
+	} */
 
 	function nextMeeting() {
 		var request = getCalendar();
@@ -194,8 +198,7 @@ var googlePlusUserLoader  = (function() {
 
 	}
 
-	function fetchLunches(){
-		console.log("here");
+/*	function fetchLunches(){
 		var request = getLunchCalendar(); 
 		request.execute(function(resp){
 			var events = resp.items;
@@ -260,8 +263,8 @@ var googlePlusUserLoader  = (function() {
 			}
 		});
 
-	nextMeeting();
-}
+	//nextMeeting();
+} */
 
 
 function appendPre(message) {
