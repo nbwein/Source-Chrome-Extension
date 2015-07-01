@@ -283,21 +283,21 @@ function testGet(){
 
 /*CHANGE THIS TO NATE'S EMAIL ADDRESS BEFORE RELEASE */
 function submitGong(){
-		var message = $("#gong-text").val();
-                var subject = "Gong Show Submission";
-                var params = encodeURL(btoa("From: me\r\nTo:" + "madeline.cripps@stellaservice.com" + "\r\nSubject:"+ subject + "\r\n\r\n" + message));
-                var numBytes = (params.length).toString();
-                $.ajax({
-                        type: "POST",
-                        url: "https://www.googleapis.com/gmail/v1/users/me/messages/send",
-                        contentType: "application/json",
-                        dataType: "json",
-                        beforeSend: function(xhr, settings) {
-                                xhr.setRequestHeader('Authorization','Bearer ' + access_global);
-                        },
-                        data: JSON.stringify({"raw": params})
-                });
-                $("#gong-text").val('');
+	var message = $("#gong-text").val();
+	var subject = "Gong Show Submission";
+	var params = encodeURL(btoa("From: me\r\nTo:" + "madeline.cripps@stellaservice.com" + "\r\nSubject:"+ subject + "\r\n\r\n" + message));
+	var numBytes = (params.length).toString();
+	$.ajax({
+		type: "POST",
+		url: "https://www.googleapis.com/gmail/v1/users/me/messages/send",
+		contentType: "application/json",
+		dataType: "json",
+		beforeSend: function(xhr, settings) {
+			xhr.setRequestHeader('Authorization','Bearer ' + access_global);
+		},
+		data: JSON.stringify({"raw": params})
+	});
+	$("#gong-text").val('');
 
 
 }

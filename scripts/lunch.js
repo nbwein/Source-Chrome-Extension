@@ -37,7 +37,7 @@ function createEvent(place, time, ampm){
 
 
 function scheduleLunch(){
-    if (($("#location").val() != '') && ($("#time").val() != '')) {
+    if (($("#location").val() != '') && (typeof $("#time").val() != 'undefined')) {
        var timestr = $("#time").val();
        var len = timestr.length;
        var ampm = timestr[len-2] + timestr[len-1];
