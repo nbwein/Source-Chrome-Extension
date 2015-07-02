@@ -277,8 +277,6 @@ function testGet(){
 		datatype : 'html',
 		success : function(resp){  console.log(resp); }
 	});
-	
-
 }
 
 /*CHANGE THIS TO NATE'S EMAIL ADDRESS BEFORE RELEASE */

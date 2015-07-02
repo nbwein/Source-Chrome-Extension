@@ -190,7 +190,7 @@ function getLunchCalendar() {
                                         members.appendChild(memText);
                                         div.appendChild(members);
                                         div.appendChild(join);
-                                        div.className = "post";
+                                        div.className = "post post-lunch";
                                         div.setAttribute("id", id);
                                         container.appendChild(div);
                                 }

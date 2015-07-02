@@ -122,6 +122,12 @@ body { height: 100%; min-height: 100%; min-width: 736px;  overflow:hidden; backg
     bottom: 2px;
 }
 
+#message-author {
+    margin-left: 10px;
+    color: #808599; 
+    font-style: italic;
+}
+
 #stella-daily-value {
     position: relative; 
     font-family: "Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
@@ -148,7 +154,6 @@ body { height: 100%; min-height: 100%; min-width: 736px;  overflow:hidden; backg
     font-family: "Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
     font-weight: bold;
     font-size: 18px;
-  /*  font-weight: 200;*/
 }
 
 #jobs {
@@ -169,7 +174,6 @@ body { height: 100%; min-height: 100%; min-width: 736px;  overflow:hidden; backg
     font-family: "Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
     font-weight: bold;
     font-size: 18px;
-    /*font-weight: 200;*/
 }
 
 #lunch {
@@ -280,8 +284,12 @@ body { height: 100%; min-height: 100%; min-width: 736px;  overflow:hidden; backg
     border: solid 1px #808599;
     width: 100%;
     min-height: 40px;
-    padding-top: 20px;
+    /*padding-top: 20px;*/
     overflow:auto;
+}
+
+.post-lunch {
+    padding-top: 20px;
 }
 
 .btn {
