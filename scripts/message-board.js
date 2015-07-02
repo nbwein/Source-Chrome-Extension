@@ -25,10 +25,15 @@ function loadFeed(){
 					var author = elements[1].split("<author>")[1].split("</author>")[0];
 					author = author.split("@")[0];
 					author_split = author.split(".");
+
 					console.log(author_split);
-					author_split[0] = author_split[0][0].toUpperCase() + author_split[0].slice(1); 
-					author_split[1] = author_split[1][0].toUpperCase() + author_split[1].slice(1);
-					author = author_split[0] + " " + author_split[1];           
+
+					if (typeof author_split[1] != 'undefined'){
+						author_split[0] = author_split[0][0].toUpperCase() + author_split[0].slice(1); 
+						author_split[1] = author_split[1][0].toUpperCase() + author_split[1].slice(1);
+						author = author_split[0] + " " + author_split[1]; 
+					}
+					
 					var div = document.createElement("div");
 					entry = entry.replace(/&amp;/g, "&");
 					entry = entry.replace(/&apos;/g, "\'");
