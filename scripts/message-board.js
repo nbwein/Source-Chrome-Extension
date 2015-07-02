@@ -33,14 +33,21 @@ function loadFeed(){
 					var auth = document.createElement("span");
 					auth.setAttribute("style", "float:left;");
 					auth.setAttribute("id", "message-author");
-					auth.innerHTML = author + ":";
-					div.appendChild(document.createTextNode(entry));
+					auth.innerHTML = author;
 					div.appendChild(auth);
+					var br = document.createElement("br");
+					div.appendChild(br);
+					// div.appendChild(document.createTextNode(entry)); 
+					var message = document.createElement("span");
+					message.setAttribute("style", "padding-left: 10px; padding-top: 10px");
+					message.innerHTML = entry;
+					div.appendChild(message);
+
 					div.className = "post";
 					if (i == 0) {
 						div.setAttribute("style", "border-top-left-radius: 15px; border-top-right-radius: 15px");
 					}
-					div.setAttribute("align","center");
+					div.setAttribute("align","left");
 					container.appendChild(div);
 				}
 			}
