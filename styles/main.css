@@ -146,8 +146,9 @@ body { height: 100%; min-height: 100%; min-width: 736px;  overflow:hidden; backg
 
 #bdays-text {
     font-family: "Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
+    font-weight: bold;
     font-size: 18px;
-    font-weight: 200;
+  /*  font-weight: 200;*/
 }
 
 #jobs {
@@ -166,8 +167,9 @@ body { height: 100%; min-height: 100%; min-width: 736px;  overflow:hidden; backg
 
 #jobs-text {
     font-family: "Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
+    font-weight: bold;
     font-size: 18px;
-    font-weight: 200;
+    /*font-weight: 200;*/
 }
 
 #lunch {
@@ -199,7 +201,7 @@ body { height: 100%; min-height: 100%; min-width: 736px;  overflow:hidden; backg
 #lunch-text {
     font-family: "Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
     font-size: 18px;
-    font-weight: 200;
+    font-weight: bold;
     margin-top: 5px;
 }
 
