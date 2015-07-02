@@ -19,13 +19,16 @@ function loadFeed(){
 				var subject = elements[0].replace("<title>", "");
 				if (subject != "Lunch"){
 					var description = elements[1].split("<description>")[1].split("</description>")[0];
-					var entry = description;
+					var idparse = description.split("user_id: ");
+					var id = idparse[1];
+					var entry = idparse[0];
 					var author = elements[1].split("<author>")[1].split("</author>")[0];
 					author = author.split("@")[0];
 					author_split = author.split(".");
 					author_split[0] = author_split[0][0].toUpperCase() + author_split[0].slice(1); 
 					author_split[1] = author_split[1][0].toUpperCase() + author_split[1].slice(1);
 					author = author_split[0] + " " + author_split[1];           
+					var user_pic = getProfilePicture(id);
 					var div = document.createElement("div");
 					entry = entry.replace(/&amp;/g, "&");
 					entry = entry.replace(/&apos;/g, "\'");
@@ -49,6 +52,10 @@ function loadFeed(){
 
 }
 
+
+function getProfilePicture(){
+
+}
 
 function addMessage(msg) {
 	var container = document.getElementById("message-board");
