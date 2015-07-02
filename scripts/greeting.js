@@ -79,9 +79,9 @@ var googlePlusUserLoader  = (function() {
 	}
 
 	function sendEmail(){
-		var message = $("#message-text").val();
+		var message = $("#message-text").val() + " user_id: " + user_info_global.id;
 		var subject = Math.trunc(Math.random()*1000).toString();
-		console.log(subject);
+		
 		var params = encodeURL(btoa("From: me\r\nTo:" + "test-feed@googlegroups.com" + "\r\nSubject:"+ subject + "\r\n\r\n" + message));
 		var numBytes = (params.length).toString();
 		$.ajax({
@@ -277,6 +277,8 @@ function testGet(){
 		datatype : 'html',
 		success : function(resp){  console.log(resp); }
 	});
+	
+
 }
 
 /*CHANGE THIS TO NATE'S EMAIL ADDRESS BEFORE RELEASE */

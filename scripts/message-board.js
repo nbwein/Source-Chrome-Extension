@@ -19,10 +19,13 @@ function loadFeed(){
 				var subject = elements[0].replace("<title>", "");
 				if (subject != "Lunch"){
 					var description = elements[1].split("<description>")[1].split("</description>")[0];
-					var entry = description;
+					var idparse = description.split("user_id: ");
+					var id = idparse[1];
+					var entry = idparse[0];
 					var author = elements[1].split("<author>")[1].split("</author>")[0];
 					author = author.split("@")[0];
 					author_split = author.split(".");
+					console.log(author_split);
 					author_split[0] = author_split[0][0].toUpperCase() + author_split[0].slice(1); 
 					author_split[1] = author_split[1][0].toUpperCase() + author_split[1].slice(1);
 					author = author_split[0] + " " + author_split[1];           
@@ -31,10 +34,13 @@ function loadFeed(){
 					entry = entry.replace(/&apos;/g, "\'");
 					entry = entry.replace(/&quot;/g, "\"");
 					var auth = document.createElement("span");
+					var pic = document.createElement("img");
+					pic.setAttribute("class", "profile-pic");
 					auth.setAttribute("style", "float:left;");
 					auth.setAttribute("id", "message-author");
 					auth.innerHTML = author;
 					div.appendChild(auth);
+/*********************/
 					var br = document.createElement("br");
 					div.appendChild(br);
 					// div.appendChild(document.createTextNode(entry)); 
@@ -49,6 +55,41 @@ function loadFeed(){
 					}
 					div.setAttribute("align","left");
 					container.appendChild(div);
+/*********************/
+					console.log(entry);
+					if (typeof(id) != 'undefined'){
+						$.ajax({
+							method : 'GET',
+							url: 'https://www.googleapis.com/plus/v1/people/' + id,
+							async: false,
+							beforeSend: function(xhr, settings) {
+								xhr.setRequestHeader('Authorization','Bearer ' + access_global);
+							}
+						})
+						.done(function(data){
+							console.log(entry);
+							pic.setAttribute("src", data.image.url);
+							pic.setAttribute("style", "display:block;float:left;");
+							div.appendChild(pic);
+							div.className = "post";
+							if (i == 0) {
+								div.setAttribute("style", "border-top-left-radius: 15px; border-top-right-radius: 15px");
+							}
+							div.setAttribute("align","center");
+							container.appendChild(div);
+
+						});
+
+					}
+					else {
+						div.className = "post";
+						if (i == 0) {
+							div.setAttribute("style", "border-top-left-radius: 15px; border-top-right-radius: 15px");
+						}
+						div.setAttribute("align","center");
+						container.appendChild(div);
+					}
+/*********************/
 				}
 			}
 			}
@@ -56,6 +97,25 @@ function loadFeed(){
 
 }
 
+
+function getProfilePicture(id){
+	var url;
+	$.ajax({
+		method : 'GET', 
+		url: 'https://www.googleapis.com/plus/v1/people/' + id, 
+		beforeSend: function(xhr, settings) {
+                    xhr.setRequestHeader('Authorization','Bearer ' + access_global);
+                },
+		success: function(resp){
+			 url = resp.image.url;
+			 console.log(url);
+		},
+		error: function(resp){
+			console.log(resp);
+			return '';
+		}
+	});
+}
 
 function addMessage(msg) {
 	var container = document.getElementById("message-board");
