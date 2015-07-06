@@ -187,7 +187,7 @@ var googlePlusUserLoader  = (function() {
 				}
 				document.getElementById("next-meeting").innerHTML = hours_until;
 				}
-				setTimeout(getCalendar, 1000);	     	
+				setTimeout(nextMeeting, 60000);	     	
 			}
 			else {
 				/***SHOULD THERE BE AN ELSE?***/
