@@ -41,6 +41,7 @@ function loadFeed(){
 					var auth = document.createElement("span");
 					var pic = document.createElement("img");
 					pic.setAttribute("class", "profile-pic");
+					// pic.setAttribute("style", "top");
 					auth.setAttribute("style", "float:left;");
 					auth.setAttribute("id", "message-author");
 					auth.innerHTML = author;
@@ -49,17 +50,18 @@ function loadFeed(){
 					var br = document.createElement("br");
 					div.appendChild(br);
 					// div.appendChild(document.createTextNode(entry)); 
+					var num_pixels = entry.length
 					var message = document.createElement("span");
-					message.setAttribute("style", "position:relative; padding-top: 10px");
+					message.setAttribute("style", "position:relative;");
+					message.setAttribute("id", "message");
 					message.innerHTML = entry;
-					div.appendChild(message);
+					// div.appendChild(message);
 					div.className = "post";
 
 					if (i == 0) {
 						div.setAttribute("style", "border-top-left-radius: 15px; border-top-right-radius: 15px");
 					}
 
-					div.setAttribute("align","left");
 					container.appendChild(div);
 
 					if (typeof(id) != 'undefined') {
@@ -74,26 +76,16 @@ function loadFeed(){
 						.done(function(data) {
 							console.log(entry);
 							pic.setAttribute("src", data.image.url);
-							pic.setAttribute("style", "position:relative;display:block;float:left;border-radius:50%;left:10px;bottom:5px");
+							pic.setAttribute("style", "position:relative;display:block;float:left;border-radius:50%;left:10px;bottom:5px;");
 							div.appendChild(pic);
-							div.className = "post";
-							if (i == 0) {
-								div.setAttribute("style", "border-top-left-radius: 15px; border-top-right-radius: 15px");
-							}
-							div.setAttribute("align","center");
-							container.appendChild(div);
-
+							div.appendChild(message);
+							
 						});
 
 					}
-					else {
-						div.className = "post";
-						if (i == 0) {
-							div.setAttribute("style", "border-top-left-radius: 15px; border-top-right-radius: 15px");
-						}
-						div.setAttribute("align","center");
-						container.appendChild(div);
-					}
+
+					div.setAttribute("align","center");
+					container.appendChild(div);
 				}
 			}
 			}
