@@ -164,11 +164,13 @@ var googlePlusUserLoader  = (function() {
 	function nextMeeting() {
 		var request = getCalendar();
 		request.execute(function(resp) {
+			console.log(resp);
 			var events = resp.items;
 			if (events.length > 0) {
 				var event = events[0];
 				for (var i=0; i < events.length; i++){
 					var startDate = new Date(events[i].start.dateTime);
+					var diff = startDate.getTime() - (new Date()).getTime();
 					if ((diff > 0)){
 						var event = events[i];
 						break;
