@@ -103,7 +103,11 @@ body { height: 100%; min-height: 100%; min-width: 736px; margin: 0px; overflow:h
 }
 
 #message {
+    font-family: "Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
+    text-align: left;
+    left: 45px;
     width: 450px; 
+    padding-top: 5px;
     padding-bottom: 20px;
     overflow-y: auto;
 }
@@ -300,8 +304,8 @@ body { height: 100%; min-height: 100%; min-width: 736px; margin: 0px; overflow:h
     width: 100%;
     min-height: 40px;
     background: #ffffff;
-    /*padding-top: 12px;
-    padding-bottom: 12px;*/
+    padding-top: 12px;
+    padding-bottom: 12px;
     overflow:auto;
 }
 
@@ -311,7 +315,7 @@ body { height: 100%; min-height: 100%; min-width: 736px; margin: 0px; overflow:h
     content:'';
     height: 1px; 
     width: 400px;
-    left: 20%;
+    left: 25%;
     background: #E4E4E4; 
     bottom: 0px;
 }
