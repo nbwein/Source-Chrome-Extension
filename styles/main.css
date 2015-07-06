@@ -195,10 +195,8 @@ body { height: 100%; min-height: 100%; min-width: 736px; margin: 0px; overflow:h
     font-family: "Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
     font-weight: 200;
     background-color: #ffffff;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    border-radius: 15px;
     border: solid 1px #808599;
-    /*border-radius: 15px;*/
     display:inline-block;
     height: 400px;
     min-width: 290px;
