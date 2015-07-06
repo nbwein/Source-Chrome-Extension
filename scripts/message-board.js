@@ -15,7 +15,7 @@ function loadFeed(){
 			var container = document.getElementById("message-board");
 			var lastDay = "today";
 			var todayPrinted = false;
-			for (var i = 1; i < 5; i++){
+			for (var i = 1; i < items.length; i++){
 				var elements = items[i].split("</title>");
 				var subject = elements[0].replace("<title>", "");
 				if (subject != "Lunch"){
