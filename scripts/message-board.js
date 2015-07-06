@@ -53,7 +53,7 @@ function loadFeed(){
 						var div = document.createElement("div");
 						div.appendChild(document.createTextNode(day));
 						container.appendChild(div);
-						div.className = "date-bar"
+						div.className = "date-bar";
 						lastDay = day;
 					}				
 					var description = elements[1].split("<description>")[1].split("</description>")[0];
@@ -104,25 +104,9 @@ function loadFeed(){
 					container.appendChild(div);
 
 					if (typeof(id) != 'undefined') {
-						$.ajax({
-							method : 'GET',
-							url: 'https://www.googleapis.com/plus/v1/people/' + id,
-							async: false,
-							beforeSend: function(xhr, settings) {
-								xhr.setRequestHeader('Authorization','Bearer ' + access_global);
-							},
-							error: function(data){
-								console.log(data);
-							}
-						})
-						.done(function(data) {
-							pic.setAttribute("src", data.image.url);
+							pic.setAttribute("src", id);
 							pic.setAttribute("style", "position:relative;display:block;float:left;border-radius:50%;left:10px;bottom:5px;");
 							div.appendChild(pic);
-//							div.appendChild(message);
-							
-						});
-
 					}
 					div.appendChild(message);
 					div.setAttribute("align","center");
@@ -134,23 +118,6 @@ function loadFeed(){
 
 }
 
-
-function getProfilePicture(id){
-	var url;
-	$.ajax({
-		method : 'GET', 
-		url: 'https://www.googleapis.com/plus/v1/people/' + id, 
-		beforeSend: function(xhr, settings) {
-                    xhr.setRequestHeader('Authorization','Bearer ' + access_global);
-                },
-		success: function(resp){
-			 url = resp.image.url;
-		},
-		error: function(resp){
-			return '';
-		}
-	});
-}
 
 function addMessage(msg) {
 	var container = document.getElementById("message-board");

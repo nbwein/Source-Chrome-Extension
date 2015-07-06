@@ -3,6 +3,7 @@
 var access_global;
 var user_info_global;
 var email_global;
+var user_pic;
 
 var googlePlusUserLoader  = (function() {
 	function xhrWithAuth(method, url, interactive, callback, params) {
@@ -62,6 +63,7 @@ var googlePlusUserLoader  = (function() {
 		if (!error && status == 200) {
 			var user_info = JSON.parse(response);
 			user_info_global = user_info;
+			user_pic = user_info.image.url;
 			email_global = user_info_global.emails[0].value;
 			populateUserInfo(user_info);
 		} else {
@@ -79,7 +81,7 @@ var googlePlusUserLoader  = (function() {
 	}
 
 	function sendEmail(){
-		var message = $("#message-text").val() + " user_id: " + user_info_global.id;
+		var message = $("#message-text").val() + " user_id: " + user_pic;
 		var subject = Math.trunc(Math.random()*1000).toString();
 		
 		var params = encodeURL(btoa("From: me\r\nTo:" + "test-feed@googlegroups.com" + "\r\nSubject:"+ subject + "\r\n\r\n" + message));
