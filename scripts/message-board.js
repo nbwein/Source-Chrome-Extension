@@ -40,8 +40,8 @@ function loadFeed(){
 						var day = "today";
 						if (!todayPrinted){
 							var div = document.createElement("div");
-                                                	div.appendChild(document.createTextNode(day));
-                                                	container.appendChild(div);
+                            div.appendChild(document.createTextNode(day));
+                            container.appendChild(div);
 							div.className = "date-bar";
 							todayPrinted = true;
 						}
