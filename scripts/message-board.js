@@ -33,7 +33,7 @@ function loadFeed(){
 						author_split[1] = author_split[1][0].toUpperCase() + author_split[1].slice(1);
 						author = author_split[0] + " " + author_split[1]; 
 					}
-					
+
 					var div = document.createElement("div");
 					entry = entry.replace(/&amp;/g, "&");
 					entry = entry.replace(/&apos;/g, "\'");
@@ -45,24 +45,24 @@ function loadFeed(){
 					auth.setAttribute("id", "message-author");
 					auth.innerHTML = author;
 					div.appendChild(auth);
-/*********************/
+
 					var br = document.createElement("br");
 					div.appendChild(br);
 					// div.appendChild(document.createTextNode(entry)); 
 					var message = document.createElement("span");
-					message.setAttribute("style", "padding-left: 10px; padding-top: 10px");
+					message.setAttribute("style", "position:relative; padding-top: 10px");
 					message.innerHTML = entry;
 					div.appendChild(message);
-
 					div.className = "post";
+
 					if (i == 0) {
 						div.setAttribute("style", "border-top-left-radius: 15px; border-top-right-radius: 15px");
 					}
+
 					div.setAttribute("align","left");
 					container.appendChild(div);
-/*********************/
-					console.log(entry);
-					if (typeof(id) != 'undefined'){
+
+					if (typeof(id) != 'undefined') {
 						$.ajax({
 							method : 'GET',
 							url: 'https://www.googleapis.com/plus/v1/people/' + id,
@@ -71,10 +71,10 @@ function loadFeed(){
 								xhr.setRequestHeader('Authorization','Bearer ' + access_global);
 							}
 						})
-						.done(function(data){
+						.done(function(data) {
 							console.log(entry);
 							pic.setAttribute("src", data.image.url);
-							pic.setAttribute("style", "display:block;float:left;");
+							pic.setAttribute("style", "position:relative;display:block;float:left;border-radius:50%;left:10px;bottom:5px");
 							div.appendChild(pic);
 							div.className = "post";
 							if (i == 0) {
@@ -94,7 +94,6 @@ function loadFeed(){
 						div.setAttribute("align","center");
 						container.appendChild(div);
 					}
-/*********************/
 				}
 			}
 			}
