@@ -78,7 +78,6 @@ function loadFeed(){
 					var auth = document.createElement("span");
 					var pic = document.createElement("img");
 					pic.setAttribute("class", "profile-pic");
-					// pic.setAttribute("style", "top");
 					auth.setAttribute("style", "float:left;");
 					auth.setAttribute("id", "message-author");
 					auth.innerHTML = author;
@@ -90,9 +89,8 @@ function loadFeed(){
 					t.setAttribute("style", "float:right;");
 					t.innerHTML = time + " " + ampm;
 					div.appendChild(t);
-					// div.appendChild(document.createTextNode(entry)); 
 					var num_pixels = entry.length
-					var message = document.createElement("span");
+					var message = document.createElement("div");
 					message.setAttribute("style", "position:relative;");
 					message.setAttribute("id", "message");
 					message.innerHTML = entry;
