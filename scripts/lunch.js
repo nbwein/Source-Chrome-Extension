@@ -45,7 +45,7 @@ function scheduleLunch(){
        var id = createEvent($("#location").val(), time, ampm);
        $("#location").val('');
        $("#time").val(''); 
-      // location.reload();
+       location.reload();
    }
     else {
         alert("Please fill out both forms.");

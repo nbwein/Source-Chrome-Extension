@@ -95,10 +95,16 @@ var googlePlusUserLoader  = (function() {
 				xhr.setRequestHeader('Authorization','Bearer ' + access_global);
 			},
 			data: JSON.stringify({"raw": params})
+		})
+		.done(function(resp) {
+		if (resp.labelIds[0] == "SENT"){
+			$("#message-text").val('');
+			setTimeout(refresh, 2000);
+		}
+		else{
+			console.log("ERROR: could not send message");
+		}
 		});
-		$("#message-text").val('');
-		$("#message-board").empty();
-		setTimeout(refresh, 1500);
 	}
 	
 	function refresh(){
