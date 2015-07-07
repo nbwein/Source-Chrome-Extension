@@ -57,9 +57,8 @@ function loadFeed(){
 						lastDay = day;
 					}				
 					var description = elements[1].split("<description>")[1].split("</description>")[0];
-					var idparse = description.split("user_id: ");
-					var id = idparse[1];
-					var entry = idparse[0];
+					var entry = description;
+					var id = subject;
 					var author = elements[1].split("<author>")[1].split("</author>")[0];
 					author = author.split("@")[0];
 					author_split = author.split(".");
