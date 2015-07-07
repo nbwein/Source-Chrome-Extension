@@ -98,7 +98,11 @@ var googlePlusUserLoader  = (function() {
 		});
 		$("#message-text").val('');
 		$("#message-board").empty();
-		loadFeed();
+		setTimeout(refresh, 1500);
+	}
+	
+	function refresh(){
+		location.reload();
 	}
 
 	function sendShoutout(){

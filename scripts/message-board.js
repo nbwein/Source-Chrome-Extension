@@ -6,7 +6,7 @@ function loadFeed(){
 	var rand = Math.trunc(Math.random() * 10000);
 	$.ajax({
 		method: "GET",
-		url: "https://groups.google.com/forum/feed/test-feed/msgs/rss_v2_0",
+		url: "https://groups.google.com/forum/feed/test-feed/msgs/rss_v2_0?nocache=" + rand,
 		dataType: "html",
 		success:function(data){
 			data.replace('</item>', '');
