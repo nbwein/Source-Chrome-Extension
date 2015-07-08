@@ -77,20 +77,17 @@ function loadFeed(){
 					var auth = document.createElement("span");
 					var pic = document.createElement("img");
 					pic.setAttribute("class", "profile-pic");
-					auth.setAttribute("style", "float:left;");
+					auth.setAttribute("style", "float:left; margin-left:20px;");
 					auth.setAttribute("id", "message-author");
 					auth.innerHTML = author;
-					div.appendChild(auth);
+					// div.appendChild(auth);
 					var br = document.createElement("br");
 					div.appendChild(br);
 					t = document.createElement("span");
 					t.className = "message-time";
-					t.setAttribute("style", "float:right;");
-					t.innerHTML = time + " " + ampm;
-					div.appendChild(t);
+					t.innerHTML = " &#183 " + time + " " + ampm;
 					var num_pixels = entry.length
 					var message = document.createElement("div");
-					message.setAttribute("style", "position:relative;");
 					message.setAttribute("id", "message");
 					message.innerHTML = entry;
 					// div.appendChild(message);
@@ -104,9 +101,11 @@ function loadFeed(){
 
 					if (typeof(id) != 'undefined') {
 							pic.setAttribute("src", id);
-							pic.setAttribute("style", "position:relative;display:block;float:left;border-radius:50%;left:10px;bottom:5px;");
+							// pic.setAttribute("style", "position:relative;display:block;float:left;border-radius:10%;left:10px;bottom:0px;");
 							div.appendChild(pic);
 					}
+					div.appendChild(auth);
+					div.appendChild(t);
 					div.appendChild(message);
 					div.setAttribute("align","center");
 					container.appendChild(div);

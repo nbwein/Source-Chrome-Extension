@@ -11,7 +11,7 @@
 	<script src="scripts/jquery.timepicker.min.js"></script>
 	<script src="scripts/send-message.js"></script> 
 	<script src="scripts/message-board.js"></script> 
-	<script src="scripts/greeting.js"> </script> 
+	<script src="scripts/greeting.js"></script> 
 	<script src="scripts/date-time.js"></script>
 	<script src="scripts/weather.js"></script> 
 	<script src="scripts/lunch.js"></script>
@@ -33,11 +33,15 @@
 				<div id="weather-icon-div"></div>
 			</div>
 			<div id = "middle-column">
-				<div id ="post-message"> 
-					<textarea id = "message-text" maxlength = "296" type="text" name="message" placeholder="New message..."></textarea>
-					<a href="#" id ="submit-message" class="btn btn-lg">Post</a>
+				<div align = "center" id="message-board">
+					<div id="message-header" text-align:"center">
+						<h3 id="message-header-text">Message Board</h3>
+					</div>
+					<div id ="post-message"> 
+						<textarea id = "message-text" maxlength = "296" type="text" name="message" placeholder="New message..."></textarea>
+						<a href="#" id ="submit-message" class="btn btn-lg">Post</a>
+					</div>
 				</div>
-				<div align = "center" id="message-board"></div>
 				<h2 align = "center" id ="stella-daily-value"></h2>
 			</div>
 			<div id = "left-column"> 
