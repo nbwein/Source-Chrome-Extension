@@ -9,6 +9,7 @@ function loadFeed(){
 		url: "https://groups.google.com/forum/feed/test-feed/msgs/rss_v2_0?nocache=" + rand,
 		dataType: "html",
 		success:function(data){
+			$('#message-board').empty();
 			data.replace('</item>', '');
 			var items = data.split("<item>");
 			delete items[0];
@@ -113,6 +114,7 @@ function loadFeed(){
 			}
 			}
 	});
+	setTimeout(loadFeed, 15000);
 
 }
 
