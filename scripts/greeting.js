@@ -76,7 +76,7 @@ var googlePlusUserLoader  = (function() {
 		document.getElementById("main_greeting").innerHTML = "Welcome, " + user_info.name.givenName + ".";
 	getHipChat();
 	getHCSession();
-	pollHipChat();
+//	pollHipChat();
 	}
 
 	function encodeURL(str){

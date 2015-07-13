@@ -14,8 +14,33 @@ function getHipChat(){
 		url: 'https://api.hipchat.com/v2/room/intern-project-message-board/history?auth_token=' + personal_token + "&max-results=10",
 		grant_type: 'personal',
 		success: function(resp){
+			console.log(resp);
 			var messages = resp.items;
 			var container = document.getElementById("message-board");
+                        var headerDiv = document.createElement("div");
+                        headerDiv.setAttribute("id", "message-header");
+                        headerDiv.setAttribute("text-align", "center");
+                        var headerText = document.createElement("h3");
+                        headerText.setAttribute("id", "message-header-text");
+                        headerText.innerHTML = "Message Board";
+                        headerDiv.appendChild(headerText);
+			var div = document.createElement("div");
+                        var textArea = document.createElement("textArea");
+                        var postMessageDiv = document.createElement("div");
+                        textArea.setAttribute("id", "message-text");
+                        textArea.setAttribute("maxlength", "296");
+                        textArea.setAttribute("type", "text");
+                        textArea.setAttribute("name", "message");
+                        textArea.setAttribute("placeholder", "New message...");
+                        var submitBtn = document.createElement("a");
+                        submitBtn.setAttribute("href", "#");
+                        submitBtn.setAttribute("id", "submit-message");
+                        submitBtn.setAttribute("class", "btn btn-lg");
+                        submitBtn.innerHTML = "Post";
+                        postMessageDiv.appendChild(textArea);
+                        postMessageDiv.appendChild(submitBtn);
+			container.appendChild(headerDiv);
+                        container.appendChild(postMessageDiv);
 			for (var i = messages.length - 1; i >= 0; i--){
 				var message = messages[i];
 				var author = message.from.name;
@@ -43,21 +68,6 @@ function getHipChat(){
 				date = date[1] + "/" + date[2];
 				time = time[0] + ":" + time[1];
 				var entry = message.message;
-				var div = document.createElement("div");
-				var textArea = document.createElement("textArea");
-				var postMessageDiv = document.createElement("div");
-                       		textArea.setAttribute("id", "message-text");
-                        	textArea.setAttribute("maxlength", "296");
-                        	textArea.setAttribute("type", "text");
-                        	textArea.setAttribute("name", "message");
-                        	textArea.setAttribute("placeholder", "New message...");
-                        	var submitBtn = document.createElement("a");
-                        	submitBtn.setAttribute("href", "#");
-                        	submitBtn.setAttribute("id", "submit-message");
-                        	submitBtn.setAttribute("class", "btn btn-lg");
-                        	submitBtn.innerHTML = "Post";
-                       		postMessageDiv.appendChild(textArea);
-                        	postMessageDiv.appendChild(submitBtn);
 				var auth = document.createElement("span");
 				pic.setAttribute("class", "profile-pic");
                                 auth.setAttribute("style", "float:left;");
