@@ -56,6 +56,34 @@ function loadFeed(){
 			var items = data.split("<item>");
 			delete items[0];
 			var container = document.getElementById("message-board");
+
+			var headerDiv = document.createElement("div");
+			headerDiv.setAttribute("id", "message-header");
+			headerDiv.setAttribute("text-align", "center");
+			var headerText = document.createElement("h3");
+			headerText.setAttribute("id", "message-header-text");
+			headerText.innerHTML = "Message Board";
+			headerDiv.appendChild(headerText);
+
+			var postMessageDiv = document.createElement("div");
+			postMessageDiv.setAttribute("id", "post-message");
+			var textArea = document.createElement("textArea");
+			textArea.setAttribute("id", "message-text");
+			textArea.setAttribute("maxlength", "296");
+			textArea.setAttribute("type", "text");
+			textArea.setAttribute("name", "message");
+			textArea.setAttribute("placeholder", "New message...");
+			var submitBtn = document.createElement("a");
+			submitBtn.setAttribute("href", "#");
+			submitBtn.setAttribute("id", "submit-message");
+			submitBtn.setAttribute("class", "btn btn-lg");
+			submitBtn.innerHTML = "Post";
+			postMessageDiv.appendChild(textArea);
+			postMessageDiv.appendChild(submitBtn);
+
+			container.appendChild(headerDiv);
+			container.appendChild(postMessageDiv);
+
 			var lastDay = "today";
 			var todayPrinted = false;
 			for (var i = 1; i < items.length; i++){
@@ -114,42 +142,40 @@ function loadFeed(){
 					}
 
 					var div = document.createElement("div");
+					div.className = "post";
 					entry = entry.replace(/&amp;/g, "&");
 					entry = entry.replace(/&apos;/g, "\'");
 					entry = entry.replace(/&quot;/g, "\"");
-					var auth = document.createElement("span");
+					var auth = document.createElement("strong");
 					var pic = document.createElement("img");
 					pic.setAttribute("class", "profile-pic");
-					auth.setAttribute("style", "float:left;");
 					auth.setAttribute("id", "message-author");
 					auth.innerHTML = author;
-					div.appendChild(auth);
+					// div.appendChild(auth);
 					var br = document.createElement("br");
 					div.appendChild(br);
 					t = document.createElement("span");
 					t.className = "message-time";
-					t.setAttribute("style", "float:right;");
-					t.innerHTML = time + " " + ampm;
-					div.appendChild(t);
-					var num_pixels = entry.length
-					var message = document.createElement("div");
-					message.setAttribute("style", "position:relative;");
+					t.innerHTML = " &#183 " + time + " " + ampm;
+					var message = document.createElement("p");
 					message.setAttribute("id", "message");
 					message.innerHTML = entry;
 					// div.appendChild(message);
-					div.className = "post";
 
-					if (i == 0) {
-						div.setAttribute("style", "border-top-left-radius: 15px; border-top-right-radius: 15px");
-					}
+					// if (i == 0) {
+					// 	div.setAttribute("style", "border-top-left-radius: 15px; border-top-right-radius: 15px");
+					// }
 
-					container.appendChild(div);
+					// container.appendChild(div);
 
 					if (typeof(id) != 'undefined') {
 							pic.setAttribute("src", id);
-							pic.setAttribute("style", "position:relative;display:block;float:left;border-radius:50%;left:10px;bottom:5px;");
+							// pic.setAttribute("style", "position:relative;display:block;float:left;border-radius:10%;left:10px;bottom:0px;");
 							div.appendChild(pic);
 					}
+
+					div.appendChild(auth);
+					div.appendChild(t);
 					div.appendChild(message);
 					div.setAttribute("align","center");
 					container.appendChild(div);
