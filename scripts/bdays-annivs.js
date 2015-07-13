@@ -25,9 +25,13 @@ function getSpecialEvents(){
 		events = resp.items;
 		var bday_list = "";
 		for (var i = 0; i < events.length; i++){
-			bday_list = bday_list + "<br>" + rep.items[1].description + "</br>";
+			bday_list = bday_list + "<br>" + events[i].summary + "</br>";
 		}
-		document.getElementById("bdays-annivs").appendChild = bday_list;
+		console.log(bday_list);
+		var span = document.createElement("span");
+		span.setAttribute("id", "bdays");
+		document.getElementById("bdays-annivs").appendChild(span);
+		span.innerHTML = bday_list;
 
 	});
 	

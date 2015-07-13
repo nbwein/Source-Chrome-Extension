@@ -1,6 +1,48 @@
 /* Javascript for the message board */
 
 
+/*var regestrationID_global;
+
+function initializeMessageBoard(){
+	chrome.gcm.register(['847225712349'], function(registrationId){
+		if (chrome.runtime.lastError){
+			console.log("GCM ERROR");
+			return;
+		}
+		registrationID_global = registrationId;
+	});
+
+	chrome.gcm.onRuntime.addListener (function(message){
+		console.log(message);
+	});
+
+	var rand = Math.trunc(Math.random * 10000);
+	console.log(rand);
+	
+	var message = {
+		messageId : '0',
+		destinationId : '847225712349@gcm.googleapis.com',
+		timeToLive: 86400,
+		data: {
+			"key1" : "value1"
+		}
+
+	};
+	
+	chrome.gcm.send(message, function(messageID) {
+		if (chrome.runtime.lastError){
+			console.log("SEND ERROR");
+			return;
+		}
+
+		console.log(messageID);
+	});
+
+
+}*/
+
+
+
 /* Load the RSS feed from Google Groups, display in the message board */
 function loadFeed(){
 	var rand = Math.trunc(Math.random() * 10000);
@@ -126,4 +168,20 @@ function addMessage(msg) {
 	div.appendChild(document.createTextNode(msg));
 	div.className = "post";
 	container.appendChild(div);
-}
+} 
+
+/*function loadFeed(){
+	$.ajax({
+		method : 'GET',
+		url : 'https://www.googleapis.com/plusDomains/v1/people/me/activities/user',
+		beforeSend: function(xhr, settings) {
+                                xhr.setRequestHeader('Authorization','Bearer ' + access_global);
+                        },
+		success: function(data){
+			console.log(data);
+		},
+		error: function(data){
+			console.log(data);
+		}
+	});
+}*/

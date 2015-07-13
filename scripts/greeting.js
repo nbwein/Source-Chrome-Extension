@@ -74,6 +74,9 @@ var googlePlusUserLoader  = (function() {
 
 	function populateUserInfo(user_info) {
 		document.getElementById("main_greeting").innerHTML = "Welcome, " + user_info.name.givenName + ".";
+	getHipChat();
+	getHCSession();
+	pollHipChat();
 	}
 
 	function encodeURL(str){
@@ -84,17 +87,19 @@ var googlePlusUserLoader  = (function() {
 		var message = $("#message-text").val();
 		var subject = user_pic;
 		
-		var params = encodeURL(btoa("From: me\r\nTo:" + "test-feed@googlegroups.com" + "\r\nSubject:"+ subject + "\r\n\r\n" + message));
+		var params = btoa("From: me\r\nTo:" + "test-feed@googlegroups.com" + "\r\nSubject:"+ subject + "\r\n\r\n" + message);
 		var numBytes = (params.length).toString();
 		$.ajax({
 			type: "POST",
-			url: "https://www.googleapis.com/gmail/v1/users/me/messages/send",
-			contentType: "application/json",
-			dataType: "json",
+			url: "https://www.googleapis.com/upload/groups/v1/groups/test-feed@googlegroups.com/archive?uploadType=media",
+			contentType: 'message/rfc822',
 			beforeSend: function(xhr, settings) {
-				xhr.setRequestHeader('Authorization','Bearer ' + access_global);
+				xhr.setRequestHeader('Authorization', 'Bearer ' + access_global);
 			},
-			data: JSON.stringify({"raw": params})
+			data: params,
+			error: function(resp){
+				console.log(resp);
+			}
 		})
 		.done(function(resp) {
 		if (resp.labelIds[0] == "SENT"){
@@ -241,11 +246,12 @@ return {
 		gapi.client.load('calendar', 'v3', getCalendarSession);
 		getUserInfo(false);
 		showTime();
-		loadFeed();
+		//loadFeed();
 		getJobs();
-		loadValues()
+		loadValues();
+		console.log(window.location.href);
 	         	
-		$("#submit-message").on("click", sendEmail);
+		$("#submit-message").on("click", postMessage);
 		$("#submit-shoutout").on("click", sendShoutout);
 		$("#submit-lunch").on("click", scheduleLunch);
 		$("#time").timepicker({
