@@ -1,0 +1,26 @@
+{
+		"description" : "Stellaservice Message Board",
+		"capabilities" : {
+			"hipchatApiConsumer": {
+				"scopes" : [
+					"import_data", 
+					"send_message", 
+					"view_room"
+				]
+			}
+		},
+		"oauth2Consumer":{
+			"redirectionUrls": [
+				"chrome-extension://iafieomoicfhnpficlnolemmhhfgghdd/main.html"
+			]
+		},
+		"installable": {
+			"allowGlobal": false, 
+			"allowRoom":true,
+			"callbackUrl":"chrome-extension://iafieomoicfhnpficlnolemmhhfgghdd/main.html"
+		},
+		"key" : "intern_message_board",
+		"links": {
+			"self" : "chrome-extension://iafieomoicfhnpficlnolemmhhfgghdd/capabilities.json"
+		}
+}

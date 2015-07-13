@@ -24,11 +24,10 @@ function getHipChat(){
                         headerText.setAttribute("id", "message-header-text");
                         headerText.innerHTML = "Message Board";
                         headerDiv.appendChild(headerText);
-			//var div = document.createElement("div");
                         var textArea = document.createElement("textArea");
                         var postMessageDiv = document.createElement("div");
+			postMessageDiv.setAttribute("id", "post-message");
                         textArea.setAttribute("id", "message-text");
-                        textArea.setAttribute("maxlength", "296");
                         textArea.setAttribute("type", "text");
                         textArea.setAttribute("name", "message");
                         textArea.setAttribute("placeholder", "New message...");
@@ -69,9 +68,8 @@ function getHipChat(){
 				date = date[1] + "/" + date[2];
 				time = time[0] + ":" + time[1];
 				var entry = message.message;
-				var auth = document.createElement("span");
+				var auth = document.createElement("strong");
 				pic.setAttribute("class", "profile-pic");
-                                //auth.setAttribute("style", "float:left;");
                                 auth.setAttribute("id", "message-author");
                                 auth.innerHTML = author;
                                 div.appendChild(auth);
@@ -79,14 +77,11 @@ function getHipChat(){
                               	div.appendChild(br);
                                 t = document.createElement("span");
                                 t.className = "message-time";
-                                //t.setAttribute("style", "float:right;");
                                 t.innerHTML = time + " " + ampm + ", " + date;
                                 div.appendChild(t);
                                 var message = document.createElement("p");
-                                //message.setAttribute("style", "position:relative;");
                                 message.setAttribute("id", "message");
                                 message.innerHTML = entry;
-                                //pic.setAttribute("style", "position:relative;display:block;float:left;border-radius:50%;left:10px;bottom:5px;");
                                 div.appendChild(pic);
                                 div.className = "post";
                                 div.appendChild(message);
@@ -112,7 +107,6 @@ function getUserPic(id, pic){
 		},
 		error: function(error){
 			console.log(error.getResponseHeader());
-			return '';
 		}
 	});
 
@@ -142,12 +136,14 @@ function postMessage(){
 /* Checks to see if personal token has already been aquired, if not initiates OAuth flow to aquire one*/
 function getHCSession(){
  	if (typeof localStorage["hc_token"] == 'undefined'){
-		token = hc_OAuth();
+		//hcOAuth();
+		token=personal_token;
 		localStorage.setItem("hc_token", token);
 		console.log("personal token set");	
 	}
 	else{
 		personal_token = localStorage["hc_token"];
+		//hcOAuth();
 		console.log("got from storage")
 	}	
 
@@ -156,7 +152,7 @@ function getHCSession(){
 
 /* Hipchat OAuth flow */
 function hcOAuth(){
-	return personal_token;
+		window.location.replace('https://www.hipchat.com/users/authorize?response_type=code$scope=send_notification$signup=0&addon_key="Intern Message Board"&redirect_uri="chrome-extension://iafieomoicfhnpficlnolemmhhfgghdd/main.html"&state="asdlkfj"'); 
 }
 
 /* Polls hipchat every 5 seconds, reloading the message board feed if the total number of messages has increases */
