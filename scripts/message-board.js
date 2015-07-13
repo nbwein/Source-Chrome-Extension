@@ -69,7 +69,6 @@ function loadFeed(){
 			postMessageDiv.setAttribute("id", "post-message");
 			var textArea = document.createElement("textArea");
 			textArea.setAttribute("id", "message-text");
-			textArea.setAttribute("maxlength", "296");
 			textArea.setAttribute("type", "text");
 			textArea.setAttribute("name", "message");
 			textArea.setAttribute("placeholder", "New message...");

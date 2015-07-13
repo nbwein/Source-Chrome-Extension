@@ -44,6 +44,20 @@ function getHipChat(){
 				time = time[0] + ":" + time[1];
 				var entry = message.message;
 				var div = document.createElement("div");
+				var textArea = document.createElement("textArea");
+				var postMessageDiv = document.createElement("div");
+                       		textArea.setAttribute("id", "message-text");
+                        	textArea.setAttribute("maxlength", "296");
+                        	textArea.setAttribute("type", "text");
+                        	textArea.setAttribute("name", "message");
+                        	textArea.setAttribute("placeholder", "New message...");
+                        	var submitBtn = document.createElement("a");
+                        	submitBtn.setAttribute("href", "#");
+                        	submitBtn.setAttribute("id", "submit-message");
+                        	submitBtn.setAttribute("class", "btn btn-lg");
+                        	submitBtn.innerHTML = "Post";
+                       		postMessageDiv.appendChild(textArea);
+                        	postMessageDiv.appendChild(submitBtn);
 				var auth = document.createElement("span");
 				pic.setAttribute("class", "profile-pic");
                                 auth.setAttribute("style", "float:left;");
@@ -150,9 +164,9 @@ function pollHipChat(){
                 		getHipChat();
 			}
 			console.log("poll");
-			setTimeout(pollHipChat, 5000);
+			setTimeout(pollHipChat, 10000);
 			
 		},
-		error: pollHipChat
+		error: setTimeout(pollHipChat, 10000)
 	});
 };
