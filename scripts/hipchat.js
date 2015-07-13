@@ -24,7 +24,7 @@ function getHipChat(){
                         headerText.setAttribute("id", "message-header-text");
                         headerText.innerHTML = "Message Board";
                         headerDiv.appendChild(headerText);
-			var div = document.createElement("div");
+			//var div = document.createElement("div");
                         var textArea = document.createElement("textArea");
                         var postMessageDiv = document.createElement("div");
                         textArea.setAttribute("id", "message-text");
@@ -44,6 +44,7 @@ function getHipChat(){
 			for (var i = messages.length - 1; i >= 0; i--){
 				var message = messages[i];
 				var author = message.from.name;
+				var div = document.createElement("div");
 				if (author != "R2 D2"){
 				var pic = document.createElement("img");
 				getUserPic(message.from.id, pic);
