@@ -71,7 +71,7 @@ function getHipChat(){
 				var entry = message.message;
 				var auth = document.createElement("span");
 				pic.setAttribute("class", "profile-pic");
-                                auth.setAttribute("style", "float:left;");
+                                //auth.setAttribute("style", "float:left;");
                                 auth.setAttribute("id", "message-author");
                                 auth.innerHTML = author;
                                 div.appendChild(auth);
@@ -79,14 +79,14 @@ function getHipChat(){
                               	div.appendChild(br);
                                 t = document.createElement("span");
                                 t.className = "message-time";
-                                t.setAttribute("style", "float:right;");
-                                t.innerHTML = time + " " + ampm + "<br>" + date;
+                                //t.setAttribute("style", "float:right;");
+                                t.innerHTML = time + " " + ampm + ", " + date;
                                 div.appendChild(t);
-                                var message = document.createElement("div");
-                                message.setAttribute("style", "position:relative;");
+                                var message = document.createElement("p");
+                                //message.setAttribute("style", "position:relative;");
                                 message.setAttribute("id", "message");
                                 message.innerHTML = entry;
-                                pic.setAttribute("style", "position:relative;display:block;float:left;border-radius:50%;left:10px;bottom:5px;");
+                                //pic.setAttribute("style", "position:relative;display:block;float:left;border-radius:50%;left:10px;bottom:5px;");
                                 div.appendChild(pic);
                                 div.className = "post";
                                 div.appendChild(message);
