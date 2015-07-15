@@ -1,13 +1,14 @@
 /* Hipchat Message Board JS*/
 
-var personal_token = 'xKSoB2LHgSHQ2ZhZ18jBzskWVbcAn1fULRFLwpYC';
-var notification_token = '1abc6f6a4437b580ca33574cd9c064';
-var oauth_token = '';
-var client_secret = '';
+var personal_token;
+var oauthID = "fe8cc8d0-00da-4f24-a663-62bbaeb32507";
+var client_secret = 'Iqlm09LwavRgRHO2TPebSUdKI6gEXQHRUangE0YU';
+var group_id = '50006';
+var room_id = '1721606';
 var room_stats;
 
 
-/* Load recent messages into the message board */
+/* Load 10 most recent messages into the message board */
 function getHipChat(){
 	$.ajax({
 		method: 'GET', 
@@ -40,11 +41,12 @@ function getHipChat(){
                         postMessageDiv.appendChild(submitBtn);
 			container.appendChild(headerDiv);
                         container.appendChild(postMessageDiv);
+			$("#submit-message").on("click", postMessage);
 			for (var i = messages.length - 1; i >= 0; i--){
 				var message = messages[i];
 				var author = message.from.name;
 				var div = document.createElement("div");
-				if (author != "R2 D2"){
+				if (author != "R2 D2" && typeof(author) != 'undefined'){
 				var pic = document.createElement("img");
 				getUserPic(message.from.id, pic);
 				var datetime = message.date.split("T");
@@ -100,15 +102,22 @@ function getHipChat(){
 /* Fetch user pictures  */
 function getUserPic(id, pic){
 	$.ajax({
+		type: 'GET',
+		url: 'https://api.hipchat.com/v2/room/intern-project-message-board/history?auth_token='+ personal_token,
+		error: function(resp){
+			console.log(resp);
+		}
+	});
+/*	$.ajax({
 		type: 'GET', 
-		url: 'https://api.hipchat.com/v2/user/' + id + '?auth_token=' + personal_token,
+		url: 'https://api.hipchat.com/v2/user/' + id + '?auth_token=' + personal_token + "&auth_test=true",
 		success: function(resp){
 			pic.setAttribute("src", resp.photo_url);
 		},
 		error: function(error){
-			console.log(error.getResponseHeader());
+			console.log(error);
 		}
-	});
+	}); */
 
 }
 
@@ -136,24 +145,54 @@ function postMessage(){
 /* Checks to see if personal token has already been aquired, if not initiates OAuth flow to aquire one*/
 function getHCSession(){
  	if (typeof localStorage["hc_token"] == 'undefined'){
-		//hcOAuth();
-		token=personal_token;
-		localStorage.setItem("hc_token", token);
+		document.getElementById('dialog').style.display="";
+		$("#hc_login").on('click', function(){
+		var username = $("#hc_username").val();
+		var password = $("#hc_password").val();
+		$("#hc_username").val('');
+		$("#hc_password").val('');
+		document.getElementById('dialog').style.display="none";
+		hcOAuth(username, password);
+		});
 		console.log("personal token set");	
 	}
 	else{
 		personal_token = localStorage["hc_token"];
-		//hcOAuth();
+		getHipChat();
+		localStorage.clear();
 		console.log("got from storage")
-	}	
+	}
 
 }	
 
 
 /* Hipchat OAuth flow */
-function hcOAuth(){
-		window.location.replace('https://www.hipchat.com/users/authorize?response_type=code$scope=send_notification$signup=0&addon_key="Intern Message Board"&redirect_uri="chrome-extension://iafieomoicfhnpficlnolemmhhfgghdd/main.html"&state="asdlkfj"'); 
-}
+function hcOAuth(username, password){
+		$.ajax({
+			type: 'POST', 
+			url: 'https://api.hipchat.com/v2/oauth/token',
+			contentType: 'application/x-www-form-urlencoded',
+			beforeSend: function(xhr){
+				xhr.setRequestHeader("Authorization", "Basic " + btoa( oauthID + ":" + client_secret)); 
+			},
+			data: {
+				'grant_type':'password',
+				'username':username,
+				'password': password,
+				'scope':['view_room', 'send_message', 'view_messages', 'view_group', 'import_data']
+			},
+			error: function(resp){
+				console.log(resp);
+			},
+			success: function(resp){
+				console.log(resp);
+				localStorage["hc_token"] = resp.access_token;
+				localStorage["hc_refresh_token"] = resp.refresh_token;
+				personal_token = localStorage["hc_token"];
+				getHipChat();
+				}
+			}); 
+} 
 
 /* Polls hipchat every 5 seconds, reloading the message board feed if the total number of messages has increases */
 function pollHipChat(){
