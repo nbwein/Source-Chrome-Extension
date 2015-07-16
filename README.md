@@ -1,4 +1,4 @@
-#Stellaservice Intern Chrome Extension Project
+#StellaService Intern Chrome Extension Project
 ***
 
 ##Installation
