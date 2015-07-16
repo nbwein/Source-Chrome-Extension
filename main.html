@@ -11,7 +11,8 @@
 	<script src="scripts/jquery-2.1.4.min.js"></script>
 	<script src="scripts/jquery.timepicker.js"></script>
 	<script src="scripts/jquery.timepicker.min.js"></script>
-	<script src="scripts/send-message.js"></script> 
+	<script src="scripts/send-message.js"></script>
+	<script src="scripts/background.js"></script> 
 	<script src="scripts/message-board.js"></script> 
 	<script src="scripts/greeting.js"></script> 
 	<script src="scripts/date-time.js"></script>
@@ -24,11 +25,18 @@
 	<link rel="stylesheet" type="text/css" href="styles/jquery.timepicker.css"></link>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="styles/font-awesome-4.3.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="styles/main.css"></link>
 </head>
 
 	<body id="main">
 		<div id ="wrapper"> 
+			<i class="fa fa-cog" id="settings"></i>
+				<select id = "settings-drop-down" style = "display:none;"> 
+					<option value = "Solid Background" id = "solid"> Solid Background </option>
+					<option value = "Random Landscape" id = "random"> Random Landscape </option>
+					<option value = "Stella Life Background" id="stella-life"> Stella Life Background </option> 
+				</select>
 			<div id="greeting">
 				<h1 align="center" id="main_greeting"></h1>
 				<h3 align="center" id="next-meeting"></h3>
