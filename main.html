@@ -4,6 +4,7 @@
 	<title>Internal</title>
 	<meta http-equiv="Cache-control" content="no-cache">
 	<link href="http://fonts.googleapis.com/css?family=Merienda+One" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="styles/font-awesome-4.3.0/css/font-awesome.min.css">
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script src="https://apis.google.com/js/client.js"> </script>
 	<script src="scripts/jquery.min.js"></script> 
@@ -12,25 +13,34 @@
 	<script src="scripts/jquery.timepicker.js"></script>
 	<script src="scripts/jquery.timepicker.min.js"></script>
 	<script src="scripts/send-message.js"></script> 
-	<script src="scripts/message-board.js"></script> 
+	<!-- // <script src="scripts/message-board.js"></script>  -->
 	<script src="scripts/greeting.js"></script> 
 	<script src="scripts/date-time.js"></script>
 	<script src="scripts/weather.js"></script> 
 	<script src="scripts/lunch.js"></script>
 	<script src="scripts/jobs.js"></script>
+	<script src="scripts/background.js"></script>
 	<script src="scripts/bdays-annivs.js"></script>
 	<script src="scripts/stella-values.js"></script>
 	<script src="scripts/bootstrap.min.js"></script>
+
 	<link rel="stylesheet" type="text/css" href="styles/jquery.timepicker.css"></link>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="styles/main.css"></link>
 </head>
 
-	<body id="main">
-		<div id ="wrapper"> 
-			<div id="greeting">
-				<h1 align="center" id="main_greeting"></h1>
+<body id="main">
+	<div id ="wrapper" class="container-fluid">
+		<i class="fa fa-cog" id="settings"></i>
+		<select id = "settings-drop-down" style = "display:none;">
+			<option value = "Solid Background" id = "solid"> Solid Background </option>
+			<option value = "Random Landscape" id = "random"> Random Landscape </option>
+			<option value = "Stella Life Background" id="stella-life"> Stella Life Background </option>
+		</select>
+		<div id="greeting">
+				<h2 align = "center" id ="stella-daily-value"></h2>
+				<!-- <h1 align="center" id="main_greeting"></h1> -->
 				<h3 align="center" id="next-meeting"></h3>
 			</div>
 			<h2 align="center" id="date-time"></h2>
@@ -39,11 +49,7 @@
 				<div id="weather-icon-div"></div>
 			</div>
 			<div class="row-fluid">
-				<div id = "middle-column" class="span4">
-					<div align = "center" id="message-board" class="hidden-desktop"></div>
-					<h2 align = "center" id ="stella-daily-value"></h2>
-				</div>
-				<div id = "left-column" class="span4"> 
+				<div id = "left-column" class="col-lg-3"> 
 					<div id="lunch">
 						<div id="lunch-header" text-align:"center">
 							<h3 id="lunch-text">Stella Lunch</h3>
@@ -67,7 +73,10 @@
 						</div>
 					</div>
 				</div>
-				<div id = "right-column" class="span4">
+				<div id = "middle-column" class="col-lg-6">
+					<div align = "center" id="message-board" class="hidden-desktop"></div>
+				</div>
+				<div id = "right-column" class="col-lg-3">
 					<div id="upcoming-events"></div>
 					<div id="bdays-annivs">
 						<h3 id="bdays-text">Birthdays and Anniversaries</h3>
@@ -76,6 +85,17 @@
 						<h3 id="jobs-text">Open Positions</h3>
 						<span id="job-list"></span>
 					</div>
+				</div>
+				<div id="dialog" title="Basic dialog" style="display:none;position:fixed;top:300px;width:200px;height:250px;background-color:#70B8FF  ;text-align:center;left:43%;border-radius:10px;box-shadow:2px 2px 2px 2px #888888  ">
+					<h4> Please login to Hipchat.</h4>
+					<h6> (You will only have to do this once) </h6></br>
+					<label for="hc_username">Username (email)</label>
+					<input id =
+					"hc_username" type="text"/>
+					<label for="hc_password">Password</label>
+					<input id = "hc_password" type = "password"/></br>
+					<a href="#" id="hc_login" class="btn btn-sm" style="position:relative;top:20px;">Login</a>
+
 				</div>
 			</div>
 		</div>

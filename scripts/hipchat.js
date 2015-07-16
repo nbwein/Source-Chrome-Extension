@@ -1,13 +1,14 @@
 /* Hipchat Message Board JS*/
 
-var personal_token = 'xKSoB2LHgSHQ2ZhZ18jBzskWVbcAn1fULRFLwpYC';
-var notification_token = '1abc6f6a4437b580ca33574cd9c064';
-var oauth_token = '';
-var client_secret = '';
+var personal_token;
+var oauthID = "fe8cc8d0-00da-4f24-a663-62bbaeb32507";
+var client_secret = 'Iqlm09LwavRgRHO2TPebSUdKI6gEXQHRUangE0YU';
+var group_id = '50006';
+var room_id = '1721606';
 var room_stats;
 
 
-/* Load recent messages into the message board */
+/* Load 10 most recent messages into the message board */
 function getHipChat(){
 	$.ajax({
 		method: 'GET', 
@@ -24,11 +25,10 @@ function getHipChat(){
                         headerText.setAttribute("id", "message-header-text");
                         headerText.innerHTML = "Message Board";
                         headerDiv.appendChild(headerText);
-			//var div = document.createElement("div");
                         var textArea = document.createElement("textArea");
                         var postMessageDiv = document.createElement("div");
+						postMessageDiv.setAttribute("id", "post-message");
                         textArea.setAttribute("id", "message-text");
-                        textArea.setAttribute("maxlength", "296");
                         textArea.setAttribute("type", "text");
                         textArea.setAttribute("name", "message");
                         textArea.setAttribute("placeholder", "New message...");
@@ -41,11 +41,12 @@ function getHipChat(){
                         postMessageDiv.appendChild(submitBtn);
 			container.appendChild(headerDiv);
                         container.appendChild(postMessageDiv);
+			$("#submit-message").on("click", postMessage);
 			for (var i = messages.length - 1; i >= 0; i--){
 				var message = messages[i];
 				var author = message.from.name;
 				var div = document.createElement("div");
-				if (author != "R2 D2"){
+				if (author != "R2 D2" && typeof(author) != 'undefined'){
 				var pic = document.createElement("img");
 				getUserPic(message.from.id, pic);
 				var datetime = message.date.split("T");
@@ -69,9 +70,8 @@ function getHipChat(){
 				date = date[1] + "/" + date[2];
 				time = time[0] + ":" + time[1];
 				var entry = message.message;
-				var auth = document.createElement("span");
+				var auth = document.createElement("strong");
 				pic.setAttribute("class", "profile-pic");
-                                //auth.setAttribute("style", "float:left;");
                                 auth.setAttribute("id", "message-author");
                                 auth.innerHTML = author;
                                 div.appendChild(auth);
@@ -79,14 +79,11 @@ function getHipChat(){
                               	div.appendChild(br);
                                 t = document.createElement("span");
                                 t.className = "message-time";
-                                //t.setAttribute("style", "float:right;");
                                 t.innerHTML = time + " " + ampm + ", " + date;
                                 div.appendChild(t);
                                 var message = document.createElement("p");
-                                //message.setAttribute("style", "position:relative;");
                                 message.setAttribute("id", "message");
                                 message.innerHTML = entry;
-                                //pic.setAttribute("style", "position:relative;display:block;float:left;border-radius:50%;left:10px;bottom:5px;");
                                 div.appendChild(pic);
                                 div.className = "post";
                                 div.appendChild(message);
@@ -97,24 +94,25 @@ function getHipChat(){
 		},
 		error: function(resp){
 			console.log(resp);
+			refreshToken();
 		}
 	});
 
 }
 
-/* Fetch user pictures  */
+/* Fetch user pictures  
+NEED TO ADD SCOPE TO OAUTH ID FOR THIS TO WORK    view_group ONLY  */
 function getUserPic(id, pic){
-	$.ajax({
+/*	$.ajax({
 		type: 'GET', 
-		url: 'https://api.hipchat.com/v2/user/' + id + '?auth_token=' + personal_token,
+		url: 'https://api.hipchat.com/v2/user/' + id + '?auth_token=' + personal_token + "&auth_test=true",
 		success: function(resp){
 			pic.setAttribute("src", resp.photo_url);
 		},
 		error: function(error){
-			console.log(error.getResponseHeader());
-			return '';
+			console.log(error);
 		}
-	});
+	}); */
 
 }
 
@@ -142,24 +140,76 @@ function postMessage(){
 /* Checks to see if personal token has already been aquired, if not initiates OAuth flow to aquire one*/
 function getHCSession(){
  	if (typeof localStorage["hc_token"] == 'undefined'){
-		token = hc_OAuth();
-		localStorage.setItem("hc_token", token);
+		document.getElementById('dialog').style.display="";
+		$("#hc_login").on('click', function(){
+		var username = $("#hc_username").val();
+		var password = $("#hc_password").val();
+		$("#hc_username").val('');
+		$("#hc_password").val('');
+		document.getElementById('dialog').style.display="none";
+		hcOAuth(username, password);
+		});
 		console.log("personal token set");	
 	}
 	else{
 		personal_token = localStorage["hc_token"];
+		getHipChat();
 		console.log("got from storage")
-	}	
+	}
 
 }	
 
+function refreshToken(){
+	$.ajax({
+                method: 'POST',
+		url: 'https://api.hipchat.com/v2/oauth/token',
+		contentType: 'application/x-www-form-urlencoed',
+		beforeSend: function(xhr){
+                                xhr.setRequestHeader("Authorization", "Basic " + btoa( oauthID + ":" + client_secret));
+                },
+		data: {
+			'grant_type':'refresh_token',
+			'refresh_token': localStorage["hc_refresh_token"]
+		},
+		success: function(resp){
+			localStorage["hc_token"] = resp.access_token;
+		}
+	});
+		
 
-/* Hipchat OAuth flow */
-function hcOAuth(){
-	return personal_token;
+		
 }
 
-/* Polls hipchat every 5 seconds, reloading the message board feed if the total number of messages has increases */
+/* Hipchat OAuth flow */
+function hcOAuth(username, password){
+		$.ajax({
+			type: 'POST', 
+			url: 'https://api.hipchat.com/v2/oauth/token',
+			contentType: 'application/x-www-form-urlencoded',
+			beforeSend: function(xhr){
+				xhr.setRequestHeader("Authorization", "Basic " + btoa( oauthID + ":" + client_secret)); 
+			},
+			data: {
+				'grant_type':'password',
+				'username':username,
+				'password': password,
+				'scope':[ 'send_message', 'view_messages', 'view_group']
+			},
+			error: function(resp){
+				console.log(resp);
+			},
+			success: function(resp){
+				console.log(resp);
+				localStorage["hc_token"] = resp.access_token;
+				localStorage["hc_refresh_token"] = resp.refresh_token;
+				personal_token = localStorage["hc_token"];
+				getHipChat();
+				}
+			}); 
+} 
+
+/* Polls hipchat every 3 seconds, reloading the message board feed if the total number of messages has increased
+ALSO NEED TO ADD A SCOPE FOR THIS TO WORK  view_room or view_group*/
 function pollHipChat(){
 	$.ajax({
 		type: 'GET', 
@@ -175,9 +225,9 @@ function pollHipChat(){
                 		getHipChat();
 			}
 			console.log("poll");
-			setTimeout(pollHipChat, 10000);
+			setTimeout(pollHipChat, 3000);
 			
 		},
-		error: setTimeout(pollHipChat, 10000)
+		error: setTimeout(pollHipChat, 3000)
 	});
 };

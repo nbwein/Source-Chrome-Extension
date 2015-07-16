@@ -73,10 +73,9 @@ var googlePlusUserLoader  = (function() {
 	}
 
 	function populateUserInfo(user_info) {
-		document.getElementById("main_greeting").innerHTML = "Welcome, " + user_info.name.givenName + ".";
-	getHipChat();
-	getHCSession();
-//	pollHipChat();
+		getHCSession();
+		//pollHipChat();
+		console.log(chrome.extension.getURL('/main.html'));
 	}
 
 	function encodeURL(str){
@@ -242,6 +241,7 @@ function submitGong(){
 }
 return {
 	onload: function() {
+		setRandomPicBackground();
 		gapi.client.load('gmail', 'v1');
 		gapi.client.load('calendar', 'v3', getCalendarSession);
 		getUserInfo(false);
@@ -273,7 +273,7 @@ return {
 		});
 
 		$(document).on("click", ".join-clicked", function() {
-			jQuery(this).attr("class", "btn join");
+			jQuery(this).attr("class", "join");
 			jQuery(this).html("Join");
 			var group = jQuery(this).parents();
 			var id = group.attr('id');
