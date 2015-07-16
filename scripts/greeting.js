@@ -193,7 +193,8 @@ var googlePlusUserLoader  = (function() {
 				setTimeout(nextMeeting, 60000);	     	
 			}
 			else {
-				/***SHOULD THERE BE AN ELSE?***/
+				document.getElementById("next-meeting").innerHTML='';
+				setTimeout(nextMeeting, 60000);
 			}
 		});
 
@@ -248,10 +249,7 @@ return {
 		showTime();
 		//loadFeed();
 		getJobs();
-		loadValues();
-		console.log(window.location.href);
-	         	
-		$("#submit-message").on("click", postMessage);
+		loadValues();	         	
 		$("#submit-shoutout").on("click", sendShoutout);
 		$("#submit-lunch").on("click", scheduleLunch);
 		$("#time").timepicker({
