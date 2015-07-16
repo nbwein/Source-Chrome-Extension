@@ -159,7 +159,6 @@ function getHCSession(){
 	else{
 		personal_token = localStorage["hc_token"];
 		getHipChat();
-		localStorage.clear();
 		console.log("got from storage")
 	}
 
