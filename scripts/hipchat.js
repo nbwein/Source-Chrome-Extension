@@ -99,15 +99,9 @@ function getHipChat(){
 
 }
 
-/* Fetch user pictures  */
+/* Fetch user pictures  
+NEED TO ADD SCOPE TO OAUTH ID FOR THIS TO WORK    view_group ONLY  */
 function getUserPic(id, pic){
-	$.ajax({
-		type: 'GET',
-		url: 'https://api.hipchat.com/v2/room/intern-project-message-board/history?auth_token='+ personal_token,
-		error: function(resp){
-			console.log(resp);
-		}
-	});
 /*	$.ajax({
 		type: 'GET', 
 		url: 'https://api.hipchat.com/v2/user/' + id + '?auth_token=' + personal_token + "&auth_test=true",
@@ -178,7 +172,7 @@ function hcOAuth(username, password){
 				'grant_type':'password',
 				'username':username,
 				'password': password,
-				'scope':['view_room', 'send_message', 'view_messages', 'view_group', 'import_data']
+				'scope':[ 'send_message', 'view_messages', 'view_group']
 			},
 			error: function(resp){
 				console.log(resp);
@@ -193,7 +187,8 @@ function hcOAuth(username, password){
 			}); 
 } 
 
-/* Polls hipchat every 5 seconds, reloading the message board feed if the total number of messages has increases */
+/* Polls hipchat every 3 seconds, reloading the message board feed if the total number of messages has increased
+ALSO NEED TO ADD A SCOPE FOR THIS TO WORK  view_room or view_group*/
 function pollHipChat(){
 	$.ajax({
 		type: 'GET', 
@@ -209,9 +204,9 @@ function pollHipChat(){
                 		getHipChat();
 			}
 			console.log("poll");
-			setTimeout(pollHipChat, 10000);
+			setTimeout(pollHipChat, 3000);
 			
 		},
-		error: setTimeout(pollHipChat, 10000)
+		error: setTimeout(pollHipChat, 3000)
 	});
 };

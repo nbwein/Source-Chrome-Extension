@@ -75,7 +75,7 @@ var googlePlusUserLoader  = (function() {
 	function populateUserInfo(user_info) {
 		document.getElementById("main_greeting").innerHTML = "Welcome, " + user_info.name.givenName + ".";
 	getHCSession();
-//	pollHipChat();
+	//pollHipChat();
 	console.log(chrome.extension.getURL('/main.html'));
 	}
 
@@ -194,7 +194,8 @@ var googlePlusUserLoader  = (function() {
 				setTimeout(nextMeeting, 60000);	     	
 			}
 			else {
-				//todo.
+				document.getElementById("next-meeting").innerHTML='';
+				setTimeout(nextMeeting, 60000);
 			}
 		});
 
@@ -249,7 +250,6 @@ return {
 		//loadFeed();
 		getJobs();
 		loadValues();	         	
-		$("#submit-message").on("click", postMessage);
 		$("#submit-shoutout").on("click", sendShoutout);
 		$("#submit-lunch").on("click", scheduleLunch);
 		$("#time").timepicker({
