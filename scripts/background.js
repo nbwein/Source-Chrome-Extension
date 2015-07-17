@@ -1,25 +1,166 @@
 /* Changing Background Script */
-var imgURLS = ["http://www.hdwallpapers.in/walls/windows_10_landscape-multi16.5.jpg", "http://www.hdwallpapers.in/walls/milky_way_lake-wide.jpg", "http://www.hdwallpapersinn.com/wp-content/uploads/2015/02/City-Landscape-Wallpaper-Eving-Time-Photo.jpg", "http://www.hdwallpapersinn.com/wp-content/uploads/2015/02/City-Landscape-Wallpapers.jpg", "http://www.hdwallpapers.in/walls/seljalandsfoss_waterfall-wide.jpg", "http://www.hdwallpapers.in/walls/stairway_to_heaven-wide.jpg", "http://www.hdwallpapers.in/walls/city_nightways-wide.jpg", "http://www.hdwallpapers.in/walls/horseshoe_bend_arizona-wide.jpg", "http://www.hdwallpapers.in/walls/hirosaki_castle_japan-wide.jpg" ];
+var imgURLS = ["http://www.hdwallpapers.in/walls/windows_10_landscape-multi16.5.jpg", "http://www.hdwallpapers.in/walls/milky_way_lake-wide.jpg", "http://www.hdwallpapersinn.com/wp-content/uploads/2015/02/City-Landscape-Wallpaper-Eving-Time-Photo.jpg", "http://www.hdwallpapersinn.com/wp-content/uploads/2015/02/City-Landscape-Wallpapers.jpg", "http://www.hdwallpapers.in/walls/stairway_to_heaven-wide.jpg", "http://www.hdwallpapers.in/walls/horseshoe_bend_arizona-wide.jpg", "http://www.hdwallpapers.in/walls/hirosaki_castle_japan-wide.jpg", "http://www.hdwallpapers.in/walls/aurlandsfjord_norway-multi16.5.jpg", "http://www.hdwallpapers.in/walls/path_green_fields-wide.jpg", "http://www.hdwallpapers.in/walls/countryside_fisherman-wide.jpg", "http://www.hdwallpapers.in/walls/port_sunset-wide.jpg", "http://www.hdwallpapers.in/walls/wooden_path-wide.jpg", "http://www.hdwallpapers.in/walls/stockholm_reflections-wide.jpg", "http://www.hdwallpapers.in/walls/shanghai_sunset-wide.jpg", "http://www.hdwallpapers.net/previews/colorful-spiral-783.jpg", "http://www.hdwallpapers.in/walls/new_york_city_colors-wide.jpg", "http://www.hdwallpapers.in/walls/bisti_badlands_new_mexico-wide.jpg", "http://www.hdwallpapers.in/walls/machu_picchu-wide.jpg", "http://www.hdwallpapers.in/walls/glen_canyon_utah-wide.jpg", "http://www.hdwallpapers.in/walls/beauty_of_venice-wide.jpg", "http://www.hdwallpapers.in/walls/old_spinifex_rings_little_sandy_desert_australia-normal.jpg", "http://www.hdwallpapers.in/walls/great_wall_beijing_china-normal.jpg", "http://www.hdwallpapers.in/walls/manarola_italy-normal.jpg", "http://www.hdwallpapers.in/walls/cenote_dzitnup_mexico-normal.jpg", "http://www.hdwallpapers.in/walls/field_of_tulips_germany-normal.jpg", "http://www.hdwallpapers.in/walls/val_di_funes_dolomites_italy-normal.jpg", "http://www.hdwallpapers.in/walls/consuegra_la_mancha_spain-normal.jpg", "http://www.hdwallpapers.in/walls/fall_central_park_new_york-wide.jpg"];
 var size = imgURLS.length;
+var colors = ["#0099FF", "#b00025", "#1700b0", "#006d0f", "#351e66", "#d6d632", "#ff5327"];
+var colorsize = colors.length;
 var stellaURLS = [];
 var stellsize = stellaURLS.length;
 $(document).on("ready", function(){
-var settings = $("#settings");
+var settings = document.getElementById("settings");
 var dropDown = document.getElementById("settings-drop-down");
-settings.on("click", function(){
-//      dropDown.setAttribute("style", "display:block;");
-        $("#solid").on("click", function(){
-                setSolidBackground("#00ffff");
+$("#settings").on("click", function(){
+	console.log($("#settings-drop-down").is(":visible"));
+	if ($("#settings-drop-down").is(":visible")){
+	dropDown.setAttribute("style", "display:none;");
+	document.getElementById("date-time").setAttribute("style", "display:block");
+	document.getElementById("settings").className = "fa fa-cog";
+	settings.setAttribute("style", "color:#ffffff");
+	}
+	else{
+        dropDown.setAttribute("style", "display:block;");
+	settings.setAttribute("style", "color:#009900;");
+	document.getElementById("date-time").setAttribute("style", "display:none");
+	document.getElementById("settings").className = "fa fa-check-circle";
+
+	}
+	});
+
+
+        $("#settings-drop-down").change(function(){
+                if ($("#settings-drop-down").val() == "Solid Background"){
+                        setSolidBackground();
+                 }
+                else if ($("#settings-drop-down").val() == "Random Landscape"){
+                        setRandomPicBackground();
+                }
+                else if ($("#settings-drop-down").val() == "Stella Life Background"){
+                        stellaLifeBackground();
+                }
         });
-        $("#random").on("click", setRandomPicBackground);
-        $("#stella-life").on("click", stellaLifeBackground);
-});
-//dropDown.setAttribute("style", "display:none;");
+
+// TODO: refactor all these click events, they are all the same
+	$("#lunch-collapse").on("click", function(){
+		if (!lunchHidden){
+			console.log("HIDE ME");
+			$("#lunch").css("visibility", "hidden");
+			$("#lunch-collapse").css("visibility", "visible");
+			$("#lunch-header").css("visibility", "visible");
+			document.getElementById("lunch-collapse").className = "fa fa-plus-circle";
+			lunchHidden = true;
+			
+		}
+		else{
+			$("#lunch").css("visibility", "");
+                        document.getElementById("lunch-collapse").className = "fa fa-minus-circle";
+			lunchHidden = false;
+
+		}
+		localStorage.setItem('lunchHidden',lunchHidden);
+	});     
+
+	 $("#submit-collapse").on("click", function(){
+                if (!submitHidden){
+                        $("#submissions").css("visibility", "hidden");
+                        $("#submit-collapse").css("visibility", "visible");
+                        document.getElementById("submit-collapse").className = "fa fa-plus-circle";
+                        $("#submissions-text").css("visibility", "visible");
+                        submitHidden = true;
+
+                }
+                else{
+                        $("#submissions").css("visibility", "");
+                        document.getElementById("submit-collapse").className = "fa fa-minus-circle";
+                        submitHidden = false;
+
+                }
+		localStorage.setItem('submitHidden',submitHidden);
+        });
+	
+	$("#message-collapse").on("click", function(){
+                if (!messageHidden){
+                        $("#message-board").css("visibility", "hidden");
+                        $("#message-collapse").css("visibility", "visible");
+			$("#message-header-text").css("visibility", "visible");
+                        document.getElementById("message-collapse").className = "fa fa-plus-circle";
+                        messageHidden = true;
+
+                }
+                else{
+                        $("#message-board").css("visibility", "");
+                        document.getElementById("message-collapse").className = "fa fa-minus-circle";
+                        messageHidden = false;
+
+                }
+		localStorage.setItem('messageHidden',messageHidden);
+        });
+
+        $("#bday-collapse").on("click", function(){
+                if (!bdayHidden){
+                        $("#bdays-annivs").css("visibility", "hidden");
+                        $("#bday-collapse").css("visibility", "visible");
+                        $("#bdays-text").css("visibility", "visible");
+                        document.getElementById("bday-collapse").className = "fa fa-plus-circle";
+                        bdayHidden = true;
+
+                }
+                else{
+                        $("#bdays-annivs").css("visibility", "");
+                        document.getElementById("bday-collapse").className = "fa fa-minus-circle";
+                        bdayHidden = false;
+
+                }
+		localStorage.setItem('bdayHidden',bdayHidden);
+        });
+
+        $("#jobs-collapse").on("click", function(){
+                if (!jobsHidden){
+                        $("#jobs").css("visibility", "hidden");
+                        $("#jobs-collapse").css("visibility", "visible");
+                        $("#jobs-text").css("visibility", "visible");
+                        document.getElementById("jobs-collapse").className = "fa fa-plus-circle";
+                        jobsHidden = true;
+
+                }
+                else{
+                        $("#jobs").css("visibility", "");
+                        document.getElementById("jobs-collapse").className = "fa fa-minus-circle";
+                        jobsHidden = false;
+
+                }
+		localStorage.setItem('jobsHidden',jobsHidden);
+        });
+
+var today = new Date();
+today.setHours(0,0,0,0);
+//localStorage.clear();
+//RESET TO SHOW ALL DIVS WHEN DAY CHANGES. otherwise, get values from storage.
+if (localStorage.getItem('setupTime') == null || localStorage.getItem('setupTime') < today.getTime()){
+	localStorage.setItem('setupTime', today.getTime());
+        localStorage.setItem('lunchHidden', false);
+        localStorage.setItem('submitHidden', false);
+        localStorage.setItem('messageHidden', false);
+        localStorage.setItem('bdayHidden', false);
+        localStorage.setItem('jobsHidden', false);
+}
+else {
+        var lunchHidden = !JSON.parse(localStorage.getItem('lunchHidden'));
+        $("#lunch-collapse").trigger("click");
+        var submitHidden = !JSON.parse(localStorage.getItem('submitHidden'));
+        document.getElementById("submit-collapse").click();
+        var messageHidden = !JSON.parse(localStorage.getItem('messageHidden'));
+        document.getElementById("message-collapse").click();
+        var bdayHidden = !JSON.parse(localStorage.getItem('bdayHidden'));
+        document.getElementById("bday-collapse").click();
+        var jobsHidden = !JSON.parse(localStorage.getItem('jobsHidden'));
+        document.getElementById("jobs-collapse").click();
+}
+
 
 });
 
-
-function setSolidBackground(color) {
+function setSolidBackground(){
+	var idx = Math.floor(Math.random() * colorsize);
+        var color = colors[idx]
         var background = document.getElementById("main");
         background.setAttribute("style", "background-color:" + color);
 }
@@ -32,8 +173,9 @@ function setRandomPicBackground() {
         background.setAttribute("style", "background-image:url(\"" + img + "\");");
 }
 
-function stellaLifeBackground() 
-        var idx = Math.floor(Math.random() * stellasizesize);
+
+function stellaLifeBackground(){
+        var idx = Math.floor(Math.random() * stellasize);
         var img = stellaURLS[idx]
         var background = document.getElementById("main");
         console.log(img);

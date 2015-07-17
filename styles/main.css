@@ -1,5 +1,8 @@
 html { height: 100%; min-width: 896px; -webkit-user-select: none; overflow-x:auto; overflow-y:auto;background: -webkit-linear-gradient(90deg, #2BC0E4 10%, #EAECC6 90%);}
-body { height: 100%; min-height: 100%; min-width: 736px; margin: 0px; overflow:auto;}
+body { height: 100%; min-height: 100%; min-width: 736px; margin: 0px; overflow:auto;
+    background-size:   cover;                     
+    background-repeat: no-repeat;
+    background-position: center center; }
 
 
 #greeting {
@@ -45,6 +48,8 @@ body { height: 100%; min-height: 100%; min-width: 736px; margin: 0px; overflow:a
     font-size: 40px; letter-spacing: 0; white-space: nowrap;
     font-weight: 200;
     color:#232427;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
 }
 
 #next-meeting {
@@ -61,19 +66,23 @@ body { height: 100%; min-height: 100%; min-width: 736px; margin: 0px; overflow:a
     font-family: "Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
     font-weight: 200;
     font-size: 16px;
-    color:#808599;
+    color:#ffffff;
     top:5px;
     left: 10px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
 }
 
 #weather {
     position:absolute;
-    color: #808599;
+    color: #ffffff;
     font-family: "Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
     font-weight: 200;
     font-size: 16px;
     top: 1px;
     right: 10px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
 }
 
 #weather-icon-div {
@@ -325,6 +334,13 @@ body { height: 100%; min-height: 100%; min-width: 736px; margin: 0px; overflow:a
     float: left;
     margin-left: 5px;
     margin-top: 60px;
+}
+
+#submissions-text {
+    font-family: "Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
 }
 
 #shoutout-text {
@@ -655,4 +671,17 @@ body { height: 100%; min-height: 100%; min-width: 736px; margin: 0px; overflow:a
     text-decoration: none;
     padding: 5px 10px 5px 10px;
     margin-right: 5px;
-} 
+}
+
+#settings-drop-down {
+	border-radius:4px;
+	background-color: #0F0F0A;
+	color:#ffffff;
+	border:0px;
+	opacity: 0.75;
+	font-color:#ffffff;
+}
+
+.section-head {
+	text-shadow: -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white;
+}	
