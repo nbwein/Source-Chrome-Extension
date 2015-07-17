@@ -19,15 +19,6 @@ function getHipChat(){
 			var messages = resp.items;
 			var container = document.getElementById("message-board");
 
-			var headerDiv = document.createElement("div");
-			headerDiv.setAttribute("id", "message-header");
-			headerDiv.setAttribute("text-align", "center");
-			var headerText = document.createElement("h3");
-			headerText.setAttribute("id", "message-header-text");
-			headerText.setAttribute("class","section-head");
-			headerText.innerHTML = "Message Board";
-			headerDiv.appendChild(headerText);
-
 			var postMessageDiv = document.createElement("div");
 			postMessageDiv.setAttribute("id", "post-message");
 
@@ -46,7 +37,6 @@ function getHipChat(){
 			postMessageDiv.appendChild(textArea);
 			postMessageDiv.appendChild(submitBtn);
 
-			container.appendChild(headerDiv);
 			container.appendChild(postMessageDiv);
 			$("#submit-message").on("click", postMessage);
 			for (var i = messages.length - 1; i >= 0; i--){
