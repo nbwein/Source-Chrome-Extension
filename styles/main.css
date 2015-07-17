@@ -1,5 +1,8 @@
 html { height: 100%; min-width: 896px; -webkit-user-select: none; overflow-x:auto; overflow-y:auto;background: -webkit-linear-gradient(90deg, #2BC0E4 10%, #EAECC6 90%);}
-body { height: 100%; min-height: 100%; min-width: 736px; margin: 0px; overflow:auto;}
+body { height: 100%; min-height: 100%; min-width: 736px; margin: 0px; overflow:auto;
+    background-size:   cover;                     
+    background-repeat: no-repeat;
+    background-position: center center; }
 
 
 #greeting {
@@ -613,4 +616,17 @@ body { height: 100%; min-height: 100%; min-width: 736px; margin: 0px; overflow:a
     text-decoration: none;
     padding: 5px 10px 5px 10px;
     margin-right: 5px;
-} 
+}
+
+#settings-drop-down {
+	border-radius:4px;
+	background-color: #0F0F0A;
+	color:#ffffff;
+	border:0px;
+	opacity: 0.75;
+	font-color:#ffffff;
+}
+
+.section-head {
+	text-shadow: -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white;
+}	

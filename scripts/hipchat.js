@@ -23,6 +23,7 @@ function getHipChat(){
                         headerDiv.setAttribute("text-align", "center");
                         var headerText = document.createElement("h3");
                         headerText.setAttribute("id", "message-header-text");
+			headerText.setAttribute("class","section-head");
                         headerText.innerHTML = "Message Board";
                         headerDiv.appendChild(headerText);
                         var textArea = document.createElement("textArea");

@@ -31,10 +31,16 @@ function createEvent(place, time, ampm){
      		'attendees' : [{'email' : email_global}],
      		'summary' : place
  });
-	request.execute(function(resp) { console.log(resp); location.reload();});
+	request.execute(function(resp) { console.log(resp); 
+	//location.reload();
+	});
 	return id;
 }
 
+function refreshLunch(){
+	$('#lunch-wrapper').load(document.URL + ' #lunch');
+	fetchLunches();
+}
 
 function scheduleLunch(){
     if (($("#location").val() != '') && (typeof $("#time").val() != 'undefined')) {
@@ -45,7 +51,7 @@ function scheduleLunch(){
        var id = createEvent($("#location").val(), time, ampm);
        $("#location").val('');
        $("#time").val(''); 
-       location.reload();
+       setTimeout(refreshLunch, 1000);
    }
     else {
         alert("Please fill out both forms.");
@@ -136,7 +142,6 @@ function fetchLunches(){
     var request = getLunchCalendar(); 
     request.execute(function(resp){
         var events = resp.items;
-
         if (events.length > 0) {
             var container = document.getElementById("lunch");
             for (var i = 0; i < events.length; i++) {
@@ -168,11 +173,11 @@ function fetchLunches(){
 
                 var joinText = document.createTextNode("Join");
 
-                if (events[i].creator.email == email_global) {
+                /*if (events[i].creator.email == email_global) {
                     join.className = "join-clicked";
                     joinText = document.createTextNode("Joined!");
-                }
-                else {
+                } */
+                //else {
                     join.className = "join";
 
                     for (var person in events[i].attendees) {
@@ -182,7 +187,7 @@ function fetchLunches(){
                             joinText = document.createTextNode("Joined!");
                         }
                     }
-                }
+                //}
 
                 members.className = "members";
                 var memText = document.createTextNode("Members");

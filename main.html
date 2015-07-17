@@ -20,7 +20,6 @@
 	<script src="scripts/weather.js"></script> 
 	<script src="scripts/lunch.js"></script>
 	<script src="scripts/jobs.js"></script>
-	<script src="scripts/background.js"></script>
 	<script src="scripts/bdays-annivs.js"></script>
 	<script src="scripts/stella-values.js"></script>
 	<script src="scripts/bootstrap.min.js"></script>
@@ -33,11 +32,11 @@
 </head>
 <body id="main">
 	<div id ="wrapper" class="container-fluid">
-		<i class="fa fa-cog" id="settings"></i>
+		<i class="fa fa-cog" id="settings" style="color:#ffffff;"></i>
 		<select id = "settings-drop-down" style = "display:none;">
-			<option value = "Solid Background" id = "solid"> Solid Background </option>
-			<option value = "Random Landscape" id = "random"> Random Landscape </option>
-			<option value = "Stella Life Background" id="stella-life"> Stella Life Background </option>
+			<option value = "Random Landscape" id = "random" style="color:#ffffff;opacity:0.0;"> Random Landscape </option>
+			<option value = "Solid Background" id = "solid" style="color:#ffffff;opacity:0.0;"> Solid Background </option>
+			<option value = "Stella Life Background" id="stella-life" style="color:#ffffff;opacity:0.0;"> Stella Life Background </option>
 		</select>
 		<div id="greeting">
 				<h2 align = "center" id ="stella-daily-value"></h2>
@@ -51,8 +50,11 @@
 			</div>
 			<div class="row-fluid">
 				<div id = "left-column" class="col-lg-3"> 
+					<div id = "lunch-wrapper" style="position:relative;">
 					<div id="lunch">
-						<div id="lunch-header" text-align:"center">
+					<i class="fa fa-minus-circle icon-border" id="lunch-collapse" style = "position:absolute;top:2px;left:3px;z-index:1;color:#3498DB;"> </i>
+
+						<div id="lunch-header" class ="section-head" text-align:"center">
 							<h3 id="lunch-text">Stella Lunch</h3>
 						</div>
 						<div id ="lunch-form">
@@ -63,7 +65,10 @@
 							<a href="#" id="submit-lunch" class="btn btn-sm">Schedule</a>
 						</div >
 					</div>
+					</div>
 					<div id="submissions">
+					<i class="fa fa-minus-circle" id="submit-collapse" style = "position:absolute;top:2px;left:3px;z-index:1;color:#3498DB;"> </i>
+
 						<div id="stella-shoutout"> 
 							<input id = "shoutout-text" type="text" name="shoutout" placeholder="Enter a shout-out"/>
 							<a href="#" id="submit-shoutout" class="btn btn-sm">Submit</a>
@@ -75,15 +80,19 @@
 					</div>
 				</div>
 				<div id = "middle-column" class="col-lg-6">
-					<div align = "center" id="message-board" class="hidden-desktop"></div>
+				<div align = "center" id="message-board" class="hidden-desktop">
+					<i class="fa fa-minus-circle" id="message-collapse" style = "position:absolute;top:2px;left:3px;z-index:1;color:#3498DB;"> </i>
+				</div>
 				</div>
 				<div id = "right-column" class="col-lg-3">
 					<div id="upcoming-events"></div>
 					<div id="bdays-annivs">
-						<h3 id="bdays-text">Birthdays and Anniversaries</h3>
+					<i class="fa fa-minus-circle" id="bday-collapse" style = "position:absolute;top:2px;left:3px;z-index:1;color:#3498DB;"> </i>
+						<h3 id="bdays-text" class ="section-head">Birthdays and Anniversaries</h3>
 					</div>
 					<div id="jobs">
-						<h3 id="jobs-text">Open Positions</h3>
+					<i class="fa fa-minus-circle" id="jobs-collapse" style = "position:absolute;top:2px;left:3px;z-index:1;color:#3498DB;"> </i>
+						<h3 id="jobs-text" class ="section-head">Open Positions</h3>
 						<span id="job-list"></span>
 					</div>
 				</div>

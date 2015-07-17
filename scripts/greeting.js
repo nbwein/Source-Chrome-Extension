@@ -249,7 +249,7 @@ return {
 		showTime();
 		//loadFeed();
 		getJobs();
-		loadValues();	         	
+		loadValues();	 
 		$("#submit-shoutout").on("click", sendShoutout);
 		$("#submit-lunch").on("click", scheduleLunch);
 		$("#time").timepicker({
@@ -291,7 +291,3 @@ return {
 
 
 window.onload = googlePlusUserLoader.onload;
-
-var clientId = '847225712349-afs3e8aobcglbi1ml1gjkcr764ri1jvk.apps.googleusercontent.com';
-var apiKey = 'AIzaSyA8HYbU7zeqt58whlZiHpgI37b14pdFb9o';
-var scopes = 'https://www.googleapis.com/auth/plus.me';
