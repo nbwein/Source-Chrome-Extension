@@ -40,65 +40,70 @@
 			<option value = "Stella Life Background" id="stella-life"> Stella Life Background </option>
 		</select>
 		<div id="greeting">
-				<h2 align = "center" id ="stella-daily-value"></h2>
-				<!-- <h1 align="center" id="main_greeting"></h1> -->
-				<h3 align="center" id="next-meeting"></h3>
-			</div>
-			<h2 align="center" id="date-time"></h2>
-			<div align="center" id="weather-wrapper">
-				<h3 align="center" id="weather"></h3>
-				<div id="weather-icon-div"></div>
-			</div>
-			<div class="row-fluid">
-				<div id = "left-column" class="col-lg-3"> 
-					<div id="lunch">
-						<div id="lunch-header" text-align:"center">
-							<h3 id="lunch-text">Stella Lunch</h3>
-						</div>
-						<div id ="lunch-form">
+			<h2 align = "center" id ="stella-daily-value"></h2>
+			<!-- <h1 align="center" id="main_greeting"></h1> -->
+			<h3 align="center" id="next-meeting"></h3>
+		</div>
+		<h2 align="center" id="date-time"></h2>
+		<div align="center" id="weather-wrapper">
+			<h3 align="center" id="weather"></h3>
+			<div id="weather-icon-div"></div>
+		</div>
+		<div class="row-fluid">
+			<div id = "left-column" class="col-lg-3"> 
+				<div id="lunch">
+					<div id="lunch-header" text-align:"center">
+						<h3 id="lunch-text">Stella Lunch</h3>
+					</div>
+					<div id ="lunch-form">
+						<div id="where">
 							<label for="location">Where?</label>
-							<input id = "location" type="text"/>
-							<label for="location">When?</label>
-							<input id = "time" type = "text"/>
-							<a href="#" id="submit-lunch" class="btn btn-sm">Schedule</a>
-						</div >
-					</div>
-					<div id="submissions">
-						<div id="stella-shoutout"> 
-							<input id = "shoutout-text" type="text" name="shoutout" placeholder="Enter a shout-out"/>
-							<a href="#" id="submit-shoutout" class="btn btn-sm">Submit</a>
+							<input id="location" type="text"/>
 						</div>
-						<div id="gong-show"> 
-							<input id = "gong-text" type="text" name="gongtext" placeholder="Submit to Gong Show"/>
-							<a href="#" id ="submit-gong" class="btn btn-sm">Submit</a>
+						<div id="when">
+							<label for="time">When?</label>
+							<input id="time" type="text"/>
 						</div>
+						<div id="submit-lunch">
+							<a href="#" id="submit-lunch-btn" class="btn btn-sm">Schedule</a>
+						</div>
+					</div >
+				</div>
+				<div id="submissions">
+					<div id="stella-shoutout"> 
+						<input id = "shoutout-text" type="text" name="shoutout" placeholder="Enter a shout-out"/>
+						<a href="#" id="submit-shoutout" class="btn btn-sm">Submit</a>
+					</div>
+					<div id="gong-show"> 
+						<input id = "gong-text" type="text" name="gongtext" placeholder="Submit to Gong Show"/>
+						<a href="#" id ="submit-gong" class="btn btn-sm">Submit</a>
 					</div>
 				</div>
-				<div id = "middle-column" class="col-lg-6">
-					<div align = "center" id="message-board" class="hidden-desktop"></div>
+			</div>
+			<div id = "middle-column" class="col-lg-6">
+				<div align = "center" id="message-board" class="hidden-desktop"></div>
+			</div>
+			<div id = "right-column" class="col-lg-3">
+				<div id="upcoming-events"></div>
+				<div id="bdays-annivs">
+					<h3 id="bdays-text">Birthdays and Anniversaries</h3>
 				</div>
-				<div id = "right-column" class="col-lg-3">
-					<div id="upcoming-events"></div>
-					<div id="bdays-annivs">
-						<h3 id="bdays-text">Birthdays and Anniversaries</h3>
-					</div>
-					<div id="jobs">
-						<h3 id="jobs-text">Open Positions</h3>
-						<span id="job-list"></span>
-					</div>
+				<div id="jobs">
+					<h3 id="jobs-text">Open Positions</h3>
+					<span id="job-list"></span>
 				</div>
-				<div id="dialog" title="Basic dialog" style="display:none;position:fixed;top:300px;width:200px;height:250px;background-color:#70B8FF  ;text-align:center;left:43%;border-radius:10px;box-shadow:2px 2px 2px 2px #888888  ">
-					<h4> Please login to Hipchat.</h4>
-					<h6> (You will only have to do this once) </h6></br>
-					<label for="hc_username">Username (email)</label>
-					<input id =
-					"hc_username" type="text"/>
-					<label for="hc_password">Password</label>
-					<input id = "hc_password" type = "password"/></br>
-					<a href="#" id="hc_login" class="btn btn-sm" style="position:relative;top:20px;">Login</a>
-				</div>
+			</div>
+			<div id="dialog" title="Basic dialog" style="display:none;position:fixed;top:300px;width:200px;height:250px;background-color:#70B8FF  ;text-align:center;left:43%;border-radius:10px;box-shadow:2px 2px 2px 2px #888888  ">
+				<h4> Please login to Hipchat.</h4>
+				<h6> (You will only have to do this once) </h6></br>
+				<label for="hc_username">Username (email)</label>
+				<input id ="hc_username" type="text"/>
+				<label for="hc_password">Password</label>
+				<input id = "hc_password" type = "password"/></br>
+				<a href="#" id="hc_login" class="btn btn-sm" style="position:relative;top:20px;">Login</a>
 			</div>
 		</div>
 	</div>
+</div>
 </body>
 </html>

@@ -19,12 +19,12 @@ settings.on("click", function(){
 });
 
 
-function setSolidBackground(color){
+function setSolidBackground(color) {
         var background = document.getElementById("main");
         background.setAttribute("style", "background-color:" + color);
 }
 
-function setRandomPicBackground(){
+function setRandomPicBackground() {
         var idx = Math.floor(Math.random() * size);
         var img = imgURLS[idx]
         var background = document.getElementById("main");
@@ -32,7 +32,7 @@ function setRandomPicBackground(){
         background.setAttribute("style", "background-image:url(\"" + img + "\");");
 }
 
-function stellaLifeBackground(){
+function stellaLifeBackground() 
         var idx = Math.floor(Math.random() * stellasizesize);
         var img = stellaURLS[idx]
         var background = document.getElementById("main");

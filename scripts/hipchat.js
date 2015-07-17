@@ -18,36 +18,40 @@ function getHipChat(){
 			console.log(resp);
 			var messages = resp.items;
 			var container = document.getElementById("message-board");
-                        var headerDiv = document.createElement("div");
-                        headerDiv.setAttribute("id", "message-header");
-                        headerDiv.setAttribute("text-align", "center");
-                        var headerText = document.createElement("h3");
-                        headerText.setAttribute("id", "message-header-text");
-                        headerText.innerHTML = "Message Board";
-                        headerDiv.appendChild(headerText);
-                        var textArea = document.createElement("textArea");
-                        var postMessageDiv = document.createElement("div");
-						postMessageDiv.setAttribute("id", "post-message");
-                        textArea.setAttribute("id", "message-text");
-                        textArea.setAttribute("type", "text");
-                        textArea.setAttribute("name", "message");
-                        textArea.setAttribute("placeholder", "New message...");
-                        var submitBtn = document.createElement("a");
-                        submitBtn.setAttribute("href", "#");
-                        submitBtn.setAttribute("id", "submit-message");
-                        submitBtn.setAttribute("class", "btn btn-lg");
-                        submitBtn.innerHTML = "Post";
-                        postMessageDiv.appendChild(textArea);
-                        postMessageDiv.appendChild(submitBtn);
+			var headerDiv = document.createElement("div");
+			headerDiv.setAttribute("id", "message-header");
+			headerDiv.setAttribute("text-align", "center");
+			var headerText = document.createElement("h3");
+			headerText.setAttribute("id", "message-header-text");
+			headerText.innerHTML = "Message Board";
+			headerDiv.appendChild(headerText);
+
+			var postMessageDiv = document.createElement("div");
+			postMessageDiv.setAttribute("id", "post-message");
+
+			var textArea = document.createElement("textArea");
+			textArea.setAttribute("id", "message-text");
+			textArea.setAttribute("type", "text");
+			textArea.setAttribute("name", "message");
+			textArea.setAttribute("placeholder", "New message...");
+
+			var submitBtn = document.createElement("a");
+			submitBtn.setAttribute("href", "#");
+			submitBtn.setAttribute("id", "submit-message");
+			submitBtn.setAttribute("class", "btn btn-lg");
+			submitBtn.innerHTML = "Post";
+
+			postMessageDiv.appendChild(textArea);
+			postMessageDiv.appendChild(submitBtn);
 			container.appendChild(headerDiv);
-                        container.appendChild(postMessageDiv);
+			container.appendChild(postMessageDiv);
 			$("#submit-message").on("click", postMessage);
 			for (var i = messages.length - 1; i >= 0; i--){
 				var message = messages[i];
 				var author = message.from.name;
 				var div = document.createElement("div");
+				div.className = "post";
 				if (author != "R2 D2" && typeof(author) != 'undefined'){
-				var pic = document.createElement("img");
 				getUserPic(message.from.id, pic);
 				var datetime = message.date.split("T");
 				var date = datetime[0];
@@ -71,25 +75,30 @@ function getHipChat(){
 				time = time[0] + ":" + time[1];
 				var entry = message.message;
 				var auth = document.createElement("strong");
+				auth.setAttribute("id", "message-author");
+				auth.innerHTML = author;
+
+				var br = document.createElement("br");
+				div.appendChild(br);
+
+				var pic = document.createElement("img");
 				pic.setAttribute("class", "profile-pic");
-                                auth.setAttribute("id", "message-author");
-                                auth.innerHTML = author;
-                                div.appendChild(auth);
-                                var br = document.createElement("br");
-                              	div.appendChild(br);
-                                t = document.createElement("span");
-                                t.className = "message-time";
-                                t.innerHTML = time + " " + ampm + ", " + date;
-                                div.appendChild(t);
-                                var message = document.createElement("p");
-                                message.setAttribute("id", "message");
-                                message.innerHTML = entry;
-                                div.appendChild(pic);
-                                div.className = "post";
-                                div.appendChild(message);
-                                div.setAttribute("align","center");
-                                container.appendChild(div);
-				}
+				div.appendChild(pic);
+
+				div.appendChild(auth);
+				
+				t = document.createElement("span");
+				t.className = "message-time";
+				t.innerHTML = " &#183 " + time + " " + ampm + ", " + date;
+				div.appendChild(t);
+				var message = document.createElement("p");
+				message.setAttribute("id", "message");
+				message.innerHTML = entry;
+				
+				div.appendChild(message);
+				div.setAttribute("align","center");
+				container.appendChild(div);
+			}
 			}
 		},
 		error: function(resp){
