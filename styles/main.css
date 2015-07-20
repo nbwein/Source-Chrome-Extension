@@ -388,7 +388,7 @@ body {
     padding-bottom: 10px;
 }
 
-#buttonsDiv {
+.buttonsDiv {
     width: 142px;
     height: 30px;
     float: left;

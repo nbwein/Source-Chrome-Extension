@@ -264,6 +264,7 @@ return {
 			jQuery(this).attr("class", "join-clicked");
 			jQuery(this).html("Joined!");
 			var group = $("#join-clicked").parents();
+			console.log(group);
 			jQuery(this).attr("id", "join");
 			var id = group.attr('id');
 			console.log(id);

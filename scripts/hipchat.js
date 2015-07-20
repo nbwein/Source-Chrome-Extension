@@ -43,7 +43,7 @@ function getHipChat(){
 				var message = messages[i];
 				var author = message.from.name;
 				var div = document.createElement("div");
-				div.className = "post";
+				div.className = "post post-message";
 				if (author != "R2 D2" && typeof(author) != 'undefined'){
 				getUserPic(message.from.id, pic);
 				var datetime = message.date.split("T");
@@ -134,7 +134,7 @@ function postMessage(){
 	.done(function(resp){
 		$("#message-text").val('');
                 $("#post-message").remove();
-		$(".post").remove();
+		$(".post-message").remove();
                 getHipChat();
 	});
 

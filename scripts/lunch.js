@@ -38,7 +38,8 @@ function createEvent(place, time, ampm){
 }
 
 function refreshLunch(){
-	$('#lunch-wrapper').load(document.URL + ' #lunch');
+	$(".post-lunch").remove();
+	//$('#lunch-wrapper').load(document.URL + ' #lunch');
 	fetchLunches();
 }
 
@@ -198,7 +199,8 @@ function fetchLunches(){
                 div.appendChild(br);
 
                 var buttonsDiv = document.createElement("div");
-                buttonsDiv.setAttribute("id", "buttonsDiv");
+                buttonsDiv.setAttribute("class", "buttonsDiv");
+		buttonsDiv.setAttribute("id", id);
                 buttonsDiv.appendChild(members);
                 buttonsDiv.appendChild(join);
                 div.appendChild(buttonsDiv);
