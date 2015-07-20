@@ -32,11 +32,11 @@
 </head>
 <body id="main">
 	<div id ="wrapper" class="container-fluid">
-		<i class="fa fa-cog" id="settings" style="color:#ffffff;"></i>
-		<select id = "settings-drop-down" style = "display:none;">
-			<option value = "Random Landscape" id = "random" style="color:#ffffff;opacity:0.0;"> Random Landscape </option>
-			<option value = "Solid Background" id = "solid" style="color:#ffffff;opacity:0.0;"> Solid Background </option>
-			<option value = "Stella Life Background" id="stella-life" style="color:#ffffff;opacity:0.0;"> Stella Life Background </option>
+		<i class="fa fa-cog settings" id="settings"></i>
+		<select id = "settings-drop-down">
+			<option value = "Random Landscape" class = "settings-option" id = "random" > Random Landscape </option>
+			<option value = "Solid Background" class = "settings-option" id = "solid" > Solid Background </option>
+			<option value = "Stella Life Background" class = "settings-option" id="stella-life"> Stella Life Background </option>
 		</select>
 		<div id="greeting">
 			<h2 align="center" id ="stella-daily-value"></h2>
@@ -51,7 +51,7 @@
 		<div class="row-fluid">
 			<div id = "left-column" class="col-lg-3"> 
 				<div id="lunch">
-					<i class="fa fa-minus-circle icon-border" id="lunch-collapse" style = "position:absolute;top:2px;left:3px;z-index:1;color:#3498DB;"> </i>
+					<i class="collapse fa fa-minus-circle" class = "collapse" id="lunch-collapse"> </i>
 					<div id="lunch-header" text-align:"center">
 						<h3 id="lunch-text" class="section-head">Stella Lunch</h3>
 					</div>
@@ -82,35 +82,41 @@
 						<input id = "gong-text" type="text" name="gongtext" placeholder="Submit to Gong Show"/>
 						<a href="#" id="submit-gong" class="btn btn-sm">Submit</a>
 					</div>
-					<i class="fa fa-minus-circle" id="submit-collapse" style="position:absolute;top:2px;left:3px;z-index:1;color:#3498DB;"> </i>
-
+					<div id = "ask-founders">
+						<input id = "founders-q-text" type = "text" placeholder="Ask John and Jordy"/>
+						<a href="#" id  = "submit-founders" class = "btn btn-sm">Submit</a>
+					</div>
+					<i class="collapse fa fa-minus-circle" id="submit-collapse"> </i>
 				</div>
 			</div>
 			<div id = "middle-column" class="col-lg-6">
 				<div align = "center" id="message-board" class="hidden-desktop">
-					<i class="fa fa-minus-circle" id="message-collapse" style = "position:absolute;top:2px;left:3px;z-index:1;color:#3498DB;"> </i>
+					<i class="fa fa-minus-circle collapse" id="message-collapse"> </i>
+					<div id = "message-header">
+						<h3 id = "message-header-text" class = "section-head">Message Board </h3>
+					</div>
 				</div>
 			</div>
 			<div id = "right-column" class="col-lg-3">
 				<!-- <div id="upcoming-events"></div> -->
 				<div id="bdays-annivs" >
-					<i class="fa fa-minus-circle" id="bday-collapse" style = "position:absolute;top:2px;left:3px;z-index:1;color:#3498DB;"> </i>
-					<h3 id="bdays-text" class="section-head">Birthdays and Anniversaries</h3>
+					<i class="collapse fa fa-minus-circle" id="bday-collapse" > </i>
+					<h3 id="bdays-text" class="section-head">Birthdays and <br> Anniversaries</h3>
 				</div>
 				<div id="jobs">
-					<i class="fa fa-minus-circle" id="jobs-collapse" style = "position:absolute;top:2px;left:3px;z-index:1;color:#3498DB;"> </i>
+					<i class="collapse fa fa-minus-circle" id="jobs-collapse"> </i>
 					<h3 id="jobs-text" class="section-head">Open Positions</h3>
 					<span id="job-list"></span>
 				</div>
 			</div>
-			<div id="dialog" title="Basic dialog" style="display:none;position:fixed;top:300px;width:200px;height:250px;background-color:#70B8FF  ;text-align:center;left:43%;border-radius:10px;box-shadow:2px 2px 2px 2px #888888  ">
+			<div id="dialog" title="Basic dialog">
 				<h4> Please login to Hipchat.</h4>
 				<h6> (You will only have to do this once) </h6></br>
 				<label for="hc_username">Username (email)</label>
 				<input id ="hc_username" type="text"/>
 				<label for="hc_password">Password</label>
 				<input id = "hc_password" type = "password"/></br>
-				<a href="#" id="hc_login" class="btn btn-sm" style="position:relative;top:20px;">Login</a>
+				<a href="#" id="hc_login" class="btn btn-sm">Login</a>
 			</div>
 		</div>
 	</div>

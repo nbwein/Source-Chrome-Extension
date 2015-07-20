@@ -242,7 +242,7 @@ function submitGong(){
 }
 return {
 	onload: function() {
-		setRandomPicBackground();
+		setBackground();
 		gapi.client.load('gmail', 'v1');
 		gapi.client.load('calendar', 'v3', getCalendarSession);
 		getUserInfo(false);
@@ -285,6 +285,7 @@ return {
 			var id = group.attr('id');
 			viewMembers(id);
 		});
+
 	}
 };
 })();

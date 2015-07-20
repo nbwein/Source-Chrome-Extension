@@ -1,10 +1,9 @@
 /* Changing Background Script */
-var imgURLS = ["http://www.hdwallpapers.in/walls/windows_10_landscape-multi16.5.jpg", "http://www.hdwallpapers.in/walls/milky_way_lake-wide.jpg", "http://www.hdwallpapersinn.com/wp-content/uploads/2015/02/City-Landscape-Wallpaper-Eving-Time-Photo.jpg", "http://www.hdwallpapersinn.com/wp-content/uploads/2015/02/City-Landscape-Wallpapers.jpg", "http://www.hdwallpapers.in/walls/stairway_to_heaven-wide.jpg", "http://www.hdwallpapers.in/walls/horseshoe_bend_arizona-wide.jpg", "http://www.hdwallpapers.in/walls/hirosaki_castle_japan-wide.jpg", "http://www.hdwallpapers.in/walls/aurlandsfjord_norway-multi16.5.jpg", "http://www.hdwallpapers.in/walls/path_green_fields-wide.jpg", "http://www.hdwallpapers.in/walls/countryside_fisherman-wide.jpg", "http://www.hdwallpapers.in/walls/port_sunset-wide.jpg", "http://www.hdwallpapers.in/walls/wooden_path-wide.jpg", "http://www.hdwallpapers.in/walls/stockholm_reflections-wide.jpg", "http://www.hdwallpapers.in/walls/shanghai_sunset-wide.jpg", "http://www.hdwallpapers.net/previews/colorful-spiral-783.jpg", "http://www.hdwallpapers.in/walls/new_york_city_colors-wide.jpg", "http://www.hdwallpapers.in/walls/bisti_badlands_new_mexico-wide.jpg", "http://www.hdwallpapers.in/walls/machu_picchu-wide.jpg", "http://www.hdwallpapers.in/walls/glen_canyon_utah-wide.jpg", "http://www.hdwallpapers.in/walls/beauty_of_venice-wide.jpg", "http://www.hdwallpapers.in/walls/old_spinifex_rings_little_sandy_desert_australia-normal.jpg", "http://www.hdwallpapers.in/walls/great_wall_beijing_china-normal.jpg", "http://www.hdwallpapers.in/walls/manarola_italy-normal.jpg", "http://www.hdwallpapers.in/walls/cenote_dzitnup_mexico-normal.jpg", "http://www.hdwallpapers.in/walls/field_of_tulips_germany-normal.jpg", "http://www.hdwallpapers.in/walls/val_di_funes_dolomites_italy-normal.jpg", "http://www.hdwallpapers.in/walls/consuegra_la_mancha_spain-normal.jpg", "http://www.hdwallpapers.in/walls/fall_central_park_new_york-wide.jpg"];
+var imgURLS = ["http://www.hdwallpapers.in/walls/windows_10_landscape-multi16.5.jpg", "http://www.hdwallpapers.in/walls/milky_way_lake-wide.jpg", "http://www.hdwallpapersinn.com/wp-content/uploads/2015/02/City-Landscape-Wallpaper-Eving-Time-Photo.jpg", "http://www.hdwallpapersinn.com/wp-content/uploads/2015/02/City-Landscape-Wallpapers.jpg", "http://www.hdwallpapers.in/walls/stairway_to_heaven-wide.jpg", "http://www.hdwallpapers.in/walls/horseshoe_bend_arizona-wide.jpg", "http://www.hdwallpapers.in/walls/hirosaki_castle_japan-wide.jpg", "http://www.hdwallpapers.in/walls/aurlandsfjord_norway-multi16.5.jpg", "http://www.hdwallpapers.in/walls/path_green_fields-wide.jpg", "http://www.hdwallpapers.in/walls/countryside_fisherman-wide.jpg", "http://www.hdwallpapers.in/walls/port_sunset-wide.jpg", "http://www.hdwallpapers.in/walls/wooden_path-wide.jpg", "http://www.hdwallpapers.in/walls/stockholm_reflections-wide.jpg", "http://www.hdwallpapers.in/walls/shanghai_sunset-wide.jpg", "http://www.hdwallpapers.net/previews/colorful-spiral-783.jpg", "http://www.hdwallpapers.in/walls/new_york_city_colors-wide.jpg", "http://www.hdwallpapers.in/walls/bisti_badlands_new_mexico-wide.jpg", "http://www.hdwallpapers.in/walls/machu_picchu-wide.jpg", "http://www.hdwallpapers.in/walls/glen_canyon_utah-wide.jpg", "http://www.hdwallpapers.in/walls/beauty_of_venice-wide.jpg", "http://www.hdwallpapers.in/walls/great_wall_beijing_china-normal.jpg", "http://www.hdwallpapers.in/walls/manarola_italy-normal.jpg", "http://www.hdwallpapers.in/walls/val_di_funes_dolomites_italy-normal.jpg", "http://www.hdwallpapers.in/walls/consuegra_la_mancha_spain-normal.jpg", "http://www.hdwallpapers.in/walls/valley_house-wide.jpg", "http://www.hdwallpapers.in/walls/green_seascape-wide.jpg", "http://www.hdwallpapers.in/walls/vernal_fall_yosemite_national_park-wide.jpg", "http://www.hdwallpapers.in/walls/sunny_fields-wide.jpg", "http://www.hdwallpapers.in/walls/fall_foliage-wide.jpg", "http://www.hdwallpapers.in/walls/village_corsica_france-normal.jpg", "http://www.hdwallpapers.in/walls/red_village-wide.jpg", "http://www.hdwallpapers.in/walls/noord_holland_province_the_netherlands-normal.jpg" ];
 var size = imgURLS.length;
-var colors = ["#0099FF", "#b00025", "#1700b0", "#006d0f", "#351e66", "#d6d632", "#ff5327"];
+var colors = ["#6080bb"];
 var colorsize = colors.length;
-var stellaURLS = [];
-var stellsize = stellaURLS.length;
+var stellasize = 8;
 $(document).on("ready", function(){
 var settings = document.getElementById("settings");
 var dropDown = document.getElementById("settings-drop-down");
@@ -13,14 +12,12 @@ $("#settings").on("click", function(){
 	if ($("#settings-drop-down").is(":visible")){
 	dropDown.setAttribute("style", "display:none;");
 	document.getElementById("date-time").setAttribute("style", "display:block");
-	document.getElementById("settings").className = "fa fa-cog";
-	settings.setAttribute("style", "color:#ffffff");
+	document.getElementById("settings").className = "settings fa fa-cog";
 	}
 	else{
         dropDown.setAttribute("style", "display:block;");
-	settings.setAttribute("style", "color:#009900;");
 	document.getElementById("date-time").setAttribute("style", "display:none");
-	document.getElementById("settings").className = "fa fa-check-circle";
+	document.getElementById("settings").className = "settings-done fa fa-check-circle";
 
 	}
 	});
@@ -28,13 +25,16 @@ $("#settings").on("click", function(){
 
         $("#settings-drop-down").change(function(){
                 if ($("#settings-drop-down").val() == "Solid Background"){
+			localStorage.setItem("background", "solid");
                         setSolidBackground();
                  }
                 else if ($("#settings-drop-down").val() == "Random Landscape"){
                         setRandomPicBackground();
+			localStorage.setItem("background", "landscape");
                 }
                 else if ($("#settings-drop-down").val() == "Stella Life Background"){
                         stellaLifeBackground();
+			localStorage.setItem("background", "stella");
                 }
         });
 
@@ -45,13 +45,13 @@ $("#settings").on("click", function(){
 			$("#lunch").css("visibility", "hidden");
 			$("#lunch-collapse").css("visibility", "visible");
 			$("#lunch-header").css("visibility", "visible");
-			document.getElementById("lunch-collapse").className = "fa fa-plus-circle";
+			document.getElementById("lunch-collapse").className = "collapse fa fa-plus-circle";
 			lunchHidden = true;
 			
 		}
 		else{
 			$("#lunch").css("visibility", "");
-                        document.getElementById("lunch-collapse").className = "fa fa-minus-circle";
+                        document.getElementById("lunch-collapse").className = "collapse fa fa-minus-circle";
 			lunchHidden = false;
 
 		}
@@ -62,14 +62,14 @@ $("#settings").on("click", function(){
                 if (!submitHidden){
                         $("#submissions").css("visibility", "hidden");
                         $("#submit-collapse").css("visibility", "visible");
-                        document.getElementById("submit-collapse").className = "fa fa-plus-circle";
-                        $("#submissions-text").css("visibility", "visible");
+			$("#submissions-text").css("visibility", "visible");
+                        document.getElementById("submit-collapse").className = "collapse fa fa-plus-circle";
                         submitHidden = true;
 
                 }
                 else{
                         $("#submissions").css("visibility", "");
-                        document.getElementById("submit-collapse").className = "fa fa-minus-circle";
+                        document.getElementById("submit-collapse").className = "collapse fa fa-minus-circle";
                         submitHidden = false;
 
                 }
@@ -81,13 +81,13 @@ $("#settings").on("click", function(){
                         $("#message-board").css("visibility", "hidden");
                         $("#message-collapse").css("visibility", "visible");
 			$("#message-header-text").css("visibility", "visible");
-                        document.getElementById("message-collapse").className = "fa fa-plus-circle";
+                        document.getElementById("message-collapse").className = "collapse fa fa-plus-circle";
                         messageHidden = true;
 
                 }
                 else{
                         $("#message-board").css("visibility", "");
-                        document.getElementById("message-collapse").className = "fa fa-minus-circle";
+                        document.getElementById("message-collapse").className = "collapse fa fa-minus-circle";
                         messageHidden = false;
 
                 }
@@ -99,13 +99,13 @@ $("#settings").on("click", function(){
                         $("#bdays-annivs").css("visibility", "hidden");
                         $("#bday-collapse").css("visibility", "visible");
                         $("#bdays-text").css("visibility", "visible");
-                        document.getElementById("bday-collapse").className = "fa fa-plus-circle";
+                        document.getElementById("bday-collapse").className = "collapse fa fa-plus-circle";
                         bdayHidden = true;
 
                 }
                 else{
                         $("#bdays-annivs").css("visibility", "");
-                        document.getElementById("bday-collapse").className = "fa fa-minus-circle";
+                        document.getElementById("bday-collapse").className = "collapse fa fa-minus-circle";
                         bdayHidden = false;
 
                 }
@@ -117,13 +117,13 @@ $("#settings").on("click", function(){
                         $("#jobs").css("visibility", "hidden");
                         $("#jobs-collapse").css("visibility", "visible");
                         $("#jobs-text").css("visibility", "visible");
-                        document.getElementById("jobs-collapse").className = "fa fa-plus-circle";
+                        document.getElementById("jobs-collapse").className = "collapse fa fa-plus-circle";
                         jobsHidden = true;
 
                 }
                 else{
                         $("#jobs").css("visibility", "");
-                        document.getElementById("jobs-collapse").className = "fa fa-minus-circle";
+                        document.getElementById("jobs-collapse").className = "collapse fa fa-minus-circle";
                         jobsHidden = false;
 
                 }
@@ -165,7 +165,7 @@ function setSolidBackground(){
         background.setAttribute("style", "background-color:" + color);
 }
 
-function setRandomPicBackground() {
+function setRandomPicBackground(){
         var idx = Math.floor(Math.random() * size);
         var img = imgURLS[idx]
         var background = document.getElementById("main");
@@ -173,11 +173,24 @@ function setRandomPicBackground() {
         background.setAttribute("style", "background-image:url(\"" + img + "\");");
 }
 
-
 function stellaLifeBackground(){
         var idx = Math.floor(Math.random() * stellasize);
-        var img = stellaURLS[idx]
+        var img = "/scripts/stella-backgrounds/" + idx + ".jpg"
         var background = document.getElementById("main");
         console.log(img);
-        background.setAttribute("style", "background-image:url(\"" + img + "\");");
+        background.setAttribute("style", "background-image:url(\"" +  img + "\");");
+}
+
+function setBackground(){
+	var type = localStorage.getItem("background");
+	if (type == "solid"){
+		setSolidBackground();	
+	}
+	else if (type == "stella"){
+		stellaLifeBackground();
+	}
+	//type is either landscape or Null
+	else{
+		setRandomPicBackground();		
+	}
 }
