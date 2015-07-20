@@ -1,8 +1,70 @@
-html { height: 100%; min-width: 896px; -webkit-user-select: none; overflow-x:auto; overflow-y:auto;background: -webkit-linear-gradient(90deg, #2BC0E4 10%, #EAECC6 90%);}
-body { height: 100%; min-height: 100%; min-width: 736px; margin: 0px; overflow:auto;
-    background-size:   cover;                     
+html { 
+    height: 100%; 
+    min-width: 896px; 
+    -webkit-user-select: none; 
+    overflow-x:auto; 
+    overflow-y:auto;
+    background: -webkit-linear-gradient(90deg, #2BC0E4 10%, #EAECC6 90%);
+}
+
+body { 
+    height: 100%; 
+    min-height: 100%; 
+    min-width: 736px; 
+    margin: 0px; 
+    overflow:auto;
+    background-size: cover;                     
     background-repeat: no-repeat;
-    background-position: center center; }
+    background-position: center center; 
+}
+
+ /* smaller desktop */
+@media only screen and (max-width : 1200px) {
+    #message-board {
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    /* lunch */
+    #time {
+        width: 50%;
+    }
+
+    #location {
+        width: 50%;
+    }
+
+    /* submissions */
+    #shoutout-text {
+        width: 90%;
+    }
+
+    #gong-text {
+        width: 90%;
+    }
+}
+
+ /* big desktop */
+@media only screen and (min-width : 1200px) {
+
+    /* lunch */
+    #time {
+        width: 70%;
+    }
+
+    #location {
+        width: 70%;
+    }
+
+    /* submissions */ 
+    #shoutout-text {
+        width: 68%;
+    }
+
+    #gong-text {
+        width: 68%;
+    }
+}
 
 
 #greeting {
@@ -58,19 +120,22 @@ body { height: 100%; min-height: 100%; min-width: 736px; margin: 0px; overflow:a
     font-size: 18px;
     font-weight: bold;
     color: #808599;
-    padding-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    /*padding-top: 20px;*/
+    /*padding-bottom: 20px;*/
 }
 
 #date-time {
     position:absolute;
     font-family: "Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
     font-weight: 200;
-    font-size: 16px;
+    font-size: 30px;
     color:#ffffff;
     top:5px;
     left: 10px;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke: 1px black;
 }
 
 #weather {
@@ -78,22 +143,22 @@ body { height: 100%; min-height: 100%; min-width: 736px; margin: 0px; overflow:a
     color: #ffffff;
     font-family: "Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
     font-weight: 200;
-    font-size: 16px;
+    font-size: 30px;
     top: 1px;
-    right: 10px;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
+    right: 20px;
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke: 1px black;
 }
 
 #weather-icon-div {
     position:absolute;
-    top: 29px;
-    right: 25px;
+    top: 50px;
+    right: 85px;
 }
 
-#upcoming-events {
+/*#upcoming-events {
     padding-bottom:50px;
-}
+}*/
 
 #message-header {
     position:relative;
@@ -112,20 +177,20 @@ body { height: 100%; min-height: 100%; min-width: 736px; margin: 0px; overflow:a
 
 #post-message {
     position:relative;
-    min-width: 520px;
+    min-width: 545px;
     width: 100%;
 }
 
 #message-board {
     position:relative;
-    top: 113px;
+    top: 115px;
     overflow-x:hidden;
     overflow-y:auto;
     background: #f5f8fa;
     border-radius: 10px;
     border: solid 1px #808599;
     /*min-width: 580px;*/
-    height: 500px;
+    height: 510px;
     /*min-height: 480px;*/
     width: 100%;
     margin-left:auto;
@@ -199,12 +264,15 @@ body { height: 100%; min-height: 100%; min-width: 736px; margin: 0px; overflow:a
 #stella-daily-value {
     position: relative; 
     font-family: "Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
-    font-size: 24px;
-    font-weight: 200;
+    font-size: 35px;
+    /*font-weight: bold;*/
     /*bottom: -160px;*/
+    top: -20px;
     left: 50%; 
     width: 400px;
     margin-left: -200px;
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke: 1px black;
 }
 
 #bdays-annivs {
@@ -213,10 +281,10 @@ body { height: 100%; min-height: 100%; min-width: 736px; margin: 0px; overflow:a
     border-radius:10px;
     background-color: #f5f8fa;
     display:inline-block;
-    height: 150px;
+    height: 165px;
     width: 85%;
     /*min-width: 340px;*/
-    top: 64px;
+    top: 115px;
     /*left: 8px;*/
     /*min-width: 240px;*/
     text-align:center;
@@ -231,8 +299,8 @@ body { height: 100%; min-height: 100%; min-width: 736px; margin: 0px; overflow:a
 #jobs {
     position:relative;
     width: 85%;
-    height: 300px;
-    top: 97px;
+    height: 325px;
+    top: 135px;
     /*left: 8px;*/
     background-color: #f5f8fa;
     text-align:center;
@@ -257,7 +325,7 @@ body { height: 100%; min-height: 100%; min-width: 736px; margin: 0px; overflow:a
     border-radius: 10px;
     border: solid 1px #808599;
     display:inline-block;
-    height: 400px;
+    height: 385px;
     /*min-width: 340px;*/
     width: 85%;
     top: 115px;
@@ -295,17 +363,16 @@ body { height: 100%; min-height: 100%; min-width: 736px; margin: 0px; overflow:a
 }
 
 #location {
-    width: 50%;
 }
 
 #time {
-    width: 50%;
-    margin-left: 4px;
+    margin-left: 4.6875px;
 }
 
 #where {
     float: left;
-    margin-left: -5px;
+    /*margin-left: -5px;*/
+    display: block;
     /*display: inline-block;*/
     /*vertical-align: baseline;*/
     /*margin-left: -72px;*/
@@ -315,7 +382,8 @@ body { height: 100%; min-height: 100%; min-width: 736px; margin: 0px; overflow:a
 
 #when {
     float: left;
-    margin-left: -5px;
+    /*margin-left: -5px;*/
+    display: block;
     /*display: inline-block;*/
     /*vertical-align: baseline;*/
   /*  float: left;
@@ -324,16 +392,25 @@ body { height: 100%; min-height: 100%; min-width: 736px; margin: 0px; overflow:a
 
 
 #submit-lunch {
-    /*display: inline;*/
+    /*display: inline-block;*/
     /*position:relative;*/
     /*display: inline-block;*/
     /*float: right;*/
     /*margin-top: 12px;*/
     /*left: -20px;*/
-    position: absolute;
+    /*position: relative;
+    display: block;*/
+    /*float: left;*/
+    /*right: 15px;*/
+    /*margin-left: 5px;*/
+    /*margin-top: 60px;*/
+    display: block;
+    position: relative;
+}
+
+#submit-lunch-btn {
     float: left;
-    margin-left: 5px;
-    margin-top: 60px;
+    margin-left: 10px;
 }
 
 #submissions-text {
@@ -343,18 +420,40 @@ body { height: 100%; min-height: 100%; min-width: 736px; margin: 0px; overflow:a
     margin-top: 10px;
 }
 
+#stella-shoutout {
+    display: block;
+    margin-left: 15px;
+    margin-bottom: 5px;
+}
+
+#gong-show {
+    display: block;
+    margin-left: 15px;
+    margin-bottom: 7px;
+}
+
 #shoutout-text {
     position: relative;
-    width: 68%;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    float: left;
+    /*margin-left: 15px;*/
+    /*width: 68%;*/
+    /*margin-bottom: 5px;*/
     font-size: 14px;
 }
 
+#submit-shoutout {
+}
+
 #gong-text {
-    width: 68%;
-    margin-bottom: 5px;
+    position: relative;
+    float: left;
+    /*margin-left: 15px;*/
+    /*width: 68%;*/
+    /*margin-bottom: 10px;*/
     font-size: 14px;
+}
+
+#submit-gong {
 }
 
 #submissions {
