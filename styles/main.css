@@ -42,6 +42,10 @@ body {
     #gong-text {
         width: 90%;
     }
+
+    #founders-q-text {
+        width: 90%;
+    }
 }
 
  /* big desktop */
@@ -62,6 +66,10 @@ body {
     }
 
     #gong-text {
+        width: 68%;
+    }
+
+    #founders-q-text {
         width: 68%;
     }
 }
@@ -340,7 +348,7 @@ body {
     border-radius: 10px;
     border: solid 1px #808599;
     display:inline-block;
-    height: 385px;
+    height: 355px;
     /*min-width: 340px;*/
     width: 85%;
     top: 115px;
@@ -389,6 +397,7 @@ body {
     float: left;
     /*margin-left: -5px;*/
     display: block;
+    /*width: 75%;*/
     /*display: inline-block;*/
     /*vertical-align: baseline;*/
     /*margin-left: -72px;*/
@@ -400,6 +409,7 @@ body {
     float: left;
     /*margin-left: -5px;*/
     display: block;
+    /*width: 75%;*/
     /*display: inline-block;*/
     /*vertical-align: baseline;*/
   /*  float: left;
@@ -447,7 +457,7 @@ label{
 #gong-show {
     display: block;
     margin-left: 15px;
-    margin-bottom: 7px;
+    margin-bottom: 5px;
 }
 
 #shoutout-text {
@@ -472,6 +482,18 @@ label{
 }
 
 #submit-gong {
+}
+
+#ask-founders {
+    display: block;
+    margin-left: 15px;
+    margin-bottom: 7px;
+}
+
+#founders-q-text {
+    position: relative;
+    float: left;
+    font-size: 14px;
 }
 
 #submissions {
