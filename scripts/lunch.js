@@ -193,8 +193,15 @@ function fetchLunches(){
                 var memText = document.createTextNode("Members");
                 join.appendChild(joinText);
                 members.appendChild(memText);
-                div.appendChild(members);
-                div.appendChild(join);
+
+                var br = document.createElement("br");
+                div.appendChild(br);
+
+                var buttonsDiv = document.createElement("div");
+                buttonsDiv.setAttribute("id", "buttonsDiv");
+                buttonsDiv.appendChild(members);
+                buttonsDiv.appendChild(join);
+                div.appendChild(buttonsDiv);
                 div.className = "post post-lunch";
                 div.setAttribute("id", id);
                 container.appendChild(div);
