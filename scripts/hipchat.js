@@ -133,7 +133,8 @@ function postMessage(){
         })
 	.done(function(resp){
 		$("#message-text").val('');
-                $("#message-board").empty();
+                $("#post-message").remove();
+		$(".post").remove();
                 getHipChat();
 	});
 
@@ -143,6 +144,7 @@ function postMessage(){
 function getHCSession(){
  	if (typeof localStorage["hc_token"] == 'undefined'){
 		document.getElementById('dialog').style.display="";
+		$("#dialog").css("display", "block");
 		$("#hc_login").on('click', function(){
 		var username = $("#hc_username").val();
 		var password = $("#hc_password").val();
