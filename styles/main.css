@@ -186,10 +186,10 @@ body {
     top: 115px;
     overflow-x:hidden;
     overflow-y:auto;
-    background: #f5f8fa;
+    background: #53555b;
     border-radius: 10px;
     border: solid 1px #808599;
-    opacity: .95;
+    opacity: .9;
     /*min-width: 580px;*/
     height: 510px;
     /*min-height: 480px;*/
@@ -228,6 +228,7 @@ body {
     white-space: pre-wrap;
     /*width: 506px;*/
     width: 87%;
+    color:white;
     word-wrap: break-word;
 }
 
@@ -260,6 +261,7 @@ body {
     font-weight: bold;
     padding-right: 5px;
     top: 20px;
+    color:white;
 }
 
 #stella-daily-value {
@@ -280,8 +282,8 @@ body {
     position:relative;
     border: solid 1px #808599;
     border-radius:10px;
-    background-color: #f5f8fa;
-    opacity: .95;
+    background-color: #53555b;
+    opacity: .9;
     display:inline-block;
     height: 165px;
     width: 85%;
@@ -302,7 +304,7 @@ body {
 }
 
 #bdays {
-/*	color:white ; */
+	color:white ; 
 }
 
 #jobs {
@@ -311,14 +313,14 @@ body {
     height: 325px;
     top: 135px;
     /*left: 8px;*/
-    background-color: #f5f8fa;
+    background-color: #53555b;
     text-align:center;
     display:inline-block;
     border: solid 1px #808599;
     border-radius: 10px;
     overflow-x:hidden;
     overflow-y:auto;
-    opacity: .95;
+    opacity: .9;
 }
 
 #jobs-text {
@@ -327,11 +329,14 @@ body {
     font-size: 18px;
 }
 
+#job-list{
+	color:white;
+}
 #lunch {
     position:relative;
     font-family: "Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
     font-weight: 200;
-    background-color: #f5f8fa;
+    background-color: #53555b;
     border-radius: 10px;
     border: solid 1px #808599;
     display:inline-block;
@@ -341,7 +346,7 @@ body {
     top: 115px;
     overflow-y:auto;
     overflow-x:hidden;
-    opacity: .95;
+    opacity: .9;
 }
 
 #lunch-header {
@@ -400,7 +405,9 @@ body {
   /*  float: left;
     width: 25%;*/
 }
-
+label{
+	color:white;
+}
 
 #submit-lunch {
     /*display: inline-block;*/
@@ -469,8 +476,8 @@ body {
 
 #submissions {
     position: relative;
-    opacity: .95;
-    background-color: #f5f8fa;
+    opacity: .9;
+    background-color: #53555b;
     border: solid 1px #808599;
     border-radius: 10px; 
     /*min-width: 340px;*/
@@ -566,6 +573,7 @@ body {
     height: 70px;
     font-size: 18px;
     padding-top: 24px;
+    color:white;
 }
 
 .post-lunch:after {
@@ -794,8 +802,9 @@ body {
 }
 
 .section-head {
-	text-shadow: -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white;
-	margin-top:10px; 
+	text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+	margin-top:10px;
+	letter-spacing:1.5px; 
 	/*-webkit-text-stroke-width: 2px;
         -webkit-text-stroke-color: white;*/
 
