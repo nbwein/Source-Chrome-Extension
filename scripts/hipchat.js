@@ -170,6 +170,7 @@ function getHCSession(){
 	}
 	else{
 		personal_token = localStorage["hc_token"];
+		integration_token = localStorage["integration_token"];
 		getHipChat();
 		console.log("got from storage")
 	}
@@ -196,6 +197,7 @@ function refreshToken(token){
 
 		
 }
+/* NOTE: only a personal token is necessary, but having both helps avoid exceeding hipchat api rate-limits. */
 
 /* Hipchat OAuth flow for a personal token */
 function hcOAuth(username, password){
@@ -213,7 +215,12 @@ function hcOAuth(username, password){
                                 'scope':[ 'send_message', 'view_messages', 'view_group']
 			},
 			error: function(resp){
-				console.log("PERSONAL TOKEN ERROR: " + resp);
+				console.log(resp);
+				if (resp.responseText.indexOf("User authorization failed") != -1){
+				alert("Invalid Hipchat Credentials, please try again");
+				$("#dialog").css("display", "block");
+				$("#dialog").css("visibility", "visible");
+				}
 			},
 			success: function(resp){
 				console.log(resp);
@@ -225,7 +232,7 @@ function hcOAuth(username, password){
 			}); 
 } 
 
-/* Recieving an Integration Token */
+/* Request an Integration Token */
 function integrationOAuth(){
 	$.ajax({
 		type:'POST', 
@@ -273,6 +280,9 @@ function pollHipChat(){
 		},
 		error: function(resp){
 			console.log(resp);
+			if (resp.responseText.indexOf("Unauthorized") != -1){
+				integrationOAuth();
+			}
 			setTimeout(pollHipChat, 10000);
 		}
 	});

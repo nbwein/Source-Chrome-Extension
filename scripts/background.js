@@ -51,13 +51,13 @@ $("#settings").on("click", function(){
 			$("#lunch").css("visibility", "hidden");
 			$("#lunch-collapse").css("visibility", "visible");
 			$("#lunch-header").css("visibility", "visible");
-			document.getElementById("lunch-collapse").className = "collapse fa fa-plus-circle";
+			document.getElementById("lunch-collapse").className = "collapse fa fa-plus-circle fa-lg";
 			lunchHidden = true;
 			
 		}
 		else{
 			$("#lunch").css("visibility", "");
-                        document.getElementById("lunch-collapse").className = "collapse fa fa-minus-circle";
+                        document.getElementById("lunch-collapse").className = "collapse fa fa-minus-circle fa-lg";
 			lunchHidden = false;
 
 		}
@@ -69,13 +69,13 @@ $("#settings").on("click", function(){
                         $("#submissions").css("visibility", "hidden");
                         $("#submit-collapse").css("visibility", "visible");
 			$("#submissions-text").css("visibility", "visible");
-                        document.getElementById("submit-collapse").className = "collapse fa fa-plus-circle";
+                        document.getElementById("submit-collapse").className = "collapse fa fa-plus-circle fa-lg";
                         submitHidden = true;
 
                 }
                 else{
                         $("#submissions").css("visibility", "");
-                        document.getElementById("submit-collapse").className = "collapse fa fa-minus-circle";
+                        document.getElementById("submit-collapse").className = "collapse fa fa-minus-circle fa-lg";
                         submitHidden = false;
 
                 }
@@ -87,13 +87,13 @@ $("#settings").on("click", function(){
                         $("#message-board").css("visibility", "hidden");
                         $("#message-collapse").css("visibility", "visible");
 			$("#message-header-text").css("visibility", "visible");
-                        document.getElementById("message-collapse").className = "collapse fa fa-plus-circle";
+                        document.getElementById("message-collapse").className = "collapse fa fa-plus-circle fa-lg";
                         messageHidden = true;
 
                 }
                 else{
                         $("#message-board").css("visibility", "");
-                        document.getElementById("message-collapse").className = "collapse fa fa-minus-circle";
+                        document.getElementById("message-collapse").className = "collapse fa fa-minus-circle fa-lg";
                         messageHidden = false;
 
                 }
@@ -105,13 +105,13 @@ $("#settings").on("click", function(){
                         $("#bdays-annivs").css("visibility", "hidden");
                         $("#bday-collapse").css("visibility", "visible");
                         $("#bdays-text").css("visibility", "visible");
-                        document.getElementById("bday-collapse").className = "collapse fa fa-plus-circle";
+                        document.getElementById("bday-collapse").className = "collapse fa fa-plus-circle fa-lg";
                         bdayHidden = true;
 
                 }
                 else{
                         $("#bdays-annivs").css("visibility", "");
-                        document.getElementById("bday-collapse").className = "collapse fa fa-minus-circle";
+                        document.getElementById("bday-collapse").className = "collapse fa fa-minus-circle fa-lg";
                         bdayHidden = false;
 
                 }
@@ -123,13 +123,13 @@ $("#settings").on("click", function(){
                         $("#jobs").css("visibility", "hidden");
                         $("#jobs-collapse").css("visibility", "visible");
                         $("#jobs-text").css("visibility", "visible");
-                        document.getElementById("jobs-collapse").className = "collapse fa fa-plus-circle";
+                        document.getElementById("jobs-collapse").className = "collapse fa fa-plus-circle fa-lg";
                         jobsHidden = true;
 
                 }
                 else{
                         $("#jobs").css("visibility", "");
-                        document.getElementById("jobs-collapse").className = "collapse fa fa-minus-circle";
+                        document.getElementById("jobs-collapse").className = "collapse fa fa-minus-circle fa-lg";
                         jobsHidden = false;
 
                 }

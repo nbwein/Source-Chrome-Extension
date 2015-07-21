@@ -919,13 +919,13 @@ label {
 }
 
 #lunch-collapse{
-	top:3%;
-	left:20%;
+	top:3.5%;
+	left:17%;
 }
 
 #message-collapse{
 	top:2.5%;
-	left:35%;
+	left:33%;
 }
 
 #bday-collapse{
@@ -935,12 +935,12 @@ label {
 
 #jobs-collapse{
 	top:4%;
-	left:14%;
+	left:10%;
 }
 
 #submit-collapse{
 	top:9%;
-	left:17%;
+	left:16%;
 }
 #welcome-message{
     -webkit-text-fill-color: white;
