@@ -222,7 +222,7 @@ function testGet(){
 
 }
 
-/*CHANGE THIS TO NATE'S EMAIL ADDRESS BEFORE RELEASE */
+/* 
 function submitGong(){
 	var message = $("#gong-text").val();
 	var subject = "Gong Show Submission";
@@ -238,8 +238,30 @@ function submitGong(){
 		},
 		data: JSON.stringify({"raw": params})
 	});
-	$("#gong-text").val('');
+	$("#gong-text").val(''); 
 
+} */
+
+
+function makeSubmission(id, type){
+	var text = $(id).val();
+	console.log(id + "  " + text);
+        $(id).val('');
+        $.ajax({
+                method: 'POST',
+                url: 'https://script.google.com/macros/s/AKfycbwTv7T36GiGZWvNnEjyHVqW__eTbLqDL-eCCJXbR_VDUSYqOh4/exec',
+                data: {
+                        "type": type,
+                        "Name" : user_info_global.displayName,
+                        "Text" : text
+                },
+                success: function(resp){
+                        console.log(resp);
+                },
+                error: function(resp){
+                        console.log(resp);
+                }
+        });
 
 }
 return {
@@ -252,15 +274,22 @@ return {
 		//loadFeed();
 		getJobs();
 		loadValues();	 
-		$("#submit-shoutout").on("click", sendShoutout);
-		$("#schedule").on("click", scheduleLunch);
+		$("#submit-shoutout").on("click", function(){
+			makeSubmission("#shoutout-text", "StellaShoutout");
+		});
+		$("#submit-lunch").on("click", scheduleLunch);
+		$("#submit-founders").on("click", function(){
+			makeSubmission("#submit-founders", "AskJJ");
+		});
 		$("#time").timepicker({
 			'minTime':"11:00am",
 			'maxTime':"10:00pm",
 			'scrollDefault':'now',
 			'step':15
 		});
-		$("#submit-gong").on("click", submitGong)
+		$("#submit-gong").on("click", function(){
+			makeSubmission("#submit-gong", "GongShow");
+		});
 		$(document).on("click", ".join", function() {
 			jQuery(this).attr("id", "join-clicked");
 			jQuery(this).attr("class", "join-clicked");
