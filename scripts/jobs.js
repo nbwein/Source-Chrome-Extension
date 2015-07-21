@@ -7,7 +7,7 @@ function getJobs(){
 			if (dep.jobs.length > 0){
 				joblist = joblist + "<br><b>" + dep.name + "</b><br>";
 				for (var j = 0; j < dep.jobs.length; j++){
-					joblist = joblist + dep.jobs[j].title + "<br>";
+					joblist = joblist + "<a style=\"color:white;\" href =\"" + dep.jobs[j].absolute_url + "\">" + dep.jobs[j].title + "</a><br>";
 				}
 
 			}
