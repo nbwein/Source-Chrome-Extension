@@ -91,6 +91,23 @@ function getHipChat(){
 				message.innerHTML = entry;
 				
 				div.appendChild(message);
+				if (messages[i].message_links != null){
+					for (var j = 0; j < messages[i].message_links.length; j++){
+						if (messages[i].message_links[j].type == "image"){
+							var attatchment = document.createElement("img");
+							attatchment.setAttribute("src", messages[i].message_links[j].url);
+							attatchment.setAttribute("height", "150px");
+							attatchment.setAttribute("width", "auto");
+							attatchment.setAttribute("margin", "auto");
+							div.appendChild(attatchment);
+						}
+						else{
+							var attatchment = document.createElement("a");
+							attatchment.setAttribute("href", messages[i].message_links[j].url); 
+							div.appendChild(attatchment);
+						}
+					}
+				}
 				div.setAttribute("align","center");
 				container.appendChild(div);
 			}
