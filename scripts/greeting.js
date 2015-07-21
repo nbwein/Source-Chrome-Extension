@@ -251,7 +251,7 @@ return {
 		getJobs();
 		loadValues();	 
 		$("#submit-shoutout").on("click", sendShoutout);
-		$("#submit-lunch").on("click", scheduleLunch);
+		$("#schedule").on("click", scheduleLunch);
 		$("#time").timepicker({
 			'minTime':"11:00am",
 			'maxTime':"10:00pm",

@@ -19,20 +19,24 @@ body {
 }
 
  /* smaller desktop */
-@media only screen and (max-width : 1200px) {
+@media only screen and (min-width : 574px) {
     #message-board {
         margin-top: 50px;
         margin-bottom: 50px;
     }
 
     /* lunch */
-    #time {
-        width: 50%;
-    }
+    /*#when {
+        width: 70%;
+    }*/
 
-    #location {
+    /*#time {
         width: 50%;
-    }
+    }*/
+
+   /* #location {
+        width: 50%;
+    }*/
 
     /* submissions */
     #shoutout-text {
@@ -49,15 +53,27 @@ body {
 }
 
  /* big desktop */
-@media only screen and (min-width : 1201px) {
+@media only screen and (min-width : 1200px) {
+    #message-board {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
 
     /* lunch */
+    #when {
+        margin-top: 3px;
+    }
+
     #time {
-        width: 70%;
+        width: 68px;
+    }
+
+    #schedule {
+        width: 71px;
     }
 
     #location {
-        width: 70%;
+        width: 140px;
     }
 
     /* submissions */ 
@@ -320,7 +336,7 @@ body {
 #jobs {
     position:relative;
     width: 85%;
-    height: 325px;
+    height: 320px;
     top: 135px;
     /*left: 8px;*/
     background-color: #53555b;
@@ -342,6 +358,7 @@ body {
 #job-list{
 	color:white;
 }
+
 #lunch {
     position:relative;
     font-family: "Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
@@ -396,16 +413,21 @@ body {
 }
 
 #location {
+    margin-left: 3px;
 }
 
 #time {
-    margin-left: 4.6875px;
+    float: left;
+    margin-left: 8.3438px;
+    font-size: 16px;
 }
 
 #where {
     float: left;
     /*margin-left: -5px;*/
-    display: block;
+    display: inline-block;
+    margin-left: 10px;
+    text-align: center;
     /*width: 75%;*/
     /*display: inline-block;*/
     /*vertical-align: baseline;*/
@@ -416,19 +438,37 @@ body {
 
 #when {
     float: left;
-    /*margin-left: -5px;*/
-    display: block;
-    /*width: 75%;*/
-    /*display: inline-block;*/
-    /*vertical-align: baseline;*/
-  /*  float: left;
-    width: 25%;*/
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 0;
+    /*position: relative;*/
 }
-label{
+
+label {
+    float: left;
+    font-size: 16px;
 	color:white;
 }
 
-#submit-lunch {
+#schedule {
+    background: #3498db;
+    background-image: -webkit-linear-gradient(top, #3498db, #3498db);
+    background-image: -moz-linear-gradient(top, #3498db, #3498db);
+    background-image: -ms-linear-gradient(top, #3498db, #3498db);
+    background-image: -o-linear-gradient(top, #3498db, #3498db);
+    background-image: linear-gradient(to bottom, #3498db, #3498db);
+    float: left;
+    display: inline-block;
+    margin-left: 1px;
+    font-family: Arial;
+    font-size: 14px;
+    height: 28px;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 3px 8px 3px 8px;
+}
+
+/*#submit-lunch {*/
     /*display: inline-block;*/
     /*position:relative;*/
     /*display: inline-block;*/
@@ -441,14 +481,16 @@ label{
     /*right: 15px;*/
     /*margin-left: 5px;*/
     /*margin-top: 60px;*/
-    display: block;
-    position: relative;
-}
+/*    position: absolute;
+    padding: 2px;*/
+/*}*/
 
-#submit-lunch-btn {
-    float: left;
-    margin-left: 10px;
-}
+/*#submit-lunch-btn {*/
+  /*  float: left;
+    margin-left: 10px;*/
+    /*position: absolute;
+    padding: 2px;*/
+/*}*/
 
 #submissions-text {
     font-family: "Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
@@ -713,9 +755,9 @@ label{
     background-image: -ms-linear-gradient(top, #3498db, #3498db);
     background-image: -o-linear-gradient(top, #3498db, #3498db);
     background-image: linear-gradient(to bottom, #3498db, #3498db);;
-    -webkit-border-radius: 28;
+   /* -webkit-border-radius: 28;
     -moz-border-radius: 28;
-    border-radius: 10px;
+    border-radius: 10px;*/
     font-family: Arial;
     font-size: 85%;
     color: #ffffff;
@@ -734,7 +776,8 @@ label{
 }
 
 .btn-sm {
-    padding: 3px 8px 3px 8px;
+    padding: 1px 5px 1px 5px;
+    font-size: 15px;
 }
 
 .btn-lg {

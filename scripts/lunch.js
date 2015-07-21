@@ -200,7 +200,7 @@ function fetchLunches(){
 
                 var buttonsDiv = document.createElement("div");
                 buttonsDiv.setAttribute("class", "buttonsDiv");
-		buttonsDiv.setAttribute("id", id);
+		        buttonsDiv.setAttribute("id", id);
                 buttonsDiv.appendChild(members);
                 buttonsDiv.appendChild(join);
                 div.appendChild(buttonsDiv);
