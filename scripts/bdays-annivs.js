@@ -1,4 +1,6 @@
 /* Birthdays and Anniversaries */
+	
+var party_popper = "<img src=\"http://cdn.shopify.com/s/files/1/0185/5092/products/objects-0017_medium.png?v=1369543805\"/>";
 
 function getCalendar() {
                 var week = new Date((new Date().getTime() + 7*24*60*60*1000));
@@ -47,6 +49,12 @@ function getSpecialEvents(){
 					bday_list = bday_list + disp_date[0] + ": </br>";
 					curr_date = date;
 				}
+			}
+			if (events[i].summary.indexOf("Birthday") != -1){
+				bday_list = bday_list + "<img src = \"http://cdn.shopify.com/s/files/1/0185/5092/products/objects-0019_large.png?v=1369543279\" height=15px width=10px/>  "
+			}
+			else if (events[i].summary.indexOf("Anniversary") != -1){
+				bday_list = bday_list + party_popper + "  ";
 			}
 			bday_list = bday_list + events[i].summary + "</br>";
 		}

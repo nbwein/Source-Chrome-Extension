@@ -16,6 +16,13 @@ $("#settings").on("click", function(){
 	}
 	else{
         dropDown.setAttribute("style", "display:block;");
+	var current = localStorage.getItem("background");
+	if (current == "stella"){
+		document.getElementById("stella-life").setAttribute("selected", "selected");
+	}
+	else if (current == "solid"){
+		document.getElementById("solid").setAttribute("selected", "selected");
+	}
 	document.getElementById("date-time").setAttribute("style", "display:none");
 	document.getElementById("settings").className = "settings-done fa fa-check-circle";
 
@@ -38,10 +45,9 @@ $("#settings").on("click", function(){
                 }
         });
 
-// TODO: refactor all these click events, they are all the same
+// TODO: refactor all these click events, they are all basically the same
 	$("#lunch-collapse").on("click", function(){
 		if (!lunchHidden){
-			console.log("HIDE ME");
 			$("#lunch").css("visibility", "hidden");
 			$("#lunch-collapse").css("visibility", "visible");
 			$("#lunch-header").css("visibility", "visible");

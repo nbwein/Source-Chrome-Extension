@@ -73,8 +73,10 @@ var googlePlusUserLoader  = (function() {
 	}
 
 	function populateUserInfo(user_info) {
+		//document.getElementById("welcome-message").innerHTML = "Welcome to ?????, " + user_info.name.givenName+ ".";
+		console.log(user_info);
 		getHCSession();
-		//pollHipChat();
+		pollHipChat();
 		console.log(chrome.extension.getURL('/main.html'));
 	}
 

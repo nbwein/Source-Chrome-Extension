@@ -93,6 +93,7 @@ body {
 
 #greeting {
     position:relative;
+    /* top:-18px; */
     font-family: "Myriad Set Pro", "Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
     font-weight: 200;
     color: #ffffff;
@@ -896,7 +897,8 @@ label {
 }	
 #settings {
 	   -webkit-text-stroke-width: 1px;
-   -webkit-text-stroke-color: white;
+  	   -webkit-text-stroke-color: white;
+/*	   position:fixed;	*/
 }
 #settings-drop-down {
 	display:none;
@@ -939,4 +941,9 @@ label {
 #submit-collapse{
 	top:9%;
 	left:17%;
+}
+#welcome-message{
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke: 1px black;
+
 }
