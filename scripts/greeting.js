@@ -277,7 +277,7 @@ return {
 		$("#submit-shoutout").on("click", function(){
 			makeSubmission("#shoutout-text", "StellaShoutout");
 		});
-		$("#submit-lunch").on("click", scheduleLunch);
+		$("#schedule").on("click", scheduleLunch);
 		$("#submit-founders").on("click", function(){
 			makeSubmission("#founders-q-text", "AskJJ");
 		});

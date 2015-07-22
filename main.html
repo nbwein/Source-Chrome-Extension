@@ -33,15 +33,15 @@
 <body id="main">
 	<div id ="wrapper" class="container-fluid">
 		<i class="fa fa-cog settings" id="settings"></i>
-		<select id = "settings-drop-down">
-			<option value = "Random Landscape" class = "settings-option" id = "random" > Random Landscape </option>
-			<option value = "Solid Background" class = "settings-option" id = "solid" > Solid Background </option>
-			<option value = "Stella Life Background" class = "settings-option" id="stella-life"> Stella Life Background </option>
+		<select id="settings-drop-down">
+			<option value="Random Landscape" class="settings-option" id="random" > Random Landscape </option>
+			<option value="Solid Background" class="settings-option" id="solid" > Solid Background </option>
+			<option value="Stella Life Background" class="settings-option" id="stella-life"> Stella Life Background </option>
 		</select>
 		<div id="greeting">
-			<h1 align="center" id ="welcome-message"></h1>
+			<h1 align="center" id="welcome-message"></h1>
 			</br>
-			<h2 align = "center" id ="stella-daily-value"></h2>
+			<h2 align="center" id="stella-daily-value"></h2>
 			<!-- <h1 align="center" id="main_greeting"></h1> -->
 			<h3 align="center" id="next-meeting"></h3>
 		</div>
@@ -51,21 +51,21 @@
 			<div id="weather-icon-div"></div>
 		</div>
 		<div class="row-fluid">
-			<div id = "middle-column" class="col-xs-8 col-xs-push-2 col-lg-6 col-lg-push-3">
-				<div align = "center" id="message-board" class="hidden-desktop">
+			<div id = "middle-column" class="col-lg-6 col-xs-9 col-lg-push-3">
+				<div align="center" id="message-board" class="hidden-desktop">
 					<i class="fa fa-minus-circle collapse" id="message-collapse"> </i>
-					<div id = "message-header">
-						<h3 id = "message-header-text" class = "section-head">Message Board </h3>
+					<div id="message-header">
+						<h3 id="message-header-text" class="section-head">Message Board </h3>
 					</div>
 				</div>
 			</div>
-			<div id = "left-column" class="col-xs-5 col-xs-push-1 col-lg-3 col-lg-pull-6"> 
+			<div id = "left-column" class="col-lg-3 col-xs-5 col-lg-pull-6 col-xs-offset-1 col-lg-offset-0"> 
 				<div id="lunch">
-					<i class="collapse fa fa-minus-circle" class = "collapse" id="lunch-collapse"> </i>
+					<i class="collapse fa fa-minus-circle" class="collapse" id="lunch-collapse"> </i>
 					<div id="lunch-header" text-align:"center">
 						<h3 id="lunch-text" class="section-head">Stella Lunch</h3>
 					</div>
-					<div id ="lunch-form">
+					<div id="lunch-form">
 						<div id="where">
 							<label for="location">Where?</label>
 							<input id="location" type="text"/>
@@ -80,29 +80,29 @@
 				<div id="submissions">
 					<h3 id="submissions-text" class="section-head">Submissions</h3>
 					<div id="stella-shoutout"> 
-						<input id = "shoutout-text" type="text" name="shoutout" placeholder="Enter a shout-out"/>
+						<input id="shoutout-text" type="text" name="shoutout" placeholder="Enter a shout-out"/>
 						<a href="#" id="submit-shoutout" class="btn btn-sm">Submit</a>
 					</div>
 					<div id="gong-show"> 
-						<input id = "gong-text" type="text" name="gongtext" placeholder="Submit to Gong Show"/>
-						<a href="#" id ="submit-gong" class="btn btn-sm">Submit</a>
+						<input id="gong-text" type="text" name="gongtext" placeholder="Submit to Gong Show"/>
+						<a href="#" id="submit-gong" class="btn btn-sm">Submit</a>
 					</div>
 					<div id = "ask-founders">
-						<input id = "founders-q-text" type = "text" placeholder="Ask John and Jordy"/>
-						<a href="#" id  = "submit-founders" class = "btn btn-sm">Submit</a>
+						<input id="founders-q-text" type="text" placeholder="Ask John and Jordy"/>
+						<a href="#" id="submit-founders" class="btn btn-sm">Submit</a>
 					</div>
-					<i class="collapse fa fa-minus-circle" id="submit-collapse"> </i>
+					<i class="collapse fa fa-minus-circle" id="submit-collapse"></i>
 
 				</div>
 			</div>
-			<div id = "right-column" class="col-xs-5 col-xs-push-1 col-lg-3">
+			<div id="right-column" class="col-xs-5 col-lg-3">
 				<div id="upcoming-events"></div>
-				<div id="bdays-annivs" >
-					<i class="collapse fa fa-minus-circle" id="bday-collapse" > </i>
+				<div id="bdays-annivs">
+					<i class="collapse fa fa-minus-circle" id="bday-collapse"></i>
 					<h3 id="bdays-text" class="section-head">Stella Events</h3>
 				</div>
 				<div id="jobs">
-					<i class="collapse fa fa-minus-circle" id="jobs-collapse"> </i>
+					<i class="collapse fa fa-minus-circle" id="jobs-collapse"></i>
 					<h3 id="jobs-text" class="section-head">Open Positions</h3>
 					<span id="job-list"></span>
 				</div>
@@ -111,9 +111,9 @@
 				<h4> Please login to Hipchat.</h4>
 				<h6> (You will only have to do this once) </h6></br>
 				<label for="hc_username">Username (email)</label>
-				<input id ="hc_username" type="text"/>
+				<input id="hc_username" type="text"/>
 				<label for="hc_password">Password</label>
-				<input id = "hc_password" type = "password"/></br>
+				<input id="hc_password" type="password"/></br>
 				<a href="#" id="hc_login" class="btn btn-sm">Login</a>
 			</div>
 		</div>

@@ -21,68 +21,53 @@ body {
  /* smallest desktop */
 @media only screen and (min-width : 480px) {
     #message-board {
-        margin-top: 50px;
+        /*margin-top: 50px;*/
         margin-bottom: 50px;
     }
 
+    #middle-column {
+        float: none;
+        margin: 0 auto;
+    }
+
+    #left-column {
+        padding-left: 25px;
+    }
+
+    #right-column {
+        padding-right: 25px;
+    }
+
+    #submissions {
+        margin-bottom: 50px;
+    }
+
+    #jobs {
+        margin-bottom: 50px;
+    }
+
+
     /* lunch */
-    /*#when {
-        width: 70%;
-    }*/
 
     /*#time {
-        width: 50%;
-    }*/
+        width: 68px;
+    }
 
-   /* #location {
-        width: 50%;
+    #location {
+        width: 140px;
     }*/
 
     /* submissions */
-    #shoutout-text {
-        width: 90%;
-    }
+  /*  #shoutout-text {
+        width: 70%;
+    }*/
 
-    #gong-text {
+  /*  #gong-text {
         width: 90%;
     }
 
     #founders-q-text {
         width: 90%;
-    }
-}
-
- /* smaller desktop */
-@media only screen and (min-width : 992px) {
-    #message-board {
-        margin-top: 50px;
-        margin-bottom: 50px;
-    }
-
-    /* lunch */
-    /*#when {
-        width: 70%;
-    }*/
-
-    /*#time {
-        width: 50%;
-    }*/
-
-   /* #location {
-        width: 50%;
-    }*/
-
-    /* submissions */
- /*   #shoutout-text {
-        width: 70%;
-    }
-
-    #gong-text {
-        width: 70%;
-    }
-
-    #founders-q-text {
-        width: 70%;
     }*/
 }
 
@@ -93,12 +78,25 @@ body {
         margin-bottom: 0;
     }
 
+    #middle-column {
+        float: left;
+        margin: 0 auto;
+    }
+
+    #left-column {
+        padding-left: 15px;
+    }
+
+    #right-column {
+        padding-right: 15px;
+    }
+
     /* lunch */
     #when {
         margin-top: 3px;
     }
 
-    #time {
+    /*#time {
         width: 68px;
     }
 
@@ -108,20 +106,7 @@ body {
 
     #location {
         width: 140px;
-    }
-
-    /* submissions */ 
-    #shoutout-text {
-        width: 68%;
-    }
-
-    #gong-text {
-        width: 68%;
-    }
-
-    #founders-q-text {
-        width: 68%;
-    }
+    }*/
 }
 
 
@@ -179,6 +164,7 @@ body {
     font-size: 18px;
     font-weight: bold;
     color: #ffffff;
+    top: -30px;
 /*    -webkit-text-stroke-width: .5px;
     -webkit-text-stroke-color: black;*/
     margin-top: 10px;
@@ -333,7 +319,7 @@ body {
     font-size: 35px;
     /*font-weight: bold;*/
     /*bottom: -160px;*/
-    top: -20px;
+    top: -55px;
     left: 50%; 
     width: 400px;
     margin-left: -200px;
@@ -434,8 +420,8 @@ body {
     border-top: solid 1px #808599;
     border-bottom: solid 1px #808599;
     /*border: solid 1px #808599;*/
-    min-width: 290px;
-    width: 100%;
+    /*min-width: 290px;*/
+    /*width: 85%;*/
     /*height: 74px;*/
     overflow: hidden;
     padding-top: 10px;
@@ -450,13 +436,16 @@ body {
 }
 
 #location {
-    margin-left: 3px;
+    float: left;
+    margin-left: 8px;
+    width: calc(100% - 90px);
 }
 
 #time {
     float: left;
-    margin-left: 8.3438px;
+    margin-left: 13.3438px;
     font-size: 16px;
+    width: calc(100% - 166px);
 }
 
 #where {
@@ -465,6 +454,7 @@ body {
     display: inline-block;
     margin-left: 10px;
     text-align: center;
+    width: 100%;
     /*width: 75%;*/
     /*display: inline-block;*/
     /*vertical-align: baseline;*/
@@ -477,7 +467,8 @@ body {
     float: left;
     display: inline-block;
     margin-left: 10px;
-    font-size: 0;
+    /*font-size: 0;*/
+    width: 100%;
     /*position: relative;*/
 }
 
@@ -541,6 +532,7 @@ label {
     display: inline-block;
     margin-left: 10px;
     margin-bottom: 5px;
+    width: calc(100% - 10px);
 }
 
 #gong-show {
@@ -548,6 +540,7 @@ label {
     display: inline-block;
     margin-left: 10px;
     margin-bottom: 5px;
+    width: calc(100% - 10px);
 }
 
 #ask-founders {
@@ -555,6 +548,7 @@ label {
     display: inline-block;
     margin-left: 10px;
     margin-bottom: 7px;
+    width: calc(100% - 10px);
 }
 
 #shoutout-text {
@@ -563,7 +557,8 @@ label {
     /*margin-left: 15px;*/
     /*width: 68%;*/
     /*margin-bottom: 5px;*/
-    font-size: 14px;
+    /*font-size: 14px;*/
+    width: calc(100% - 75px);
 }
 
 #submit-shoutout {
@@ -576,15 +571,14 @@ label {
     /*width: 68%;*/
     /*margin-bottom: 10px;*/
     font-size: 14px;
-}
-
-#submit-gong {
+    width: calc(100% - 75px);
 }
 
 #founders-q-text {
     position: relative;
     float: left;
     font-size: 14px;
+    width: calc(100% - 75px);
 }
 
 #submissions {
