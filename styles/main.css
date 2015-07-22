@@ -965,7 +965,7 @@ label {
 
 #message-collapse {
 	top:2.5%;
-	left:33%;
+	left:30%;
 }
 
 #bday-collapse {
@@ -986,4 +986,12 @@ label {
 #welcome-message {
     -webkit-text-fill-color: white;
     -webkit-text-stroke: 1px black;
+}
+
+.inline-pic{
+	height:150px;
+	width:auto;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
 }

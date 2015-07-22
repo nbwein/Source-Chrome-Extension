@@ -98,7 +98,7 @@ function getHipChat(){
 							attatchment.setAttribute("src", messages[i].message_links[j].url);
 							attatchment.setAttribute("height", "150px");
 							attatchment.setAttribute("width", "auto");
-							attatchment.setAttribute("margin", "auto");
+							attatchment.setAttribute("class", "inline-pic");
 							div.appendChild(attatchment);
 						}
 						else{
