@@ -7,8 +7,8 @@ var client_secret = 'cb3s0lg9FuIlB2plZ8ISbhNTRKbm2sBmWV9yewBs';
 var group_id = '50006';
 var room_id = '1721606';
 var room_stats;
-
-
+var raw_url_regex = /(?:(?:https?|ftp):\/\/)?(?:\S+(?::\S*)?@)?(?:(?!10(?:\.\d{1,3}){3})(?!127(?:\.\d{1,3}){3})(?!169\.254(?:\.\d{1,3}){2})(?!192\.168(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/[^\s]*)?$/gi;
+var url_regex = new RegExp(raw_url_regex);
 /* Load 10 most recent messages into the message board */
 function getHipChat(){
 	$.ajax({
@@ -88,8 +88,21 @@ function getHipChat(){
 				div.appendChild(t);
 				var message = document.createElement("p");
 				message.setAttribute("id", "message");
-				message.innerHTML = entry;
-				
+				if (url_regex.test(entry)){
+					var url = entry.match(raw_url_regex);
+					for (var k = 0; k<url.length;k++){
+						var link = document.createElement("a");
+						link.setAttribute("href", url[k]);
+						entry = entry.split(url[k]);
+						console.log(link);
+						message.innerHTML = link; 
+						console.log(message.innerHTML);
+					}
+
+				}
+				else{
+					message.innerHTML = entry;
+				}
 				div.appendChild(message);
 				if (messages[i].message_links != null){
 					for (var j = 0; j < messages[i].message_links.length; j++){
@@ -115,7 +128,11 @@ function getHipChat(){
 		},
 		error: function(resp){
 			console.log(resp);
-			integrationOAuth();
+			if (resp.responseText.indexOf("Unauthorized") != -1){
+                                integrationOAuth();
+				getHipChat();
+                        }
+
 		}
 	});
 
@@ -157,11 +174,16 @@ function postMessage(){
 		contentType:"application/json; charset=utf-8",
 		dataType: "json",
 		data: '{"message":"' + post + '"}',
-                error: function(resp){
-                	    console.log(localStorage.getItem("hc_refresh_token"));
-                        refreshToken(localStorage.getItem("hc_refresh_token"));
-                }
-        })
+		error: function(resp){
+			if (resp.responseText.indexOf("Unauthorized") != -1){
+				refreshToken(localStorage.getItem("hc_refresh_token"));
+				postMessage();
+			}
+			else {
+				console.log(resp);
+			}
+		}
+	})
 	.done(function(resp){
 		$("#message-text").val('');
         $("#post-message").remove();
@@ -190,7 +212,6 @@ function getHCSession(){
 		personal_token = localStorage["hc_token"];
 		integration_token = localStorage["integration_token"];
 		getHipChat();
-		console.log(localStorage.getItem("hc_refresh_token"));
 		console.log("got from storage");
 	}
 
@@ -283,7 +304,7 @@ function pollHipChat(){
 	$.ajax({
 		type: 'GET', 
 		url: 'https://api.hipchat.com/v2/room/intern-project-message-board/statistics?auth_token=' + integration_token,
-		success: function(resp){
+		success: function(resp) {
 			curr_messages = resp.messages_sent;
 			if (typeof room_stats == 'undefined'){
 				room_stats = resp.messages_sent;
@@ -292,12 +313,12 @@ function pollHipChat(){
 				room_stats = curr_messages
 				$(".post-message").remove();
 				$("#post-message").remove();
-                		getHipChat();
+                getHipChat();
 			}
 			console.log("poll");
 			setTimeout(pollHipChat, 10000);			
 		},
-		error: function(resp){
+		error: function(resp) {
 			console.log(resp);
 			if (resp.responseText.indexOf("Unauthorized") != -1){
 				integrationOAuth();
