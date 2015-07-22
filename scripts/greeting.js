@@ -279,7 +279,7 @@ return {
 		});
 		$("#submit-lunch").on("click", scheduleLunch);
 		$("#submit-founders").on("click", function(){
-			makeSubmission("#submit-founders", "AskJJ");
+			makeSubmission("#founders-q-text", "AskJJ");
 		});
 		$("#time").timepicker({
 			'minTime':"11:00am",
@@ -288,7 +288,7 @@ return {
 			'step':15
 		});
 		$("#submit-gong").on("click", function(){
-			makeSubmission("#submit-gong", "GongShow");
+			makeSubmission("#gong-text", "GongShow");
 		});
 		$(document).on("click", ".join", function() {
 			jQuery(this).attr("id", "join-clicked");
