@@ -25,64 +25,41 @@ body {
         margin-bottom: 50px;
     }
 
-    /* lunch */
-    /*#when {
-        width: 70%;
-    }*/
-
-    /*#time {
-        width: 50%;
-    }*/
-
-   /* #location {
-        width: 50%;
-    }*/
-
-    /* submissions */
-    #shoutout-text {
-        width: 90%;
+    #middle-column {
+        float: none;
+        margin: 0 auto;
     }
 
-    #gong-text {
-        width: 90%;
-    }
-
-    #founders-q-text {
-        width: 90%;
-    }
-}
-
- /* smaller desktop */
-@media only screen and (min-width : 992px) {
-    #message-board {
-        margin-top: 50px;
+    #submissions {
         margin-bottom: 50px;
     }
 
-    /* lunch */
-    /*#when {
-        width: 70%;
-    }*/
-
-    /*#time {
-        width: 50%;
-    }*/
-
-   /* #location {
-        width: 50%;
-    }*/
-
-    /* submissions */
- /*   #shoutout-text {
-        width: 70%;
+    #jobs {
+        margin-bottom: 50px;
     }
 
-    #gong-text {
+
+    /* lunch */
+
+    #time {
+        width: 68px;
+    }
+
+    #location {
+        width: 140px;
+    }
+
+    /* submissions */
+  /*  #shoutout-text {
         width: 70%;
+    }*/
+
+  /*  #gong-text {
+        width: 90%;
     }
 
     #founders-q-text {
-        width: 70%;
+        width: 90%;
     }*/
 }
 
@@ -91,6 +68,11 @@ body {
     #message-board {
         margin-top: 0;
         margin-bottom: 0;
+    }
+
+    #middle-column {
+        float: left;
+        margin: 0 auto;
     }
 
     /* lunch */
@@ -108,19 +90,6 @@ body {
 
     #location {
         width: 140px;
-    }
-
-    /* submissions */ 
-    #shoutout-text {
-        width: 68%;
-    }
-
-    #gong-text {
-        width: 68%;
-    }
-
-    #founders-q-text {
-        width: 68%;
     }
 }
 
@@ -541,6 +510,7 @@ label {
     display: inline-block;
     margin-left: 10px;
     margin-bottom: 5px;
+    width: 100%;
 }
 
 #gong-show {
@@ -548,6 +518,7 @@ label {
     display: inline-block;
     margin-left: 10px;
     margin-bottom: 5px;
+    width: 100%;
 }
 
 #ask-founders {
@@ -555,6 +526,7 @@ label {
     display: inline-block;
     margin-left: 10px;
     margin-bottom: 7px;
+    width: 100%;
 }
 
 #shoutout-text {
@@ -563,7 +535,8 @@ label {
     /*margin-left: 15px;*/
     /*width: 68%;*/
     /*margin-bottom: 5px;*/
-    font-size: 14px;
+    /*font-size: 14px;*/
+    width: 68%;
 }
 
 #submit-shoutout {
@@ -576,6 +549,7 @@ label {
     /*width: 68%;*/
     /*margin-bottom: 10px;*/
     font-size: 14px;
+    width: 68%;
 }
 
 #submit-gong {
@@ -585,6 +559,7 @@ label {
     position: relative;
     float: left;
     font-size: 14px;
+    width: 68%;
 }
 
 #submissions {
