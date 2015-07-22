@@ -148,6 +148,7 @@ body {
     font-size: 18px;
     font-weight: bold;
     color: #ffffff;
+    top: -30px;
 /*    -webkit-text-stroke-width: .5px;
     -webkit-text-stroke-color: black;*/
     margin-top: 10px;
@@ -302,7 +303,7 @@ body {
     font-size: 35px;
     /*font-weight: bold;*/
     /*bottom: -160px;*/
-    top: -20px;
+    top: -55px;
     left: 50%; 
     width: 400px;
     margin-left: -200px;
