@@ -128,7 +128,11 @@ function getHipChat(){
 		},
 		error: function(resp){
 			console.log(resp);
-			integrationOAuth();
+			if (resp.responseText.indexOf("Unauthorized") != -1){
+                                integrationOAuth();
+				getHipChat();
+                        }
+
 		}
 	});
 
@@ -171,7 +175,13 @@ function postMessage(){
 		dataType: "json",
 		data: '{"message":"' + post + '"}',
                 error: function(resp){
-                        refreshToken(localStorage.getItem("hc_refresh_token"));
+			if (resp.responseText.indexOf("Unauthorized") != -1){
+                        	refreshToken(localStorage.getItem("hc_refresh_token"));
+				postMessage();
+			}
+			else {
+				console.log(resp);
+			}
                 }
         })
 	.done(function(resp){
@@ -202,7 +212,7 @@ function getHCSession(){
 		personal_token = localStorage["hc_token"];
 		integration_token = localStorage["integration_token"];
 		getHipChat();
-		console.log("got from storage")
+		console.log("got from storage");
 	}
 
 }	
