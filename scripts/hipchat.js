@@ -158,12 +158,13 @@ function postMessage(){
 		dataType: "json",
 		data: '{"message":"' + post + '"}',
                 error: function(resp){
+                	    console.log(localStorage.getItem("hc_refresh_token"));
                         refreshToken(localStorage.getItem("hc_refresh_token"));
                 }
         })
 	.done(function(resp){
 		$("#message-text").val('');
-                $("#post-message").remove();
+        $("#post-message").remove();
 		$(".post-message").remove();
                 getHipChat();
 	});
@@ -189,7 +190,8 @@ function getHCSession(){
 		personal_token = localStorage["hc_token"];
 		integration_token = localStorage["integration_token"];
 		getHipChat();
-		console.log("got from storage")
+		console.log(localStorage.getItem("hc_refresh_token"));
+		console.log("got from storage");
 	}
 
 }	
