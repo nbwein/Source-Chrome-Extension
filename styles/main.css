@@ -275,7 +275,7 @@ body {
     margin-bottom: 0px;
     margin-left: 0px;
     margin-right: 0px;
-    margin-top: 5px;
+    margin-top: 0px;
     text-align: left;
     white-space: pre-wrap;
     width: 87%;
@@ -458,9 +458,9 @@ body {
 
 #time {
     float: left;
-    margin-left: 13.3438px;
+    margin-left: 13.8437px;
     font-size: 16px;
-    width: calc(100% - 168.5px);
+    width: calc(100% - 169.3906px);
 }
 
 #where {
