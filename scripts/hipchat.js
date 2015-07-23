@@ -8,7 +8,6 @@ var group_id = '50006';
 var room_id = '1721606';
 var room_stats;
 var raw_url_regex = /(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w\.-]*)*\/?/gi;
-//var raw_url_regex = /(?:(?:https?|ftp):\/\/)?(?:\S+(?::\S*)?@)?(?:(?!10(?:\.\d{1,3}){3})(?!127(?:\.\d{1,3}){3})(?!169\.254(?:\.\d{1,3}){2})(?!192\.168(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/[^\s]*)?/gi;
 var url_regex = new RegExp(raw_url_regex);
 /* Load 10 most recent messages into the message board */
 function getHipChat(){
@@ -18,29 +17,9 @@ function getHipChat(){
 		grant_type: 'personal',
 		success: function(resp){
 			console.log(resp);
+			$('.post-message').remove();
 			var messages = resp.items;
 			var container = document.getElementById("message-board");
-
-			var postMessageDiv = document.createElement("div");
-			postMessageDiv.setAttribute("id", "post-message");
-
-			var textArea = document.createElement("textArea");
-			textArea.setAttribute("id", "message-text");
-			textArea.setAttribute("type", "text");
-			textArea.setAttribute("name", "message");
-			textArea.setAttribute("placeholder", "New message...");
-
-			var submitBtn = document.createElement("a");
-			submitBtn.setAttribute("href", "#");
-			submitBtn.setAttribute("id", "submit-message");
-			submitBtn.setAttribute("class", "btn btn-lg");
-			submitBtn.innerHTML = "Post";
-
-			postMessageDiv.appendChild(textArea);
-			postMessageDiv.appendChild(submitBtn);
-
-			container.appendChild(postMessageDiv);
-			$("#submit-message").on("click", postMessage);
 			for (var i = messages.length - 1; i >= 0; i--){
 				var message = messages[i];
 				var author = message.from.name;
@@ -121,6 +100,7 @@ function getHipChat(){
 					message.innerHTML = entry;
 				}
 				div.appendChild(message);
+				/* Catch and resize image files */
 				if (messages[i].message_links != null){
 					for (var j = 0; j < messages[i].message_links.length; j++){
 						if (messages[i].message_links[j].type == "image"){
@@ -155,8 +135,7 @@ function getHipChat(){
 
 }
 
-/* Fetch user pictures  
-NEED TO ADD SCOPE TO OAUTH ID FOR THIS TO WORK    view_group ONLY  */
+/* Fetch user pictures */ 
 function getUserPic(id, pic){
 	$.ajax({
 		type: 'GET', 
@@ -169,17 +148,6 @@ function getUserPic(id, pic){
 			console.log(error);
 		}
 	}); 
-	/*$.ajax({
-		type: 'GET', 
-		url: 'https://api.hipchat.com/v2/user/' + id + '/history/latest?auth_token=' + personal_token,
-		success: function(resp){
-			console.log(resp);
-		}, 
-		error: function(resp){
-			console.log(resp);
-		}
-
-	}); */
 }
 
 /* Send a message to the Hipchat message board and reload the feed */
@@ -203,8 +171,6 @@ function postMessage(){
 	})
 	.done(function(resp){
 		$("#message-text").val('');
-        $("#post-message").remove();
-		$(".post-message").remove();
                 getHipChat();
 	});
 
@@ -229,6 +195,7 @@ function getHCSession(){
 		personal_token = localStorage["hc_token"];
 		integration_token = localStorage["integration_token"];
 		getHipChat();
+		pollHipChat();
 		console.log("got from storage");
 	}
 
@@ -331,9 +298,7 @@ function pollHipChat(){
 			}
 			else if (curr_messages > room_stats){
 				room_stats = curr_messages
-				$(".post-message").remove();
-				$("#post-message").remove();
-                getHipChat();
+                		getHipChat();
 			}
 			console.log("poll");
 			setTimeout(pollHipChat, 10000);			

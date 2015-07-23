@@ -73,67 +73,9 @@ var googlePlusUserLoader  = (function() {
 	}
 
 	function populateUserInfo(user_info) {
-		//document.getElementById("welcome-message").innerHTML = "Welcome to ?????, " + user_info.name.givenName+ ".";
-		console.log(user_info);
 		getHCSession();
-		pollHipChat();
-		console.log(chrome.extension.getURL('/main.html'));
 	}
 
-	function encodeURL(str){
-		return str.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=+$/, '');
-	}
-
-	function sendEmail(){
-		var message = $("#message-text").val();
-		var subject = user_pic;
-		
-		var params = btoa("From: me\r\nTo:" + "test-feed@googlegroups.com" + "\r\nSubject:"+ subject + "\r\n\r\n" + message);
-		var numBytes = (params.length).toString();
-		$.ajax({
-			type: "POST",
-			url: "https://www.googleapis.com/upload/groups/v1/groups/test-feed@googlegroups.com/archive?uploadType=media",
-			contentType: 'message/rfc822',
-			beforeSend: function(xhr, settings) {
-				xhr.setRequestHeader('Authorization', 'Bearer ' + access_global);
-			},
-			data: params,
-			error: function(resp){
-				console.log(resp);
-			}
-		})
-		.done(function(resp) {
-		if (resp.labelIds[0] == "SENT"){
-			$("#message-text").val('');
-			setTimeout(refresh, 2000);
-		}
-		else{
-			console.log("ERROR: could not send message");
-		}
-		});
-	}
-	
-	function refresh(){
-		location.reload();
-	}
-
-	function sendShoutout(){
-		var message = $("#shoutout-text").val();
-		var subject = Math.trunc(Math.random()*1000).toString();
-		var params = encodeURL(btoa("From: me\r\nTo:" + "shoutout-feed@googlegroups.com" + "\r\nSubject:"+ subject + "\r\n\r\n" + message));
-		var numBytes = (params.length).toString();
-		$.ajax({
-			type: "POST",
-			url: "https://www.googleapis.com/gmail/v1/users/me/messages/send",
-			contentType: "application/json",
-			dataType: "json",
-			beforeSend: function(xhr, settings) {
-				xhr.setRequestHeader('Authorization','Bearer ' + access_global);
-			},
-			data: JSON.stringify({"raw": params})
-		});
-		$("#shoutout-text").val('');
-	}
 
 
 	function getCalendarSession(){
@@ -204,66 +146,27 @@ var googlePlusUserLoader  = (function() {
 
 
 
-function appendPre(message) {
-	var pre = document.getElementById('upcoming-events');
-	var textContent = document.createTextNode(message + '\n');
-	pre.appendChild(textContent);
-}
+	function makeSubmission(id, type){
+		var text = $(id).val();
+		console.log(id + "  " + text);
+        	$(id).val('');
+        	$.ajax({
+                	method: 'POST',
+              	 	url: 'https://script.google.com/macros/s/AKfycbwTv7T36GiGZWvNnEjyHVqW__eTbLqDL-eCCJXbR_VDUSYqOh4/exec',
+                	data: {
+                        	"type": type,
+                        	"Name" : user_info_global.displayName,
+                        	"Text" : text
+               		 },
+                	success: function(resp){
+                        	console.log(resp);
+               		 },
+                	error: function(resp){
+                        	console.log(resp);
+               		 }
+       		 });
 
-
-function testGet(){
-	$.ajax({
-		method : 'GET',
-		url : 'https://groups.google.com/forum/#!forum/test-feed',
-		datatype : 'html',
-		success : function(resp){  console.log(resp); }
-	});
-	
-
-}
-
-/* 
-function submitGong(){
-	var message = $("#gong-text").val();
-	var subject = "Gong Show Submission";
-	var params = encodeURL(btoa("From: me\r\nTo:" + "madeline.cripps@stellaservice.com" + "\r\nSubject:"+ subject + "\r\n\r\n" + message));
-	var numBytes = (params.length).toString();
-	$.ajax({
-		type: "POST",
-		url: "https://www.googleapis.com/gmail/v1/users/me/messages/send",
-		contentType: "application/json",
-		dataType: "json",
-		beforeSend: function(xhr, settings) {
-			xhr.setRequestHeader('Authorization','Bearer ' + access_global);
-		},
-		data: JSON.stringify({"raw": params})
-	});
-	$("#gong-text").val(''); 
-
-} */
-
-
-function makeSubmission(id, type){
-	var text = $(id).val();
-	console.log(id + "  " + text);
-        $(id).val('');
-        $.ajax({
-                method: 'POST',
-                url: 'https://script.google.com/macros/s/AKfycbwTv7T36GiGZWvNnEjyHVqW__eTbLqDL-eCCJXbR_VDUSYqOh4/exec',
-                data: {
-                        "type": type,
-                        "Name" : user_info_global.displayName,
-                        "Text" : text
-                },
-                success: function(resp){
-                        console.log(resp);
-                },
-                error: function(resp){
-                        console.log(resp);
-                }
-        });
-
-}
+	}
 return {
 	onload: function() {
 		setBackground();
@@ -271,7 +174,7 @@ return {
 		gapi.client.load('calendar', 'v3', getCalendarSession);
 		getUserInfo(false);
 		showTime();
-		//loadFeed();
+		console.log($("#date-time").parents());
 		getJobs();
 		loadValues();	 
 		$("#submit-shoutout").on("click", function(){
@@ -290,6 +193,7 @@ return {
 		$("#submit-gong").on("click", function(){
 			makeSubmission("#gong-text", "GongShow");
 		});
+		$("#submit-message").on("click", postMessage);
 		$(document).on("click", ".join", function() {
 			jQuery(this).attr("id", "join-clicked");
 			jQuery(this).attr("class", "join-clicked");

@@ -33,6 +33,14 @@
 <body id="main">
 	<div id ="wrapper" class="container-fluid">
 		<i class="fa fa-cog settings" id="settings"></i>
+		<h2  id="date-time"></h2>
+                <div id="weather-wrapper">
+                        <h3 align="center" id="weather"></h3>
+                        <div id="weather-icon-div"></div>
+                </div>
+		<i class = "fa fa-coffee" id="coffee-button"></i>
+		<div id = "coffee">
+		</div>
 		<select id="settings-drop-down">
 			<option value="Random Landscape" class="settings-option" id="random" > Random Landscape </option>
 			<option value="Solid Background" class="settings-option" id="solid" > Solid Background </option>
@@ -45,17 +53,21 @@
 			<!-- <h1 align="center" id="main_greeting"></h1> -->
 			<h3 align="center" id="next-meeting"></h3>
 		</div>
-		<h2 align="center" id="date-time"></h2>
+		<!--<h2 align="center" id="date-time"></h2>
 		<div align="center" id="weather-wrapper">
 			<h3 align="center" id="weather"></h3>
 			<div id="weather-icon-div"></div>
-		</div>
+		</div> -->
 		<div class="row-fluid">
 			<div id = "middle-column" class="col-lg-6 col-xs-9 col-lg-push-3">
 				<div align="center" id="message-board" class="hidden-desktop">
 					<i class="fa fa-minus-circle collapse" id="message-collapse"> </i>
 					<div id="message-header">
-						<h3 id="message-header-text" class="section-head">Message Board </h3>
+						<h3 id="message-header-text" class="section-head">News Feed </h3>
+					</div>
+					<div id="post-message">
+						<textarea id="message-text" type="text" name="message" placeholder="New Message..."></textarea>
+						<a href="#" id="submit-message" class="btn btn-lg">Post</a>
 					</div>
 				</div>
 			</div>

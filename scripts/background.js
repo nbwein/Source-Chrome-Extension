@@ -1,5 +1,5 @@
 /* Changing Background Script */
-var imgURLS = ["http://www.hdwallpapers.in/walls/windows_10_landscape-multi16.5.jpg", "http://www.hdwallpapers.in/walls/milky_way_lake-wide.jpg", "http://www.hdwallpapersinn.com/wp-content/uploads/2015/02/City-Landscape-Wallpaper-Eving-Time-Photo.jpg", "http://www.hdwallpapersinn.com/wp-content/uploads/2015/02/City-Landscape-Wallpapers.jpg", "http://www.hdwallpapers.in/walls/stairway_to_heaven-wide.jpg", "http://www.hdwallpapers.in/walls/horseshoe_bend_arizona-wide.jpg", "http://www.hdwallpapers.in/walls/hirosaki_castle_japan-wide.jpg", "http://www.hdwallpapers.in/walls/aurlandsfjord_norway-multi16.5.jpg", "http://www.hdwallpapers.in/walls/path_green_fields-wide.jpg", "http://www.hdwallpapers.in/walls/countryside_fisherman-wide.jpg", "http://www.hdwallpapers.in/walls/port_sunset-wide.jpg", "http://www.hdwallpapers.in/walls/wooden_path-wide.jpg", "http://www.hdwallpapers.in/walls/stockholm_reflections-wide.jpg", "http://www.hdwallpapers.in/walls/shanghai_sunset-wide.jpg", "http://www.hdwallpapers.net/previews/colorful-spiral-783.jpg", "http://www.hdwallpapers.in/walls/new_york_city_colors-wide.jpg", "http://www.hdwallpapers.in/walls/bisti_badlands_new_mexico-wide.jpg", "http://www.hdwallpapers.in/walls/machu_picchu-wide.jpg", "http://www.hdwallpapers.in/walls/glen_canyon_utah-wide.jpg", "http://www.hdwallpapers.in/walls/beauty_of_venice-wide.jpg", "http://www.hdwallpapers.in/walls/great_wall_beijing_china-normal.jpg", "http://www.hdwallpapers.in/walls/manarola_italy-normal.jpg", "http://www.hdwallpapers.in/walls/val_di_funes_dolomites_italy-normal.jpg", "http://www.hdwallpapers.in/walls/consuegra_la_mancha_spain-normal.jpg", "http://www.hdwallpapers.in/walls/valley_house-wide.jpg", "http://www.hdwallpapers.in/walls/green_seascape-wide.jpg", "http://www.hdwallpapers.in/walls/vernal_fall_yosemite_national_park-wide.jpg", "http://www.hdwallpapers.in/walls/sunny_fields-wide.jpg", "http://www.hdwallpapers.in/walls/fall_foliage-wide.jpg", "http://www.hdwallpapers.in/walls/village_corsica_france-normal.jpg", "http://www.hdwallpapers.in/walls/red_village-wide.jpg", "http://www.hdwallpapers.in/walls/noord_holland_province_the_netherlands-normal.jpg" ];
+var imgURLS = ["http://www.hdwallpapers.in/walls/windows_10_landscape-multi16.5.jpg", "http://www.hdwallpapers.in/walls/milky_way_lake-wide.jpg", "http://www.hdwallpapersinn.com/wp-content/uploads/2015/02/City-Landscape-Wallpaper-Eving-Time-Photo.jpg", "http://www.hdwallpapers.in/walls/stairway_to_heaven-wide.jpg", "http://www.hdwallpapers.in/walls/horseshoe_bend_arizona-wide.jpg", "http://www.hdwallpapers.in/walls/hirosaki_castle_japan-wide.jpg", "http://www.hdwallpapers.in/walls/aurlandsfjord_norway-multi16.5.jpg", "http://www.hdwallpapers.in/walls/path_green_fields-wide.jpg", "http://www.hdwallpapers.in/walls/countryside_fisherman-wide.jpg", "http://www.hdwallpapers.in/walls/port_sunset-wide.jpg", "http://www.hdwallpapers.in/walls/wooden_path-wide.jpg", "http://www.hdwallpapers.in/walls/stockholm_reflections-wide.jpg", "http://www.hdwallpapers.in/walls/shanghai_sunset-wide.jpg", "http://www.hdwallpapers.net/previews/colorful-spiral-783.jpg", "http://www.hdwallpapers.in/walls/new_york_city_colors-wide.jpg", "http://www.hdwallpapers.in/walls/bisti_badlands_new_mexico-wide.jpg", "http://www.hdwallpapers.in/walls/machu_picchu-wide.jpg", "http://www.hdwallpapers.in/walls/glen_canyon_utah-wide.jpg", "http://www.hdwallpapers.in/walls/beauty_of_venice-wide.jpg", "http://www.hdwallpapers.in/walls/great_wall_beijing_china-normal.jpg", "http://www.hdwallpapers.in/walls/manarola_italy-normal.jpg", "http://www.hdwallpapers.in/walls/val_di_funes_dolomites_italy-normal.jpg", "http://www.hdwallpapers.in/walls/consuegra_la_mancha_spain-normal.jpg", "http://www.hdwallpapers.in/walls/valley_house-wide.jpg", "http://www.hdwallpapers.in/walls/green_seascape-wide.jpg", "http://www.hdwallpapers.in/walls/vernal_fall_yosemite_national_park-wide.jpg", "http://www.hdwallpapers.in/walls/sunny_fields-wide.jpg", "http://www.hdwallpapers.in/walls/fall_foliage-wide.jpg", "http://www.hdwallpapers.in/walls/village_corsica_france-normal.jpg", "http://www.hdwallpapers.in/walls/red_village-wide.jpg", "http://www.hdwallpapers.in/walls/noord_holland_province_the_netherlands-normal.jpg" ];
 var size = imgURLS.length;
 var colors = ["#6080bb"];
 var colorsize = colors.length;
@@ -8,7 +8,6 @@ $(document).on("ready", function(){
 var settings = document.getElementById("settings");
 var dropDown = document.getElementById("settings-drop-down");
 $("#settings").on("click", function(){
-	console.log($("#settings-drop-down").is(":visible"));
 	if ($("#settings-drop-down").is(":visible")){
 	dropDown.setAttribute("style", "display:none;");
 	document.getElementById("date-time").setAttribute("style", "display:block");
@@ -44,6 +43,17 @@ $("#settings").on("click", function(){
 			localStorage.setItem("background", "stella");
                 }
         });
+
+	$("#coffee-button").on("click", function(){
+		if ($("#coffee").is(":visible")){
+			$("coffee").css("display":"none");
+			$(".coffee-button").class = "fa fa-coffee";	
+		}	
+		else{
+			$("cofee").css("display": "block");
+			$(
+		}
+	});
 
 // TODO: refactor all these click events, they are all basically the same
 	$("#lunch-collapse").on("click", function(){
