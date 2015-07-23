@@ -79,6 +79,7 @@ function mergeSort(bdayList, eventList){
 function getSpecialEvents(){
 	var request = getBDayCalendar();
 	request.execute(function(resp){
+		console.log(resp);
 		var bdays = resp.items;
 		console.log(bdays);
 		var events_request = getEventsCalendar();
