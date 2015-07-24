@@ -44,16 +44,16 @@ $("#settings").on("click", function(){
                 }
         });
 
-	$("#coffee-button").on("click", function(){
-		if ($("#coffee").is(":visible")){
-			$("coffee").css("display":"none");
-			$(".coffee-button").class = "fa fa-coffee";	
-		}	
-		else{
-			$("cofee").css("display": "block");
-			$(
-		}
-	});
+	// $("#coffee-button").on("click", function(){
+	// 	if ($("#coffee").is(":visible")){
+	// 		$("coffee").css("display":"none");
+	// 		$(".coffee-button").class = "fa fa-coffee";	
+	// 	}	
+	// 	else{
+	// 		$("cofee").css("display": "block");
+	// 		$(
+	// 	}
+	// });
 
 // TODO: refactor all these click events, they are all basically the same
 	$("#lunch-collapse").on("click", function(){
