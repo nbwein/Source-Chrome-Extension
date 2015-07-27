@@ -125,10 +125,10 @@ function getHipChat(){
 		},
 		error: function(resp){
 			console.log(resp);
-			if (resp.responseText.indexOf("Unauthorized") != -1){
+			if (resp.responseText.indexOf("Unauthorized") != -1) {
                                 integrationOAuth();
 				getHipChat();
-                        }
+			}
 
 		}
 	});
