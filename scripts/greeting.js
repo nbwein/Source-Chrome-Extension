@@ -80,7 +80,7 @@ var googlePlusUserLoader  = (function() {
 
 	function getCalendarSession(){
 		gapi.auth.authorize(
-			{client_id: '847225712349-afs3e8aobcglbi1ml1gjkcr764ri1jvk.apps.googleusercontent.com', scope: ['https://www.googleapis.com/auth/calendar'], immediate: true},
+			{client_id: '61085756406-hb2hcm5nj0sgmpj553r9uqao57cud33j.apps.googleusercontent.com', scope: ['https://www.googleapis.com/auth/calendar'], immediate: true},
 			calendarContent);
 		return false;
 	}

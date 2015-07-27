@@ -142,6 +142,7 @@ function getLunchCalendar() {
 function fetchLunches(){
     var request = getLunchCalendar(); 
     request.execute(function(resp){
+	console.log(resp);
         var events = resp.items;
         if (events.length > 0) {
             var container = document.getElementById("lunch");
