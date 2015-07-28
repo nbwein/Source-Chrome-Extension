@@ -181,12 +181,14 @@ function getHCSession(){
  	if (typeof localStorage["hc_token"] == 'undefined'){
 		document.getElementById('dialog').style.display="";
 		$("#dialog").css("display", "block");
+		$(".content").css("display", "none");
 		$("#hc_login").on('click', function(){
 		var username = $("#hc_username").val();
 		var password = $("#hc_password").val();
 		$("#hc_username").val('');
 		$("#hc_password").val('');
 		document.getElementById('dialog').style.display="none";
+		$(".content").css("display", "block");
 		hcOAuth(username, password);
 		});
 		console.log("personal token set");	

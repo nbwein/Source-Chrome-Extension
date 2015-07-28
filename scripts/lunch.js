@@ -32,14 +32,12 @@ function createEvent(place, time, ampm){
      		'summary' : place
  });
 	request.execute(function(resp) { console.log(resp); 
-	//location.reload();
 	});
 	return id;
 }
 
 function refreshLunch(){
 	$(".post-lunch").remove();
-	//$('#lunch-wrapper').load(document.URL + ' #lunch');
 	fetchLunches();
 }
 
@@ -87,7 +85,12 @@ function viewMembers(id) {
         var members = (typeof resp.attendees != 'undefined') ? resp.attendees : [];
         var names = '';
         for (var i = 0; i < members.length; i++) {
-            names = names + members[i].displayName + "\n";
+          	var name = members[i].displayName;
+		if (typeof name == 'undefined'){
+			console.log(members[i]);
+			name = members[i].email;
+		}
+		names = names + name + "\n";
      }
      alert(names);
  });
