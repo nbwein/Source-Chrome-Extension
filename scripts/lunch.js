@@ -142,7 +142,7 @@ function getLunchCalendar() {
 function fetchLunches(){
     var request = getLunchCalendar(); 
     request.execute(function(resp){
-	console.log(resp);
+	  console.log(resp);
         var events = resp.items;
         if (events.length > 0) {
             var container = document.getElementById("lunch");
@@ -201,7 +201,7 @@ function fetchLunches(){
 
                 var buttonsDiv = document.createElement("div");
                 buttonsDiv.setAttribute("class", "buttonsDiv");
-		        buttonsDiv.setAttribute("id", id);
+		            buttonsDiv.setAttribute("id", id);
                 buttonsDiv.appendChild(members);
                 buttonsDiv.appendChild(join);
                 div.appendChild(buttonsDiv);
