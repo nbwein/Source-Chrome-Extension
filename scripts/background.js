@@ -1,5 +1,5 @@
 /* Changing Background Script */ 
-var imgURLS = ["http://www.hdwallpapers.in/walls/windows_10_landscape-multi16.5.jpg", "http://www.hdwallpapers.in/walls/milky_way_lake-wide.jpg", "http://www.hdwallpapersinn.com/wp-content/uploads/2015/02/City-Landscape-Wallpaper-Eving-Time-Photo.jpg", "http://www.hdwallpapers.in/walls/stairway_to_heaven-wide.jpg", "http://www.hdwallpapers.in/walls/horseshoe_bend_arizona-wide.jpg", "http://www.hdwallpapers.in/walls/hirosaki_castle_japan-wide.jpg", "http://www.hdwallpapers.in/walls/aurlandsfjord_norway-multi16.5.jpg", "http://www.hdwallpapers.in/walls/path_green_fields-wide.jpg", "http://www.hdwallpapers.in/walls/countryside_fisherman-wide.jpg", "http://www.hdwallpapers.in/walls/port_sunset-wide.jpg", "http://www.hdwallpapers.in/walls/wooden_path-wide.jpg", "http://www.hdwallpapers.in/walls/stockholm_reflections-wide.jpg", "http://www.hdwallpapers.in/walls/shanghai_sunset-wide.jpg", "http://www.hdwallpapers.net/previews/colorful-spiral-783.jpg", "http://www.hdwallpapers.in/walls/new_york_city_colors-wide.jpg", "http://www.hdwallpapers.in/walls/bisti_badlands_new_mexico-wide.jpg", "http://www.hdwallpapers.in/walls/machu_picchu-wide.jpg", "http://www.hdwallpapers.in/walls/glen_canyon_utah-wide.jpg", "http://www.hdwallpapers.in/walls/beauty_of_venice-wide.jpg", "http://www.hdwallpapers.in/walls/great_wall_beijing_china-normal.jpg", "http://www.hdwallpapers.in/walls/manarola_italy-normal.jpg", "http://www.hdwallpapers.in/walls/val_di_funes_dolomites_italy-normal.jpg", "http://www.hdwallpapers.in/walls/consuegra_la_mancha_spain-normal.jpg", "http://www.hdwallpapers.in/walls/valley_house-wide.jpg", "http://www.hdwallpapers.in/walls/vernal_fall_yosemite_national_park-wide.jpg", "http://www.hdwallpapers.in/walls/sunny_fields-wide.jpg", "http://www.hdwallpapers.in/walls/fall_foliage-wide.jpg", "http://www.hdwallpapers.in/walls/village_corsica_france-normal.jpg", "http://www.hdwallpapers.in/walls/red_village-wide.jpg", "http://www.hdwallpapers.in/walls/noord_holland_province_the_netherlands-normal.jpg" ];
+var imgURLS = ["http://www.hdwallpapers.in/walls/windows_10_landscape-multi16.5.jpg", "http://www.hdwallpapers.in/walls/milky_way_lake-wide.jpg", "http://www.hdwallpapersinn.com/wp-content/uploads/2015/02/City-Landscape-Wallpaper-Eving-Time-Photo.jpg", "http://www.hdwallpapers.in/walls/stairway_to_heaven-wide.jpg", "http://www.hdwallpapers.in/walls/horseshoe_bend_arizona-wide.jpg", "http://www.hdwallpapers.in/walls/hirosaki_castle_japan-wide.jpg", "http://www.hdwallpapers.in/walls/aurlandsfjord_norway-multi16.5.jpg", "http://www.hdwallpapers.in/walls/path_green_fields-wide.jpg", "http://www.hdwallpapers.in/walls/countryside_fisherman-wide.jpg", "http://www.hdwallpapers.in/walls/port_sunset-wide.jpg", "http://www.hdwallpapers.in/walls/wooden_path-wide.jpg", "http://www.hdwallpapers.in/walls/stockholm_reflections-wide.jpg", "http://www.hdwallpapers.in/walls/shanghai_sunset-wide.jpg", "http://www.hdwallpapers.in/walls/new_york_city_colors-wide.jpg", "http://www.hdwallpapers.in/walls/machu_picchu-wide.jpg", "http://www.hdwallpapers.in/walls/beauty_of_venice-wide.jpg", "http://www.hdwallpapers.in/walls/great_wall_beijing_china-normal.jpg", "http://www.hdwallpapers.in/walls/manarola_italy-normal.jpg", "http://www.hdwallpapers.in/walls/val_di_funes_dolomites_italy-normal.jpg", "http://www.hdwallpapers.in/walls/consuegra_la_mancha_spain-normal.jpg", "http://www.hdwallpapers.in/walls/valley_house-wide.jpg", "http://www.hdwallpapers.in/walls/vernal_fall_yosemite_national_park-wide.jpg", "http://www.hdwallpapers.in/walls/sunny_fields-wide.jpg", "http://www.hdwallpapers.in/walls/fall_foliage-wide.jpg", "http://www.hdwallpapers.in/walls/village_corsica_france-normal.jpg", "http://www.hdwallpapers.in/walls/red_village-wide.jpg", "http://www.hdwallpapers.in/walls/noord_holland_province_the_netherlands-normal.jpg" ];
 var size = imgURLS.length;
 var colors = ["#6080bb"];
 var colorsize = colors.length;
@@ -259,30 +259,30 @@ function fillCoffee(data, refill){
 	var curr_pot;
 	var grams = data.value
 	var pot = data.serial
-	if (grams < 2200){
+	if (grams <= 2200){
 		grams = 2000;
 	}
 	var progress;
 	if (pot == "0081446057541"){
 		curr_pot = "Ren";
-		progress = "ren-progress"
+		progress = "#ren-progress";
 		$("#ren-cups-remaining").text( ((grams-2000)/200).toFixed(1) + " Cups");
 	}
 	else  {
 		curr_pot = "Stimpy"
-		progress = "stimpy-progress"
+		progress = "#stimpy-progress";
 		$("#stimpy-cups-remaining").text( ((grams-2000)/200).toFixed(1) + " Cups");
 	}
 	if (grams <= 2200){
-		$('#' + progress).css("height", "1%");
+		$(progress).css("height", "1%");
 	}
 	else if (grams < 3500){	
 		height = (grams-2200)/(3500-2200);
 		height = height*100;
-		$('#' + progress).css("height", height + "%"); 
+		$(progress).css("height", height + "%"); 
 	} 
 	else {
-		$('#' + progress).css("height", "100%");
+		$(progress).css("height", "100%");
 	}
 
         var now = new Date().getTime();
@@ -294,7 +294,13 @@ function fillCoffee(data, refill){
  	var  hours=Math.trunc((difference%(60*60*1000*24))/(60*60*1000)*1);
   	var  mins=Math.trunc(((difference%(60*60*1000*24))%(60*60*1000))/(60*1000)*1);
 
-	$('#' + progress).css("backround-color", "rgb(" + days + "," + hours + "," + mins + ")");	
+	var total_mins = days*24*60 + hours*60 + mins;
+	if (total_mins > 255){
+		total_mins = 255;
+	}
+	var color = "rgb(" + total_mins.toString() + "," + (255-total_mins).toString() + "," + 0  + ")";
+	console.log(color);
+	$(progress).css("background-color", color);	
 	var time_string = "";
 	if (days != 0) {
 		time_string = time_string + days + " Days, ";			

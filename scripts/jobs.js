@@ -1,4 +1,5 @@
 function getJobs(){	
+//	getNewHireInfo();
 	makeRequest().done(function(data) {
 		var nycjobs = data.offices[2];
 		var joblist = "";
@@ -27,3 +28,17 @@ function makeRequest(){
 
 
 }
+
+/*function getNewHireInfo(){
+	$.ajax({
+		method: "GET",
+		url: "https://docs.google.com/spreadsheets/d/1eeOhUe8TJg2P9oFe9pWXh7YQfjFTYihHQEf9VZOBJ6Q/pub?gid=268625726&single=true&output=csv",
+		error: function(resp){
+			console.log(resp);
+		},
+		success: function(resp){
+			resp.split("\n");
+			console.log(resp);
+		}
+	});
+}*/
