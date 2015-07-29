@@ -401,6 +401,8 @@ body {
 }
 
 #job-list{
+	position:relative;
+	top:-20px;
 	color:white;
 }
 
@@ -416,7 +418,7 @@ body {
     border-radius: 10px;
     border: solid 1px #808599;
     display:inline-block;
-    height: 355px;
+    height: 300px;
     /*min-width: 340px;*/
     width: 85%;
     top: 115px;
@@ -618,6 +620,7 @@ label {
     border-radius: 10px; 
     /*min-width: 340px;*/
     width: 85%;
+    height: 190px;
     top: 130px;
     display:inline-block;
     overflow-y:auto;
@@ -949,9 +952,10 @@ label {
 }
 
 .collapse {
+	position:absolute;
+	top:3px;
+	left:2px;
 	position:absolute; 
-	top:2px; 
-	left:3px; 
 	z-index:1; 
 	color:#3498DB; 
 }
@@ -1006,11 +1010,11 @@ label {
 
 #jobs-collapse {
 	top:4%;
-	left:10%;
+	left:25%;
 }
 
 #submit-collapse {
-	top:9%;
+	top: 7.5%;
 	left:16%;
 }
 
@@ -1084,4 +1088,20 @@ label {
 .coffee-text{
 	position:relative;
 	top:20;
+}
+
+#new_hire_text{
+	color:white;
+}
+
+.sub-label{
+	font-size: 13px;
+	width: 100%;
+	text-align:left;
+	margin-bottom:0px;
+}
+.shown{
+   position:absolute !important;
+   left:2px !important;
+   top:3px !important;
 }

@@ -11,7 +11,7 @@ $("#settings").on("click", function(){
 	if ($("#settings-drop-down").is(":visible")){
 	dropDown.setAttribute("style", "display:none;");
 	document.getElementById("date-time").setAttribute("style", "display:block");
-	document.getElementById("settings").className = "settings fa fa-cog";
+	document.getElementById("settings").className = "settings fa-lg fa fa-cog";
 	}
 	else{
         dropDown.setAttribute("style", "display:block;");
@@ -23,7 +23,7 @@ $("#settings").on("click", function(){
 		document.getElementById("solid").setAttribute("selected", "selected");
 	}
 	document.getElementById("date-time").setAttribute("style", "display:none");
-	document.getElementById("settings").className = "settings-done fa fa-check-circle";
+	document.getElementById("settings").className = "settings-done fa fa-lg fa-check-circle";
 
 	}
 	});
@@ -47,7 +47,7 @@ $("#settings").on("click", function(){
 	 $("#coffee-button").on("click", function(){
 	 	if ($("#coffee").is(":visible")){
 			 $("#coffee").css("display", "none");
-	 		$(".coffee-button").class = "fa fa-coffee";	
+	 		$(".coffee-button").class = "fa fa-lg fa-coffee";	
 	 	}	
 	 	else{
 			$(".coffee-button").class = "fa fa-times-circle";
@@ -71,7 +71,7 @@ $("#settings").on("click", function(){
 		}
 		else{
 			$("#lunch").css("visibility", "");
-                        document.getElementById("lunch-collapse").className = "collapse fa fa-minus-circle fa-lg";
+                        document.getElementById("lunch-collapse").className = "collapse fa fa-minus-circle fa-lg shown";
 			lunchHidden = false;
 
 		}
@@ -89,7 +89,7 @@ $("#settings").on("click", function(){
                 }
                 else{
                         $("#submissions").css("visibility", "");
-                        document.getElementById("submit-collapse").className = "collapse fa fa-minus-circle fa-lg";
+                        document.getElementById("submit-collapse").className = "collapse fa fa-minus-circle fa-lg shown";
                         submitHidden = false;
 
                 }
@@ -107,7 +107,7 @@ $("#settings").on("click", function(){
                 }
                 else{
                         $("#message-board").css("visibility", "");
-                        document.getElementById("message-collapse").className = "collapse fa fa-minus-circle fa-lg";
+                        document.getElementById("message-collapse").className = "collapse fa fa-minus-circle fa-lg shown";
                         messageHidden = false;
 
                 }
@@ -125,7 +125,7 @@ $("#settings").on("click", function(){
                 }
                 else{
                         $("#bdays-annivs").css("visibility", "");
-                        document.getElementById("bday-collapse").className = "collapse fa fa-minus-circle fa-lg";
+                        document.getElementById("bday-collapse").className = "collapse fa fa-minus-circle fa-lg shown";
                         bdayHidden = false;
 
                 }
@@ -143,7 +143,7 @@ $("#settings").on("click", function(){
                 }
                 else{
                         $("#jobs").css("visibility", "");
-                        document.getElementById("jobs-collapse").className = "collapse fa fa-minus-circle fa-lg";
+                        document.getElementById("jobs-collapse").className = "collapse fa fa-minus-circle fa-lg shown";
                         jobsHidden = false;
 
                 }

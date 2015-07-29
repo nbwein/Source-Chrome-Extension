@@ -1,5 +1,5 @@
 function getJobs(){	
-//	getNewHireInfo();
+	getNewHireInfo();
 	makeRequest().done(function(data) {
 		var nycjobs = data.offices[2];
 		var joblist = "";
@@ -29,7 +29,7 @@ function makeRequest(){
 
 }
 
-/*function getNewHireInfo(){
+function getNewHireInfo(){
 	$.ajax({
 		method: "GET",
 		url: "https://docs.google.com/spreadsheets/d/1eeOhUe8TJg2P9oFe9pWXh7YQfjFTYihHQEf9VZOBJ6Q/pub?gid=268625726&single=true&output=csv",
@@ -37,8 +37,23 @@ function makeRequest(){
 			console.log(resp);
 		},
 		success: function(resp){
-			resp.split("\n");
-			console.log(resp);
+			var parts = resp.split("\n");
+			console.log(parts);
+			var info = parts[parts.length - 1];
+			info = info.split(",");
+			var start_date = info[2].split("/");
+			var start = new Date(start_date[2] , start_date[0], start_date[1]);
+			console.log(start);
+			var end = new Date(start.getTime() + 1000*3600*24*7);
+			var now = new Date().getTime();
+			console.log(now +  "    " + end.getTime());
+			if (now < end.getTime()){
+				$("#new_hire_welcome").text("Welcome, " + info[0] + "!");
+				$("#new_hire_text").text(info[1]);
+			}
+			else{
+				$("#new_hire_info").css("display", "none");
+			}
 		}
 	});
-}*/
+}
