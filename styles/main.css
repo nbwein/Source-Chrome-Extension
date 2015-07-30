@@ -1132,3 +1132,8 @@ label {
 
 .grid-item { width: 30%; }
 .grid-item--width2 { width: 40%; }
+.subject{
+	position:relative;
+	/*left:5%; */
+	color:white;
+}

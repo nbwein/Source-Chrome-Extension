@@ -47,12 +47,19 @@ function getHipChat(){
 				}
 				date = date[1] + "/" + date[2];
 				time = time[0] + ":" + time[1];
-				var entry = message.message.split("MESSAGE:");
-				entry = entry[1];
-				var subject = entry[0];
-				var subject_text = document.createElement("strong");
-				subject_text.setAttribute("class", "subject");
-				subject_text.innerHTML = subject;
+				var entry = message.message;
+				console.log(entry.split("MESSAGE:"));
+				if (entry.indexOf("MESSAGE:") != -1){
+					var entry = message.message.split("MESSAGE:");
+					var subject = entry[0];
+					entry = entry[1];
+					var subject_text = document.createElement("strong");
+					subject_text.setAttribute("class", "subject");
+					subject_text.innerHTML = subject;
+				}
+				else{
+					var subject_text = document.createElement("span");
+				}
 				var auth = document.createElement("strong");
 				auth.setAttribute("id", "message-author");
 				auth.innerHTML = author;
@@ -71,6 +78,7 @@ function getHipChat(){
 				t.className = "message-time";
 				t.innerHTML = " &#183 " + time + " " + ampm + ", " + date;
 				div.appendChild(t);
+				div.appendChild(br);
 				div.appendChild(subject_text);
 				var message = document.createElement("span");
 				message.setAttribute("id", "message");
