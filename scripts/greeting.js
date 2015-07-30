@@ -170,7 +170,7 @@ var googlePlusUserLoader  = (function() {
 return {
 	onload: function() {
 		setBackground();
-		gapi.client.load('gmail', 'v1');
+		//gapi.client.load('gmail', 'v1');
 		gapi.client.load('calendar', 'v3', getCalendarSession);
 		getUserInfo(false);
 		showTime();
