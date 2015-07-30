@@ -55,7 +55,7 @@ function getHipChat(){
 					entry = entry[1];
 					var subject_text = document.createElement("strong");
 					subject_text.setAttribute("class", "subject");
-					subject_text.innerHTML = subject;
+					subject_text.innerHTML = "<i>Re: " + subject + "</i>";
 				}
 				else{
 					var subject_text = document.createElement("span");
@@ -65,7 +65,7 @@ function getHipChat(){
 				auth.innerHTML = author;
 
 				var br = document.createElement("br");
-				div.appendChild(br);
+				// div.appendChild(br);
 
 				var pic = document.createElement("img");
 				pic.setAttribute("class", "profile-pic");
