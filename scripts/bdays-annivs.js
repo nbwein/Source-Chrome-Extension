@@ -59,20 +59,17 @@ function lessThan(event1, event2){
 
 function mergeSort(bdayList, eventList){
 	var events = [];
-	var b_count = 0;
-	var e_count = 0;
-	console.log(bdayList[0]);
+	console.log(bdayList);
+	console.log(eventList);
         while (bdayList.length != 0 || eventList.length != 0){
-		if (lessThan((bdayList[b_count]), (eventList[e_count]))){
+		if (lessThan((bdayList[0]), (eventList[0]))){
 			events.push(bdayList.shift());
-			b_count++;
 		}
 		else{
 			events.push(eventList.shift());	
-			e_count++;
 		}
 	}
-	console.log(events);
+	console.log(events); 
 	return events;
 }
 
@@ -81,11 +78,9 @@ function getSpecialEvents(){
 	request.execute(function(resp){
 		console.log(resp);
 		var bdays = resp.items;
-		console.log(bdays);
 		var events_request = getEventsCalendar();
 		events_request.execute(function(event_resp){
 		var special_events = event_resp.items;
-		console.log(special_events);
 		var events = mergeSort(bdays, special_events);
 		var bday_list = "";
 		var today = new Date();
@@ -127,9 +122,10 @@ function getSpecialEvents(){
 		var span = document.createElement("span");
 		span.setAttribute("id", "bdays");
 		document.getElementById("bdays-annivs").appendChild(span);
-		span.innerHTML = bday_list;
+		//console.log(bday_list);
+		span.innerHTML = bday_list; 
 
-	});
+	}); 
 	});
 	
 }

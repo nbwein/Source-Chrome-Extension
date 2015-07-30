@@ -104,6 +104,7 @@ function getHipChat(){
 				if (messages[i].message_links != null){
 					for (var j = 0; j < messages[i].message_links.length; j++){
 						if (messages[i].message_links[j].type == "image"){
+							console.log("gifv is a pic");
 							var attatchment = document.createElement("img");
 							attatchment.setAttribute("src", messages[i].message_links[j].url);
 							attatchment.setAttribute("height", "150px");
@@ -112,6 +113,7 @@ function getHipChat(){
 							div.appendChild(attatchment);
 						}
 						else{
+							console.log("gifv not a pic");
 							var attatchment = document.createElement("a");
 							attatchment.setAttribute("href", messages[i].message_links[j].url); 
 							div.appendChild(attatchment);
