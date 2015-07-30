@@ -286,6 +286,23 @@ body {
     user-select: text;
 }
 
+#subject-text {
+    position: relative; 
+    /*font-family: "Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";*/
+    font-family: 'Oxygen', Arial, sans-serif;
+    font-weight: 200;
+    font-size: 16px;
+    float: left;
+    /*min-width: 434px;*/
+    width: 88%;
+    height: 35px;
+    border-radius: 5px;
+    border: solid 1px #808599;
+    margin-left: 9px;
+    word-wrap: break-word;
+    resize: none;
+}
+
 #message-text {
     position: relative; 
     /*font-family: "Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";*/
@@ -854,6 +871,7 @@ label {
 .btn-lg {
     font-size: 130%;
     padding: 19px 7px 19px 7px;
+    top: 35px;
 }
 
 .join {
