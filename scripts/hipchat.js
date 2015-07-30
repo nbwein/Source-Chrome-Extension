@@ -47,7 +47,12 @@ function getHipChat(){
 				}
 				date = date[1] + "/" + date[2];
 				time = time[0] + ":" + time[1];
-				var entry = message.message;
+				var entry = message.message.split("MESSAGE:");
+				entry = entry[1];
+				var subject = entry[0];
+				var subject_text = document.createElement("strong");
+				subject_text.setAttribute("class", "subject");
+				subject_text.innerHTML = subject;
 				var auth = document.createElement("strong");
 				auth.setAttribute("id", "message-author");
 				auth.innerHTML = author;
@@ -66,6 +71,7 @@ function getHipChat(){
 				t.className = "message-time";
 				t.innerHTML = " &#183 " + time + " " + ampm + ", " + date;
 				div.appendChild(t);
+				div.appendChild(subject_text);
 				var message = document.createElement("span");
 				message.setAttribute("id", "message");
 				if (url_regex.test(entry)){
@@ -104,16 +110,22 @@ function getHipChat(){
 				if (messages[i].message_links != null){
 					for (var j = 0; j < messages[i].message_links.length; j++){
 						if (messages[i].message_links[j].type == "image"){
-							console.log("gifv is a pic");
-							var attatchment = document.createElement("img");
+							if (messages[i].message_links[j].url.indexOf(".gifv") != -1){
+								var gifv = messages[i].message_links[j].url;
+								console.log(gifv.data);
+								var attatchment = document.createElement("iframe");
+								attatchment.setAttribute("class", "inline-pic gifv");
+							}
+							else{
+								var attatchment = document.createElement("img");
+								attatchment.setAttribute("class", "inline-pic");
+							}
 							attatchment.setAttribute("src", messages[i].message_links[j].url);
 							attatchment.setAttribute("height", "150px");
 							attatchment.setAttribute("width", "auto");
-							attatchment.setAttribute("class", "inline-pic");
 							div.appendChild(attatchment);
 						}
 						else{
-							console.log("gifv not a pic");
 							var attatchment = document.createElement("a");
 							attatchment.setAttribute("href", messages[i].message_links[j].url); 
 							div.appendChild(attatchment);
@@ -137,6 +149,8 @@ function getHipChat(){
 
 }
 
+
+
 /* Fetch user pictures */ 
 function getUserPic(id, pic){
 	$.ajax({
@@ -155,12 +169,17 @@ function getUserPic(id, pic){
 /* Send a message to the Hipchat message board and reload the feed */
 function postMessage(){
 	var post = $("#message-text").val();
+	var subject = $("#subject-text").val();
+	post = subject + "MESSAGE:" + post; 
+	data = {"message": post};
+	data = JSON.stringify(data);
+	console.log(data);
         $.ajax({
                 type: 'POST',
                 url: 'https://api.hipchat.com/v2/room/intern-project-message-board/message?auth_token=' + personal_token,
 		contentType:"application/json; charset=utf-8",
 		dataType: "json",
-		data: '{"message":"' + post + '"}',
+		data: data,
 		error: function(resp){
 			if (resp.responseText.indexOf("Unauthorized") != -1){
 				refreshToken(localStorage.getItem("hc_refresh_token"));
@@ -173,6 +192,7 @@ function postMessage(){
 	})
 	.done(function(resp){
 		$("#message-text").val('');
+		$("#subject-text").val('');
                 getHipChat();
 	});
 

@@ -1029,6 +1029,12 @@ label {
 	display:block;
 	margin-left:auto;
 	margin-right:auto;
+	overflow-x:hidden;
+	overflow-y:hidden;
+}
+
+.gifv{
+	overflow:hidden;
 }
 
 #coffee-button{
