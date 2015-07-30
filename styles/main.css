@@ -1105,3 +1105,6 @@ label {
    left:2px !important;
    top:3px !important;
 }
+
+.grid-item { width: 30%; }
+.grid-item--width2 { width: 40%; }
