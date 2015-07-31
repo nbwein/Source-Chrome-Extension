@@ -220,8 +220,11 @@ function getCoffee(){
 		method : 'GET', 
 		url: 'https://coffee.stellaservice.com/day',
 		success: function(resp){
-			console.log("got it!");
 			var data = JSON.parse(resp);
+			if (resp == []){
+				$(".cups-remaining").text("Unavailable");
+				return;
+			}
 			data = data.reverse();
 			var ren_data = 0;
 			var stimpy_data = 0;
@@ -245,6 +248,7 @@ function getCoffee(){
 					}
 				}
 			}
+	
 			fillCoffee(ren_data, ren_refill);
 			fillCoffee(stimpy_data, stimpy_refill);
 		},
@@ -271,6 +275,7 @@ function fillCoffee(data, refill){
 	else  {
 		curr_pot = "Stimpy"
 		progress = "#stimpy-progress";
+		console.log(grams);
 		$("#stimpy-cups-remaining").text( ((grams-2000)/200).toFixed(1) + " Cups");
 	}
 	if (grams <= 2200){
@@ -285,31 +290,35 @@ function fillCoffee(data, refill){
 		$(progress).css("height", "100%");
 	}
 
-        var now = new Date().getTime();
-	var last_fill = new Date(refill).getTime();
-	var difference = (now - last_fill);
-	console.log(difference);
+	if (refill != 0){
+        	var now = new Date().getTime();
+		var last_fill = new Date(refill).getTime();
+		var difference = (now - last_fill);
 	
- 	var  days=Math.trunc(difference/(60*60*1000*24)*1);
- 	var  hours=Math.trunc((difference%(60*60*1000*24))/(60*60*1000)*1);
-  	var  mins=Math.trunc(((difference%(60*60*1000*24))%(60*60*1000))/(60*1000)*1);
+ 		var  days=Math.trunc(difference/(60*60*1000*24)*1);
+ 		var  hours=Math.trunc((difference%(60*60*1000*24))/(60*60*1000)*1);
+  		var  mins=Math.trunc(((difference%(60*60*1000*24))%(60*60*1000))/(60*1000)*1);
 
-	var total_mins = days*24*60 + hours*60 + mins;
-	if (total_mins > 255){
-		total_mins = 255;
+		var total_mins = days*24*60 + hours*60 + mins;
+		if (total_mins > 255){
+			total_mins = 255;
+		}
+		var color = "rgb(" + total_mins.toString() + "," + (255-total_mins).toString() + "," + 0  + ")";
+		$(progress).css("background-color", color);	
+		var time_string = "";
+		if (days != 0) {
+			time_string = time_string + days + " Days, ";			
+		}
+		if (hours != 0 ){
+			time_string = time_string + hours + " Hrs, and ";
+		}
+		time_string = time_string + mins + " Mins"
 	}
-	var color = "rgb(" + total_mins.toString() + "," + (255-total_mins).toString() + "," + 0  + ")";
-	console.log(color);
-	$(progress).css("background-color", color);	
-	var time_string = "";
-	if (days != 0) {
-		time_string = time_string + days + " Days, ";			
+	else{
+		var color = "rgb(255,0,0)";
+		$(progress).css("background-color", color);
+		var time_string = "Yesterday"
 	}
-	if (hours != 0 ){
-		time_string = time_string + hours + " Hrs, and ";
-	}
-	time_string = time_string + mins + " Mins"
-	
 	if (curr_pot == "Ren"){
 		$("#ren-fresh").text(time_string);
 	}

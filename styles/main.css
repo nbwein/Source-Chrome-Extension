@@ -160,14 +160,16 @@ body {
 }
 
 #next-meeting {
-    position:relative;
+    position:absolute;
+    left:8px;
+    top:50px;
     /*font-family: "Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";*/
     font-family: 'Oxygen', Arial, sans-serif;
     font-size: 22px;
     font-weight: bold;
     color: white;
     opacity:.95;
-    top: -30px;
+    width:25%;
 /*    -webkit-text-stroke-width: .5px;
     -webkit-text-stroke-color: black;*/
     margin-top: 10px;
@@ -246,7 +248,7 @@ body {
     background: #53555b;
     border-radius: 10px;
     border: solid 1px #808599;
-    opacity: .9;
+    opacity: .95;
     /*min-width: 580px;*/
     height: 510px;
     /*min-height: 480px;*/
@@ -1050,6 +1052,7 @@ label {
 	margin-right:auto;
 	overflow-x:hidden;
 	overflow-y:hidden;
+	opacity:1.0 !important;
 }
 
 .gifv{

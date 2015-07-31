@@ -6,5 +6,5 @@ function loadValues(){
   var index = Math.floor(Math.random() * 8);
  // var index = 2;
   console.log(values[index]);
-  document.getElementById("stella-daily-value").innerHTML = "<i>\"" + values[index] + "\"</i>";
+  document.getElementById("stella-daily-value").innerHTML = "\"" + values[index] + "\"";
 }

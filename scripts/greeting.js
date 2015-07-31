@@ -109,7 +109,6 @@ var googlePlusUserLoader  = (function() {
 	function nextMeeting() {
 		var request = getCalendar();
 		request.execute(function(resp) {
-			console.log(resp);
 			var events = resp.items;
 			if (events.length > 0) {
 				var event = events[0];
@@ -148,7 +147,6 @@ var googlePlusUserLoader  = (function() {
 
 	function makeSubmission(id, type){
 		var text = $(id).val();
-		console.log(id + "  " + text);
         	$(id).val('');
         	$.ajax({
                 	method: 'POST',
@@ -159,10 +157,9 @@ var googlePlusUserLoader  = (function() {
                         	"Text" : text
                		 },
                 	success: function(resp){
-                        	console.log(resp);
                		 },
                 	error: function(resp){
-                        	console.log(resp);
+                        	console.log("ERROR: " + resp);
                		 }
        		 });
 
@@ -170,11 +167,9 @@ var googlePlusUserLoader  = (function() {
 return {
 	onload: function() {
 		setBackground();
-		//gapi.client.load('gmail', 'v1');
 		gapi.client.load('calendar', 'v3', getCalendarSession);
 		getUserInfo(false);
 		showTime();
-		console.log($("#date-time").parents());
 		getJobs();
 		loadValues();	 
 		$("#submit-shoutout").on("click", function(){
@@ -199,10 +194,8 @@ return {
 			jQuery(this).attr("class", "join-clicked");
 			jQuery(this).html("Joined!");
 			var group = $("#join-clicked").parents();
-			console.log(group);
 			jQuery(this).attr("id", "join");
 			var id = group.attr('id');
-			console.log(id);
 			addEvent(id);
 		});
 

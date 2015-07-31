@@ -31,7 +31,7 @@ function createEvent(place, time, ampm){
      		'attendees' : [{'email' : email_global}],
      		'summary' : place
  });
-	request.execute(function(resp) { console.log(resp); 
+	request.execute(function(resp) { 
 	});
 	return id;
 }
@@ -58,7 +58,6 @@ function scheduleLunch(){
 }
 
 function addEvent(id){
-    console.log("addEvent: " + id);
     var request = gapi.client.calendar.events.get({
         'calendarId' : 'stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com',
         'eventId' : id
@@ -76,7 +75,6 @@ function addEvent(id){
 }
 
 function viewMembers(id) {
-    console.log("viewmembers: " + id);
     var request = gapi.client.calendar.events.get({
       'calendarId' : 'stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com',
       'eventId' : id
@@ -87,7 +85,6 @@ function viewMembers(id) {
         for (var i = 0; i < members.length; i++) {
           	var name = members[i].displayName;
 		if (typeof name == 'undefined'){
-			console.log(members[i]);
 			name = members[i].email;
 		}
 		names = names + name + "\n";
@@ -97,7 +94,6 @@ function viewMembers(id) {
 }
 
 function removeMember(id, name) {
-    console.log("removeMember: " + id);
     var request = gapi.client.calendar.events.get({
         'calendarId' : 'stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com',
         'eventId' : id
@@ -145,7 +141,6 @@ function getLunchCalendar() {
 function fetchLunches(){
     var request = getLunchCalendar(); 
     request.execute(function(resp){
-	  console.log(resp);
         var events = resp.items;
         if (events.length > 0) {
             var container = document.getElementById("lunch");
@@ -186,7 +181,6 @@ function fetchLunches(){
                     join.className = "join";
 
                     for (var person in events[i].attendees) {
-                        console.log(events[i].attendees[person]);
                         if (events[i].attendees[person].email == email_global) {
                             join.className = "join-clicked";
                             joinText = document.createTextNode("Joined!");
