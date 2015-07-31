@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"minimum_chrome_version": "29", 
-	"name": "Stella Momentum (dev)", 
+	"name": "Stella Momentum", 
 	"description": "Stellaservice Internal Homepage", 
 	"version": "1.0",
 	"key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAurY7887tsHCb0e9GU9Bm807Msy0yv7nm/0rC+gADrJbOv/MT/d1vlBH4sEDQXDdwBbVKOdoldPRI2dG1PFuFxTmpdGHJ4WNEO6Ph2vIntHiQHTSMKRo2hgimBlcky7Fmw5c+ZPXpqZLdz3TnAXaZMj7ME4rqukJFzJeQKTdPE1O99RQVGsrXPEolI21Gmdzh9gi+VYFUYHYtgjnEOCDW5E+abgRR/mcF3IJ7pAJJJa0akM7Y9WJYhIizd3Q9XD7h56ArQVsCfpUy36Pl6QV04iHGsbjGHVcDoW7NiRtyjF5WlRc1xj05D4P3byHOJuyzVXzkgRtuIYULz4q/tZ7UlQIDAQAB",
