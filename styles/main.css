@@ -1057,6 +1057,10 @@ label {
 
 .gifv{
 	overflow:hidden;
+	height:150px;
+	width:auto;
+	margin-left:auto;
+	margin-right:auto;
 }
 
 #coffee-button{

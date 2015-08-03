@@ -194,7 +194,7 @@ function setRandomPicBackground(){
 }
 
 function stellaLifeBackground(){
-        var idx = Math.floor(Math.random() * stellasize);
+        var idx = Math.floor(Math.random() * stellasize) + 1;
         var img = "/scripts/stella-backgrounds/" + idx + ".jpg"
         var background = document.getElementById("main");
         console.log(img);
@@ -248,9 +248,19 @@ function getCoffee(){
 					}
 				}
 			}
-	
-			fillCoffee(ren_data, ren_refill);
-			fillCoffee(stimpy_data, stimpy_refill);
+  			if (ren_data != 0){	
+				fillCoffee(ren_data, ren_refill);
+			}
+			else {
+				$("#ren-cups-remaining").text("Unavailable");
+			}
+			console.log(stimpy_data);
+			if(stimpy_data != 0){
+				fillCoffee(stimpy_data, stimpy_refill);
+			}
+			else{
+				$("#stimpy-cups-remaining").text("Unavailable");
+			}
 		},
 		error: function(err){
 			console.log(err);

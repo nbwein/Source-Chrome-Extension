@@ -77,7 +77,7 @@ var googlePlusUserLoader  = (function() {
 	}
 
 
-
+	/* load all calendar content */
 	function getCalendarSession(){
 		gapi.auth.authorize(
 			{client_id: '61085756406-hb2hcm5nj0sgmpj553r9uqao57cud33j.apps.googleusercontent.com', scope: ['https://www.googleapis.com/auth/calendar'], immediate: true},
@@ -106,6 +106,7 @@ var googlePlusUserLoader  = (function() {
 		return request;
 	}
 
+	/* Populates time-until-meeting header*/
 	function nextMeeting() {
 		var request = getCalendar();
 		request.execute(function(resp) {
@@ -144,7 +145,7 @@ var googlePlusUserLoader  = (function() {
 	}
 
 
-
+	/* Dumps data from submission areas into corresponding google sheet. Uses google Apps script*/
 	function makeSubmission(id, type){
 		var text = $(id).val();
         	$(id).val('');
@@ -166,12 +167,14 @@ var googlePlusUserLoader  = (function() {
 	}
 return {
 	onload: function() {
+		/* Load external info */
 		setBackground();
 		gapi.client.load('calendar', 'v3', getCalendarSession);
 		getUserInfo(false);
 		showTime();
 		getJobs();
 		loadValues();	 
+		/* Set up click events */
 		$("#submit-shoutout").on("click", function(){
 			makeSubmission("#shoutout-text", "StellaShoutout");
 		});
