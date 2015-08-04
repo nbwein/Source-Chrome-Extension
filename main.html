@@ -4,7 +4,6 @@
 	<title>Source</title>
 	<meta http-equiv="Cache-control" content="no-cache">
 	<link href="http://fonts.googleapis.com/css?family=Merienda+One" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" type="text/css" href="styles/font-awesome-4.3.0/css/font-awesome.min.css">
 	<link href='http://fonts.googleapis.com/css?family=Oxygen:400,700' rel='stylesheet' type='text/css'>
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script src="https://apis.google.com/js/client.js"> </script>
@@ -13,9 +12,7 @@
 	<script src="scripts/jquery-2.1.4.min.js"></script>
 	<script src="scripts/jquery.timepicker.js"></script>
 	<script src="scripts/jquery.timepicker.min.js"></script>
-	<script src="scripts/send-message.js"></script>
 	<script src="scripts/background.js"></script> 
-	<script src="scripts/message-board.js"></script> 
 	<script src="scripts/greeting.js"></script> 
 	<script src="scripts/date-time.js"></script>
 	<script src="scripts/weather.js"></script> 
@@ -24,7 +21,6 @@
 	<script src="scripts/bdays-annivs.js"></script>
 	<script src="scripts/stella-values.js"></script>
 	<script src="scripts/bootstrap.min.js"></script>
-	<script src="scripts/isotope.pkgd.min.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="styles/jquery.timepicker.css"></link>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,6 +36,16 @@
 			<h3 align="center" id="weather"></h3>
 			<div id="weather-icon-div"></div>
 		</div>
+		<i class = "fa fa-link fa-lg" id = "links"></i>
+		<select id="links-drop-down">
+			<option disabled selected> -- click to select a destination -- </option>
+                        <option value="https://metrics.stellaservice.com" class="settings-option" id="metrics" > Metrics </option>
+                        <option class="settings-option" value="http://stellaservice.com" id="marketing" > Marketing </option>
+                        <option class="settings-option" value="https://sites.google.com/a/stellaservice.com/talent-and-culture/" id="talant"> Talent </option>
+			<option class="settings-option" value="https://sites.google.com/a/stellaservice.com/stella---client-development-team/" id="clinet-dev"> Client Dev </option>
+			<option value="https://sites.google.com/a/stellaservice.com/stella-metrics-sales/" class="settings-option" id="sales"> Sales  </option>
+                </select>
+
 		<i class = "fa fa-coffee fa-lg" id="coffee-button"></i>
 		<div id = "coffee">
 			<h3 class = "section-head" id = "coffee-head"> Coffee Bot </h3>
@@ -66,6 +72,7 @@
 			</div>
 		</div>
 		<select id="settings-drop-down">
+			<option disabled selected> -- click to select an option -- </option>
 			<option value="Random Landscape" class="settings-option" id="random" > Random Landscape </option>
 			<option value="Solid Background" class="settings-option" id="solid" > Solid Background </option>
 			<option value="Stella Life Background" class="settings-option" id="stella-life"> Stella Life Background </option>
@@ -163,7 +170,9 @@
 				<a href="#" id="hc_login" class="btn btn-sm">Login</a>
 			</div>
 		</div>
+
 	</div>
+
 </div>
 </body>
 </html>

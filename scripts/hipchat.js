@@ -46,9 +46,14 @@ function getHipChat(){
 				}
 				date = date[1] + "/" + date[2];
 				time = time[0] + ":" + time[1];
-				var entry = message.message;
+				try{
+					var entry = atob(message.message);
+				}
+				catch(err){
+					var entry = message.message;
+				}
 				if (entry.indexOf("MESSAGE:") != -1){
-					var entry = message.message.split("MESSAGE:");
+					entry = entry.split("MESSAGE:");
 					var subject = entry[0];
 					entry = entry[1];
 					var subject_text = document.createElement("strong");
@@ -176,6 +181,7 @@ function postMessage(){
 	var post = $("#message-text").val();
 	var subject = $("#subject-text").val();
 	post = subject + "MESSAGE:" + post; 
+	post = btoa(post);
 	data = {"message": post};
 	data = JSON.stringify(data);
         $.ajax({

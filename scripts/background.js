@@ -10,7 +10,6 @@ var dropDown = document.getElementById("settings-drop-down");
 $("#settings").on("click", function(){
 	if ($("#settings-drop-down").is(":visible")){
 	dropDown.setAttribute("style", "display:none;");
-	document.getElementById("date-time").setAttribute("style", "display:block");
 	document.getElementById("settings").className = "settings fa-lg fa fa-cog";
 	}
 	else{
@@ -22,7 +21,6 @@ $("#settings").on("click", function(){
 	else if (current == "solid"){
 		document.getElementById("solid").setAttribute("selected", "selected");
 	}
-	document.getElementById("date-time").setAttribute("style", "display:none");
 	document.getElementById("settings").className = "settings-done fa fa-lg fa-check-circle";
 
 	}
@@ -44,13 +42,28 @@ $("#settings").on("click", function(){
                 }
         });
 
+$("#links").on("click", function(){
+	if ($("#links-drop-down").is(":visible")){
+		$("#links-drop-down").css("display", "none");
+		document.getElementById("links").className = "fa fa-lg fa-link";
+	}
+	else{
+		$("#links-drop-down").css("display", "block");
+		document.getElementById("links").className = "fa fa-lg fa-times-circle close-btn";
+	}
+});
+
+$("#links-drop-down").change(function() {
+	window.location.href=this.value
+});
+
 	 $("#coffee-button").on("click", function(){
 	 	if ($("#coffee").is(":visible")){
 			 $("#coffee").css("display", "none");
-	 		$(".coffee-button").class = "fa fa-lg fa-coffee";	
-	 	}	
+	 		document.getElementById("coffee-button").className = "fa fa-lg fa-coffee";
+		}	
 	 	else{
-			$(".coffee-button").class = "fa fa-times-circle";
+			document.getElementById("coffee-button").className = "fa fa-lg fa-times-circle close-btn";
 			getCoffee();
 	 		$("#coffee").css("display", "block");
 			$(".progress-bar").css("height", "0%");
@@ -216,16 +229,19 @@ function setBackground(){
 }
 
 function getCoffee(){
+	console.log("IM SO CONFUSED");
 	$.ajax({
 		method : 'GET', 
 		url: 'https://coffee.stellaservice.com/day',
 		success: function(resp){
 			var data = JSON.parse(resp);
 			if (resp == []){
+				console.log("WTF");
 				$(".cups-remaining").text("Unavailable");
 				return;
 			}
 			data = data.reverse();
+			console.log(data);
 			var ren_data = 0;
 			var stimpy_data = 0;
 			var ren_refill = 0; 
@@ -248,6 +264,7 @@ function getCoffee(){
 					}
 				}
 			}
+			console.log("REN: " + ren_data + ren_refill + "STIMPY: " + stimpy_data + stimpy_refill);
   			if (ren_data != 0){	
 				fillCoffee(ren_data, ren_refill);
 			}
