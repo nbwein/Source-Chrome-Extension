@@ -229,19 +229,16 @@ function setBackground(){
 }
 
 function getCoffee(){
-	console.log("IM SO CONFUSED");
 	$.ajax({
 		method : 'GET', 
 		url: 'https://coffee.stellaservice.com/day',
 		success: function(resp){
 			var data = JSON.parse(resp);
 			if (resp == []){
-				console.log("WTF");
 				$(".cups-remaining").text("Unavailable");
 				return;
 			}
 			data = data.reverse();
-			console.log(data);
 			var ren_data = 0;
 			var stimpy_data = 0;
 			var ren_refill = 0; 
@@ -264,7 +261,6 @@ function getCoffee(){
 					}
 				}
 			}
-			console.log("REN: " + ren_data + ren_refill + "STIMPY: " + stimpy_data + stimpy_refill);
   			if (ren_data != 0){	
 				fillCoffee(ren_data, ren_refill);
 			}
