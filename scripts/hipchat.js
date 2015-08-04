@@ -47,6 +47,7 @@ function getHipChat(){
 				}
 				date = date[1] + "/" + date[2];
 				time = time[0] + ":" + time[1];
+
 				var entry = message.message;
 				console.log(entry.split("MESSAGE:"));
 				if (entry.indexOf("MESSAGE:") != -1){
