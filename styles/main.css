@@ -232,6 +232,7 @@ body {
    color:#333;
    -webkit-text-stroke-width: 1px;
    -webkit-text-stroke-color: white;
+   cursor:pointer;
 }
 
 #links-drop-down{
@@ -1009,7 +1010,8 @@ label {
 	left:2px;
 	position:absolute; 
 	z-index:1; 
-	color:#3498DB; 
+	color:#3498DB;
+	cursor:pointer; 
 }
 
 .settings-option {
@@ -1021,6 +1023,7 @@ label {
   	   -webkit-text-stroke-color: white;
 	   position:fixed;	
 	   top:2px;
+	   cursor:pointer;
 }
 
 #settings-drop-down {
@@ -1102,6 +1105,7 @@ label {
 	-webkit-text-stroke-width: 1px;
         -webkit-text-stroke-color: white;
         top:2px;
+	cursor:pointer;
 
 }
 
@@ -1181,4 +1185,5 @@ label {
 }
 .close-btn{
 	color:#990033 !important;
+	cursor:pointer;
 }
