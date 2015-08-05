@@ -114,12 +114,14 @@ $("#links-drop-down").change(function() {
                         $("#message-board").css("visibility", "hidden");
                         $("#message-collapse").css("visibility", "visible");
 			$("#message-header-text").css("visibility", "visible");
+			$("#message-board").css("height", "100px");
                         document.getElementById("message-collapse").className = "collapse fa fa-plus-circle fa-lg";
                         messageHidden = true;
 
                 }
                 else{
                         $("#message-board").css("visibility", "");
+			$("#message-board").css("height", "510px");
                         document.getElementById("message-collapse").className = "collapse fa fa-minus-circle fa-lg shown";
                         messageHidden = false;
 
@@ -169,11 +171,17 @@ today.setHours(0,0,0,0);
 //RESET TO SHOW ALL DIVS WHEN DAY CHANGES. otherwise, get values from storage.
 if (localStorage.getItem('setupTime') == null || localStorage.getItem('setupTime') < today.getTime()){
 	localStorage.setItem('setupTime', today.getTime());
-        localStorage.setItem('lunchHidden', false);
-        localStorage.setItem('submitHidden', false);
-        localStorage.setItem('messageHidden', false);
-        localStorage.setItem('bdayHidden', false);
-        localStorage.setItem('jobsHidden', false);
+        localStorage.setItem('lunchHidden', true);
+        localStorage.setItem('submitHidden', true);
+        localStorage.setItem('messageHidden', true);
+        localStorage.setItem('bdayHidden', true);
+        localStorage.setItem('jobsHidden', true);
+	lunchHidden=true;submitHidden=true;messageHidden=true;bdayHidden=true;jobsHidden=true;
+	$("#lunch-collapse").trigger("click");
+	document.getElementById("submit-collapse").click();
+	document.getElementById("message-collapse").click();
+	document.getElementById("bday-collapse").click();
+	document.getElementById("jobs-collapse").click();
 }
 else {
         var lunchHidden = !JSON.parse(localStorage.getItem('lunchHidden'));

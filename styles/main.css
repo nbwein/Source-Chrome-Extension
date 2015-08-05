@@ -328,11 +328,11 @@ body {
     font-size: 16px;
     float: left;
     /*min-width: 434px;*/
-    width: 88%;
+    width: 98%;
     height: 35px;
-    border-radius: 5px;
+    border-radius: 6px;
     border: solid 1px #808599;
-    margin-left: 9px;
+    margin-left: 5px;
     word-wrap: break-word;
     resize: none;
 }
@@ -345,17 +345,19 @@ body {
     font-size: 16px;
     float: left;
     /*min-width: 434px;*/
-    width: 88%;
+    width: 89%;
     height: 65px; 
     border-radius: 5px;
     border: solid 1px #808599;
-    margin-left: 9px;
+    margin-left: 6px;
     word-wrap: break-word;
     resize: none;
 }
 
 #submit-message {
     position: relative;
+    top:0px;
+    left:-1px
 }
 
 #message-author {
@@ -1034,7 +1036,7 @@ label {
 }
 
 #dialog {
-	display:none;position:fixed;top:300px;width:200px;height:250px;background-color:#70B8FF  ;text-align:center;left:43%;border-radius:10px;box-shadow:2px 2px 2px 2px #888888;  
+	display:none;position:absolute;top:300px;width:200px;height:250px;background-color:#70B8FF  ;text-align:center;left:43%;border-radius:10px;box-shadow:2px 2px 2px 2px #888888;  
 }
 
 #hc_login {
@@ -1055,8 +1057,9 @@ label {
 }
 
 #message-collapse {
-	top:2.5%;
+	top:14%;
 	left:37%;
+	z-index:2;
 }
 
 #bday-collapse {
