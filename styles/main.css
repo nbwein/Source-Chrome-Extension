@@ -1182,6 +1182,11 @@ label {
 	color:white;
     margin-top: 4px;
     margin-bottom: 8px;
+    -moz-user-select: text;
+    -khtml-user-select: text;
+    -webkit-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
 }
 .close-btn{
 	color:#990033 !important;

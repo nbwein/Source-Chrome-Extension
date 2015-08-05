@@ -3,7 +3,7 @@
 	"minimum_chrome_version": "44", 
 	"name": "Stella Source", 
 	"description": "StellaService Internal Homepage", 
-	"version": "1.2",
+	"version": "1.3",
 	"chrome_url_overrides": {
    		 "newtab": "main.html"
   	},

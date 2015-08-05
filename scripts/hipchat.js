@@ -46,19 +46,21 @@ function getHipChat(){
 				}
 				date = date[1] + "/" + date[2];
 				time = time[0] + ":" + time[1];
+
 				try{
 					var entry = atob(message.message);
 				}
 				catch(err){
 					var entry = message.message;
 				}
+
 				if (entry.indexOf("MESSAGE:") != -1){
 					entry = entry.split("MESSAGE:");
 					var subject = entry[0];
 					entry = entry[1];
 					var subject_text = document.createElement("strong");
 					subject_text.setAttribute("class", "subject");
-					subject_text.innerHTML = "<i>Re: " + subject + "</i>";
+					subject_text.innerHTML = "<i>" + subject + "</i>";
 				}
 				else{
 					var subject_text = document.createElement("span");
@@ -180,6 +182,12 @@ function getUserPic(id, pic){
 function postMessage(){
 	var post = $("#message-text").val();
 	var subject = $("#subject-text").val();
+
+	if (post == "" || subject == "") {
+		alert("Please submit both a subject and a message.");
+		return;
+	}
+
 	post = subject + "MESSAGE:" + post; 
 	post = btoa(post);
 	data = {"message": post};
