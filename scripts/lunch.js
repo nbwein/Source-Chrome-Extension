@@ -1,6 +1,86 @@
 /*Lunch scheduler js */
 
+var app_token;
+
+function authAsApp(){
+	$.ajax({
+		type: 'POST',
+		url: 'https://www.googleapis.com/oauth2/v3/token',
+		contentType: 'application/x-www-form-urlencoded', 
+		async: false,
+	/*	grant_type: 'refresh_token',
+		refresh_token: '1/7pr4yin3RqQicagZHus3QdwTww0wJZFJvjTkBdhdjJk',
+		client_id: '61085756406-ss56flqs7gkje9l3f6rtvm5oo0ebqrqo.apps.googleusercontent.com',
+                client_secret: 'WS2N42PIfZbKpojR3KG96CCX', */
+		data: {
+			'client_id': '61085756406-ss56flqs7gkje9l3f6rtvm5oo0ebqrqo.apps.googleusercontent.com',
+			'client_secret': 'WS2N42PIfZbKpojR3KG96CCX',
+			'refresh_token': '1/7pr4yin3RqQicagZHus3QdwTww0wJZFJvjTkBdhdjJk',
+			'grant_type': 'refresh_token'
+		},
+		success: function(resp){
+			console.log(resp.access_token);
+			app_token = resp.access_token;
+		},
+		error: function(resp){
+			console.log(resp);
+		}
+	});
+}
+
 function createEvent(place, time, ampm){
+	authAsApp();
+	console.log(app_token);
+	var id = Math.trunc( Math.random() * 100000);
+        var elements = time.split(":");
+        var miliseconds = elements[0]*60*60*1000;
+        if( ampm == "pm" && elements[0] != 12){
+                miliseconds = miliseconds + 12*60*60*1000;
+        }
+        miliseconds = miliseconds + elements[1]*60*1000;
+        var today = new Date();
+        today.setHours(0,0,0,0);
+        var startTime = new Date(today.getTime() + miliseconds);
+        miliseconds = miliseconds + 1*60*60*1000;
+        var endTime = new Date(today.getTime() + miliseconds);
+        var endstr = endTime.toISOString();
+	console.log(endstr);
+        var startstr = startTime.toISOString();
+	var cal_event = JSON.stringify({
+		'start' : {
+                        'dateTime' : startstr,
+                        'timeZone' : "America/New_York"
+                },
+                'end' : {
+                        'dateTime': endstr,
+                        'timeZone': "America/New_York"
+                },
+                'anyoneCanAddSelf' : true,
+                'guestsCanModify' : true,
+                'id': id,
+                'location': place,
+                'attendees' : [{'email' : email_global}],
+                'summary' : place
+
+	});
+	$.ajax({
+		type: 'POST', 
+		url: 'https://www.googleapis.com/calendar/v3/calendars/stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com/events?access_token=' + app_token,
+		contentType: 'application/json',
+		data: cal_event,
+		success: function(resp){
+			console.log(resp);
+			return id;
+			
+		},
+		error: function(resp){
+			console.log(resp);
+		}
+		
+	});
+}
+
+/*function createEvent(place, time, ampm){
 	var id = Math.trunc( Math.random() * 100000);
 	var elements = time.split(":");
 	var miliseconds = elements[0]*60*60*1000;
@@ -25,16 +105,17 @@ function createEvent(place, time, ampm){
          		'dateTime': endstr,
          		'timeZone': "America/New_York"
      		},
-     		'anyoneCanAddSelf' : true,	
+     		'anyoneCanAddSelf' : true,
+		'guestsCanModify' : true,	
      		'id': id,
      		'location': place,
      		'attendees' : [{'email' : email_global}],
      		'summary' : place
  });
-	request.execute(function(resp) { console.log(resp); 
+	request.execute(function(resp) { 
 	});
 	return id;
-}
+} */
 
 function refreshLunch(){
 	$(".post-lunch").remove();
@@ -58,7 +139,30 @@ function scheduleLunch(){
 }
 
 function addEvent(id){
-    console.log("addEvent: " + id);
+     authAsApp();
+     var request = gapi.client.calendar.events.get({
+        'calendarId' : 'stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com',
+        'eventId' : id
+      });
+	request.execute(function(resp) {
+	var attendees = [{'email': email_global}];
+        var all = attendees.concat(resp.attendees);
+	var body = JSON.stringify({'attendees':all});
+	$.ajax({
+		type: 'PATCH', 
+		url: 'https://www.googleapis.com/calendar/v3/calendars/stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com/events/' + id + '?access_token=' + app_token,
+		contentType : 'application/json',
+		data: body, 
+		success: function(resp){
+			console.log(resp);
+		},
+		error: function(resp){
+			console.log(resp);
+		}
+	});
+	});
+}
+/*function addEvent(id){
     var request = gapi.client.calendar.events.get({
         'calendarId' : 'stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com',
         'eventId' : id
@@ -73,10 +177,9 @@ function addEvent(id){
      });
         req.execute( function(resp) {});
     });
-}
+} */
 
 function viewMembers(id) {
-    console.log("viewmembers: " + id);
     var request = gapi.client.calendar.events.get({
       'calendarId' : 'stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com',
       'eventId' : id
@@ -87,7 +190,6 @@ function viewMembers(id) {
         for (var i = 0; i < members.length; i++) {
           	var name = members[i].displayName;
 		if (typeof name == 'undefined'){
-			console.log(members[i]);
 			name = members[i].email;
 		}
 		names = names + name + "\n";
@@ -97,29 +199,41 @@ function viewMembers(id) {
 }
 
 function removeMember(id, name) {
-    console.log("removeMember: " + id);
     var request = gapi.client.calendar.events.get({
         'calendarId' : 'stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com',
         'eventId' : id
     }); 
     // console.log("id: " + id);
     request.execute(function(resp) {
+	authAsApp();
         var members = (typeof resp.attendees != 'undefined') ? resp.attendees : [];
         var names = '';
         for (var i = 0; i < members.length; i++){
-            if (members[i].displayName == name) {
+            if (members[i].displayName == name || members[i].email == email_global) {
                 members.splice(i, 1);
                 continue;
             }
             names = names + members[i].displayName + "\n";
         }
-
-        var req = gapi.client.calendar.events.patch({
+	var body = JSON.stringify({'attendees':members});
+	$.ajax({
+                type: 'PATCH',
+                url: 'https://www.googleapis.com/calendar/v3/calendars/stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com/events/' + id + '?access_token=' + app_token,
+                contentType : 'application/json',
+                data: body,
+                success: function(resp){
+                        console.log(resp);
+                },
+                error: function(resp){
+                        console.log(resp);
+                }
+        });
+       /* var req = gapi.client.calendar.events.patch({
          'calendarId' : 'stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com',
          'eventId' : id,
          'attendees': members
      });
-        req.execute( function(resp) {});
+        req.execute( function(resp) {}); */
     });
 }
 
@@ -145,7 +259,7 @@ function getLunchCalendar() {
 function fetchLunches(){
     var request = getLunchCalendar(); 
     request.execute(function(resp){
-	  console.log(resp);
+	console.log(resp);
         var events = resp.items;
         if (events.length > 0) {
             var container = document.getElementById("lunch");
@@ -186,7 +300,6 @@ function fetchLunches(){
                     join.className = "join";
 
                     for (var person in events[i].attendees) {
-                        console.log(events[i].attendees[person]);
                         if (events[i].attendees[person].email == email_global) {
                             join.className = "join-clicked";
                             joinText = document.createTextNode("Joined!");

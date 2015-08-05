@@ -38,15 +38,12 @@ function getNewHireInfo(){
 		},
 		success: function(resp){
 			var parts = resp.split("\n");
-			console.log(parts);
 			var info = parts[parts.length - 1];
 			info = info.split(",");
 			var start_date = info[2].split("/");
 			var start = new Date(start_date[2] , start_date[0], start_date[1]);
-			console.log(start);
 			var end = new Date(start.getTime() + 1000*3600*24*7);
 			var now = new Date().getTime();
-			console.log(now +  "    " + end.getTime());
 			if (now < end.getTime()){
 				$("#new_hire_welcome").text("Welcome, " + info[0] + "!");
 				$("#new_hire_text").text(info[1]);

@@ -59,8 +59,6 @@ function lessThan(event1, event2){
 
 function mergeSort(bdayList, eventList){
 	var events = [];
-	console.log(bdayList);
-	console.log(eventList);
         while (bdayList.length != 0 || eventList.length != 0){
 		if (lessThan((bdayList[0]), (eventList[0]))){
 			events.push(bdayList.shift());
@@ -69,14 +67,12 @@ function mergeSort(bdayList, eventList){
 			events.push(eventList.shift());	
 		}
 	}
-	console.log(events); 
 	return events;
 }
 
 function getSpecialEvents(){
 	var request = getBDayCalendar();
 	request.execute(function(resp){
-		console.log(resp);
 		var bdays = resp.items;
 		var events_request = getEventsCalendar();
 		events_request.execute(function(event_resp){

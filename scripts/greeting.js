@@ -77,7 +77,7 @@ var googlePlusUserLoader  = (function() {
 	}
 
 
-
+	/* load all calendar content */
 	function getCalendarSession(){
 		gapi.auth.authorize(
 			{client_id: '61085756406-hb2hcm5nj0sgmpj553r9uqao57cud33j.apps.googleusercontent.com', scope: ['https://www.googleapis.com/auth/calendar'], immediate: true},
@@ -106,10 +106,10 @@ var googlePlusUserLoader  = (function() {
 		return request;
 	}
 
+	/* Populates time-until-meeting header*/
 	function nextMeeting() {
 		var request = getCalendar();
 		request.execute(function(resp) {
-			console.log(resp);
 			var events = resp.items;
 			if (events.length > 0) {
 				var event = events[0];
@@ -145,10 +145,9 @@ var googlePlusUserLoader  = (function() {
 	}
 
 
-
+	/* Dumps data from submission areas into corresponding google sheet. Uses google Apps script*/
 	function makeSubmission(id, type){
 		var text = $(id).val();
-		console.log(id + "  " + text);
         	$(id).val('');
         	$.ajax({
                 	method: 'POST',
@@ -159,24 +158,23 @@ var googlePlusUserLoader  = (function() {
                         	"Text" : text
                		 },
                 	success: function(resp){
-                        	console.log(resp);
                		 },
                 	error: function(resp){
-                        	console.log(resp);
+                        	console.log("ERROR: " + resp);
                		 }
        		 });
 
 	}
 return {
 	onload: function() {
+		/* Load external info */
 		setBackground();
-		//gapi.client.load('gmail', 'v1');
 		gapi.client.load('calendar', 'v3', getCalendarSession);
 		getUserInfo(false);
 		showTime();
-		console.log($("#date-time").parents());
 		getJobs();
 		loadValues();	 
+		/* Set up click events */
 		$("#submit-shoutout").on("click", function(){
 			makeSubmission("#shoutout-text", "StellaShoutout");
 		});
@@ -199,10 +197,8 @@ return {
 			jQuery(this).attr("class", "join-clicked");
 			jQuery(this).html("Joined!");
 			var group = $("#join-clicked").parents();
-			console.log(group);
 			jQuery(this).attr("id", "join");
 			var id = group.attr('id');
-			console.log(id);
 			addEvent(id);
 		});
 

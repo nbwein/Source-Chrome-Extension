@@ -16,7 +16,6 @@ function getHipChat(){
 		url: 'https://api.hipchat.com/v2/room/intern-project-message-board/history?auth_token=' + integration_token + "&max-results=10",
 		grant_type: 'personal',
 		success: function(resp){
-			console.log(resp);
 			$('.post-message').remove();
 			var messages = resp.items;
 			var container = document.getElementById("message-board");
@@ -48,10 +47,15 @@ function getHipChat(){
 				date = date[1] + "/" + date[2];
 				time = time[0] + ":" + time[1];
 
-				var entry = message.message;
-				console.log(entry.split("MESSAGE:"));
+				try{
+					var entry = atob(message.message);
+				}
+				catch(err){
+					var entry = message.message;
+				}
+
 				if (entry.indexOf("MESSAGE:") != -1){
-					var entry = message.message.split("MESSAGE:");
+					entry = entry.split("MESSAGE:");
 					var subject = entry[0];
 					entry = entry[1];
 					var subject_text = document.createElement("strong");
@@ -85,7 +89,6 @@ function getHipChat(){
 				message.setAttribute("id", "message");
 				if (url_regex.test(entry)){
 					var url = entry.match(raw_url_regex);
-					console.log(url);
 					for (var k = 0; k<url.length;k++){
 						var absolute_path = url[k];
 						if((url[k]).indexOf("https") == -1){
@@ -99,7 +102,6 @@ function getHipChat(){
 						link.innerHTML = url[k];
 						link.setAttribute("style", "color:white;");
 						entry = entry.split(url[k]);
-						console.log(link);
 						message.innerHTML += entry[0];
 						message.appendChild(link);
 						if (k == (url.length-1)){
@@ -121,9 +123,10 @@ function getHipChat(){
 						if (messages[i].message_links[j].type == "image"){
 							if (messages[i].message_links[j].url.indexOf(".gifv") != -1){
 								var gifv = messages[i].message_links[j].url;
-								console.log(gifv.data);
 								var attatchment = document.createElement("iframe");
 								attatchment.setAttribute("class", "inline-pic gifv");
+								attatchment.setAttribute("scrolling", "no");
+								
 							}
 							else{
 								var attatchment = document.createElement("img");
@@ -180,9 +183,9 @@ function postMessage(){
 	var post = $("#message-text").val();
 	var subject = $("#subject-text").val();
 	post = subject + "MESSAGE:" + post; 
+	post = btoa(post);
 	data = {"message": post};
 	data = JSON.stringify(data);
-	console.log(data);
         $.ajax({
                 type: 'POST',
                 url: 'https://api.hipchat.com/v2/room/intern-project-message-board/message?auth_token=' + personal_token,
@@ -333,7 +336,6 @@ function pollHipChat(){
 				room_stats = curr_messages
                 		getHipChat();
 			}
-			console.log("poll");
 			setTimeout(pollHipChat, 10000);			
 		},
 		error: function(resp) {
