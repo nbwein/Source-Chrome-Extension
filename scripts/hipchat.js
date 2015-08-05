@@ -60,7 +60,7 @@ function getHipChat(){
 					entry = entry[1];
 					var subject_text = document.createElement("strong");
 					subject_text.setAttribute("class", "subject");
-					subject_text.innerHTML = "<i>Re: " + subject + "</i>";
+					subject_text.innerHTML = "<i>" + subject + "</i>";
 				}
 				else{
 					var subject_text = document.createElement("span");
@@ -182,6 +182,12 @@ function getUserPic(id, pic){
 function postMessage(){
 	var post = $("#message-text").val();
 	var subject = $("#subject-text").val();
+
+	if (post == "" || subject == "") {
+		alert("Please submit both a subject and a message.");
+		return;
+	}
+
 	post = subject + "MESSAGE:" + post; 
 	post = btoa(post);
 	data = {"message": post};
