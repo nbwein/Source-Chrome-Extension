@@ -19,7 +19,6 @@ function authAsApp(){
 			'grant_type': 'refresh_token'
 		},
 		success: function(resp){
-			console.log(resp.access_token);
 			app_token = resp.access_token;
 		},
 		error: function(resp){
@@ -44,7 +43,6 @@ function createEvent(place, time, ampm){
         miliseconds = miliseconds + 1*60*60*1000;
         var endTime = new Date(today.getTime() + miliseconds);
         var endstr = endTime.toISOString();
-	console.log(endstr);
         var startstr = startTime.toISOString();
 	var cal_event = JSON.stringify({
 		'start' : {
@@ -69,7 +67,6 @@ function createEvent(place, time, ampm){
 		contentType: 'application/json',
 		data: cal_event,
 		success: function(resp){
-			console.log(resp);
 			return id;
 			
 		},
@@ -222,10 +219,8 @@ function removeMember(id, name) {
                 contentType : 'application/json',
                 data: body,
                 success: function(resp){
-                        console.log(resp);
                 },
                 error: function(resp){
-                        console.log(resp);
                 }
         });
        /* var req = gapi.client.calendar.events.patch({
@@ -241,10 +236,11 @@ function removeMember(id, name) {
 /* FETCH LUCHES ATTEMP */
 function getLunchCalendar() {
     var midnight = new Date((new Date().getTime() + 24*60*60*1000));
+    var now = new Date((new Date().getTime() + 1000*3600));
     midnight.setHours(0,0,0,0);
     var request = gapi.client.calendar.events.list({
         'calendarId': 'stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com',
-        'timeMin': (new Date()).toISOString(),
+        'timeMin': now.toISOString(),
         'showDeleted': false,
         'singleEvents': true,
         'maxResults': 5,
@@ -259,7 +255,6 @@ function getLunchCalendar() {
 function fetchLunches(){
     var request = getLunchCalendar(); 
     request.execute(function(resp){
-	console.log(resp);
         var events = resp.items;
         if (events.length > 0) {
             var container = document.getElementById("lunch");

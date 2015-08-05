@@ -66,9 +66,9 @@ $("#links-drop-down").change(function() {
 			document.getElementById("coffee-button").className = "fa fa-lg fa-times-circle close-btn";
 			getCoffee();
 	 		$("#coffee").css("display", "block");
-			$(".progress-bar").css("height", "0%");
-			$(".cups-remaining").text("Loading...");
-			$(".fresh").text(""); 
+		        //$(".progress-bar").css("height", "0%");
+			//$(".cups-remaining").text("Loading...");
+			//$(".fresh").text(""); 
 	 	}
 	 });
 
@@ -267,18 +267,35 @@ function getCoffee(){
 			else {
 				$("#ren-cups-remaining").text("Unavailable");
 			}
-			console.log(stimpy_data);
 			if(stimpy_data != 0){
 				fillCoffee(stimpy_data, stimpy_refill);
 			}
 			else{
 				$("#stimpy-cups-remaining").text("Unavailable");
 			}
+			var title = '';
+			var ren_text = $("#ren-cups-remaining").text();
+			var stimpy_text = $("#stimpy-cups-remaining").text()
+			if (ren_text != "Unavailable"){
+				title = title + "Ren: " + ren_text.replace("Cups", "");
+			}
+			else{
+				title = title + "Ren: 0";
+			}
+			if (stimpy_text != "Unavailable"){ 
+                                title = title + "\u00a0\u00a0St: " + stimpy_text.replace("Cups", "");
+			}
+                        else{
+                                title = title + "\u00a0\u00a0St: 0";
+                        }
+			document.title = title;
+
 		},
 		error: function(err){
 			console.log(err);
 		}
 	});
+	setTimeout(getCoffee, 30000);
 		
 }
 //200 grams in a cup
@@ -298,7 +315,6 @@ function fillCoffee(data, refill){
 	else  {
 		curr_pot = "Stimpy"
 		progress = "#stimpy-progress";
-		console.log(grams);
 		$("#stimpy-cups-remaining").text( ((grams-2000)/200).toFixed(1) + " Cups");
 	}
 	if (grams <= 2200){

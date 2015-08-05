@@ -217,7 +217,7 @@ return {
 			var id = group.attr('id');
 			viewMembers(id);
 		});
-
+		getCoffee();
 	}
 };
 })();

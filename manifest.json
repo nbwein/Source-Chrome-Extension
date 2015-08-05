@@ -6,11 +6,13 @@
 	"version": "1.2",
 	"chrome_url_overrides": {
    		 "newtab": "main.html"
-  	}, 
+  	},
+	"key" : "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAurY7887tsHCb0e9GU9Bm807Msy0yv7nm/0rC+gADrJbOv/MT/d1vlBH4sEDQXDdwBbVKOdoldPRI2dG1PFuFxTmpdGHJ4WNEO6Ph2vIntHiQHTSMKRo2hgimBlcky7Fmw5c+ZPXpqZLdz3TnAXaZMj7ME4rqukJFzJeQKTdPE1O99RQVGsrXPEolI21Gmdzh9gi+VYFUYHYtgjnEOCDW5E+abgRR/mcF3IJ7pAJJJa0akM7Y9WJYhIizd3Q9XD7h56ArQVsCfpUy36Pl6QV04iHGsbjGHVcDoW7NiRtyjF5WlRc1xj05D4P3byHOJuyzVXzkgRtuIYULz4q/tZ7UlQIDAQAB", 
         "permissions": ["<all_urls>", "geolocation", "api.hipchat.com/v2/oauth/token", "gcm", "storage", "https://api.greenhouse.io/v1/boards/stellaservice/embed/offices", "https://groups.google.com/forum/feed/test-private-feed/msgs/rss_v2_0", "webRequest", "webRequestBlocking", "*://*.google.com/", "identity", "https://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js", "https://accounts.google.com/*", "https://www.googleapis.com/*", "https://www.googleapis.com/plusDomains/v1/people/me"], 
 	"oauth2": {
 		"client_id": "61085756406-hb2hcm5nj0sgmpj553r9uqao57cud33j.apps.googleusercontent.com",
 		"scopes": ["https://www.googleapis.com/auth/calendar", "https://www.googleapis.com/auth/plus.me", "https://www.googleapis.com/auth/userinfo.email"]
 	},
-	"content_security_policy": "script-src 'self' https://www.google.com/uds/ https://www.google.com/jsapi https://apis.google.com/js/client.js https://apis.google.com; object-src 'self'"
+	"content_security_policy": "script-src 'self' https://stellaservice.atlassian.net/rest/collectors/1.0/configuration/trigger/e4a7ee3d https://ssl.google-analytics.com https://www.google.com/uds/ https://www.google.com/jsapi https://apis.google.com/js/client.js https://apis.google.com; object-src 'self'"
+
 }
