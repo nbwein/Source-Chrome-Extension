@@ -7,11 +7,11 @@
 	"chrome_url_overrides": {
    		 "newtab": "main.html"
   	},
-        "permissions": ["<all_urls>", "geolocation", "api.hipchat.com/v2/oauth/token", "gcm", "storage", "https://api.greenhouse.io/v1/boards/stellaservice/embed/offices", "https://groups.google.com/forum/feed/test-private-feed/msgs/rss_v2_0", "webRequest", "webRequestBlocking", "*://*.google.com/", "identity", "https://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js", "https://accounts.google.com/*", "https://www.googleapis.com/*", "https://www.googleapis.com/plusDomains/v1/people/me"], 
+        "permissions": ["<all_urls>", "geolocation", "api.hipchat.com/v2/oauth/token", "gcm", "storage", "webRequest", "webRequestBlocking", "*://*.google.com/", "identity", "https://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js", "https://accounts.google.com/*", "https://www.googleapis.com/*", "https://www.googleapis.com/plusDomains/v1/people/me"], 
 	"oauth2": {
-		"client_id": "61085756406-hb2hcm5nj0sgmpj553r9uqao57cud33j.apps.googleusercontent.com",
+		"client_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.apps.googleusercontent.com",
 		"scopes": ["https://www.googleapis.com/auth/calendar", "https://www.googleapis.com/auth/plus.me", "https://www.googleapis.com/auth/userinfo.email"]
 	},
-	"content_security_policy": "script-src 'self' https://stellaservice.atlassian.net/rest/collectors/1.0/configuration/trigger/e4a7ee3d https://ssl.google-analytics.com https://www.google.com/uds/ https://www.google.com/jsapi https://apis.google.com/js/client.js https://apis.google.com; object-src 'self'"
+	"content_security_policy": "script-src 'self' https://stellaservice.atlassian.net/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx https://ssl.google-analytics.com https://www.google.com/uds/ https://www.google.com/jsapi https://apis.google.com/js/client.js https://apis.google.com; object-src 'self'"
 
 }

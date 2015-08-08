@@ -2,10 +2,10 @@
 
 var personal_token;
 var integration_token;
-var oauthID = "3885f451-68b5-4a97-aada-1461f5ce7099";
-var client_secret = 'cb3s0lg9FuIlB2plZ8ISbhNTRKbm2sBmWV9yewBs';
-var group_id = '50006';
-var room_id = '1721606';
+var oauthID = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+var client_secret = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
+var group_id = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
+var room_id = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
 var room_stats;
 var raw_url_regex = /(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w\.-]*)*\/?/gi;
 var url_regex = new RegExp(raw_url_regex);

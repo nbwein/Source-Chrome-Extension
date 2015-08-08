@@ -1,4 +1,4 @@
-var google_analytics_account_num = 'UA-10032687-15';
+var google_analytics_account_num = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
 
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', google_analytics_account_num]);

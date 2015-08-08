@@ -8,14 +8,10 @@ function authAsApp(){
 		url: 'https://www.googleapis.com/oauth2/v3/token',
 		contentType: 'application/x-www-form-urlencoded', 
 		async: false,
-	/*	grant_type: 'refresh_token',
-		refresh_token: '1/7pr4yin3RqQicagZHus3QdwTww0wJZFJvjTkBdhdjJk',
-		client_id: '61085756406-ss56flqs7gkje9l3f6rtvm5oo0ebqrqo.apps.googleusercontent.com',
-                client_secret: 'WS2N42PIfZbKpojR3KG96CCX', */
 		data: {
-			'client_id': '61085756406-ss56flqs7gkje9l3f6rtvm5oo0ebqrqo.apps.googleusercontent.com',
-			'client_secret': 'WS2N42PIfZbKpojR3KG96CCX',
-			'refresh_token': '1/7pr4yin3RqQicagZHus3QdwTww0wJZFJvjTkBdhdjJk',
+			'client_id': 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.apps.googleusercontent.com',
+			'client_secret': 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+			'refresh_token': 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 			'grant_type': 'refresh_token'
 		},
 		success: function(resp){
@@ -63,7 +59,7 @@ function createEvent(place, time, ampm){
 	});
 	$.ajax({
 		type: 'POST', 
-		url: 'https://www.googleapis.com/calendar/v3/calendars/stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com/events?access_token=' + app_token,
+		url: 'https://www.googleapis.com/calendar/v3/calendars/stellaservice.comxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx@group.calendar.google.com/events?access_token=' + app_token,
 		contentType: 'application/json',
 		data: cal_event,
 		success: function(resp){
@@ -76,43 +72,6 @@ function createEvent(place, time, ampm){
 		
 	});
 }
-
-/*function createEvent(place, time, ampm){
-	var id = Math.trunc( Math.random() * 100000);
-	var elements = time.split(":");
-	var miliseconds = elements[0]*60*60*1000;
-	if( ampm == "pm" && elements[0] != 12){
-		miliseconds = miliseconds + 12*60*60*1000;
-	}
-	miliseconds = miliseconds + elements[1]*60*1000;
-	var today = new Date();
-	today.setHours(0,0,0,0);
-	var startTime = new Date(today.getTime() + miliseconds);
-	miliseconds = miliseconds + 1*60*60*1000;
-	var endTime = new Date(today.getTime() + miliseconds);
-	var endstr = endTime.toISOString();
-	var startstr = startTime.toISOString();
-	var request = gapi.client.calendar.events.insert({
-		'calendarId' : 'stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com',
-		'start' : {
-			'dateTime' : startstr,		
-			'timeZone' : "America/New_York"
-       		},
-       		'end' : {
-         		'dateTime': endstr,
-         		'timeZone': "America/New_York"
-     		},
-     		'anyoneCanAddSelf' : true,
-		'guestsCanModify' : true,	
-     		'id': id,
-     		'location': place,
-     		'attendees' : [{'email' : email_global}],
-     		'summary' : place
- });
-	request.execute(function(resp) { 
-	});
-	return id;
-} */
 
 function refreshLunch(){
 	$(".post-lunch").remove();
@@ -138,7 +97,7 @@ function scheduleLunch(){
 function addEvent(id){
      authAsApp();
      var request = gapi.client.calendar.events.get({
-        'calendarId' : 'stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com',
+        'calendarId' : 'stellaservice.com_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx@group.calendar.google.com',
         'eventId' : id
       });
 	request.execute(function(resp) {
@@ -147,7 +106,7 @@ function addEvent(id){
 	var body = JSON.stringify({'attendees':all});
 	$.ajax({
 		type: 'PATCH', 
-		url: 'https://www.googleapis.com/calendar/v3/calendars/stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com/events/' + id + '?access_token=' + app_token,
+		url: 'https://www.googleapis.com/calendar/v3/calendars/stellaservice.com_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx@group.calendar.google.com/events/' + id + '?access_token=' + app_token,
 		contentType : 'application/json',
 		data: body, 
 		success: function(resp){
@@ -159,26 +118,10 @@ function addEvent(id){
 	});
 	});
 }
-/*function addEvent(id){
-    var request = gapi.client.calendar.events.get({
-        'calendarId' : 'stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com',
-        'eventId' : id
-    });
-    request.execute(function(resp) {	
-        var attendees = [{'email': email_global}];
-        var all = attendees.concat(resp.attendees);
-        var req = gapi.client.calendar.events.patch({
-         'calendarId' : 'stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com',
-         'eventId' : id,
-         'attendees': all
-     });
-        req.execute( function(resp) {});
-    });
-} */
 
 function viewMembers(id) {
     var request = gapi.client.calendar.events.get({
-      'calendarId' : 'stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com',
+      'calendarId' : 'stellaservice.com_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx@group.calendar.google.com',
       'eventId' : id
   });	
     request.execute(function(resp) {
@@ -197,7 +140,7 @@ function viewMembers(id) {
 
 function removeMember(id, name) {
     var request = gapi.client.calendar.events.get({
-        'calendarId' : 'stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com',
+        'calendarId' : 'stellaservice.com_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx@group.calendar.google.com',
         'eventId' : id
     }); 
     // console.log("id: " + id);
@@ -215,7 +158,7 @@ function removeMember(id, name) {
 	var body = JSON.stringify({'attendees':members});
 	$.ajax({
                 type: 'PATCH',
-                url: 'https://www.googleapis.com/calendar/v3/calendars/stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com/events/' + id + '?access_token=' + app_token,
+                url: 'https://www.googleapis.com/calendar/v3/calendars/stellaservice.com_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx@group.calendar.google.com/events/' + id + '?access_token=' + app_token,
                 contentType : 'application/json',
                 data: body,
                 success: function(resp){
@@ -223,12 +166,6 @@ function removeMember(id, name) {
                 error: function(resp){
                 }
         });
-       /* var req = gapi.client.calendar.events.patch({
-         'calendarId' : 'stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com',
-         'eventId' : id,
-         'attendees': members
-     });
-        req.execute( function(resp) {}); */
     });
 }
 
@@ -239,7 +176,7 @@ function getLunchCalendar() {
     var now = new Date((new Date().getTime() + 1000*3600));
     midnight.setHours(0,0,0,0);
     var request = gapi.client.calendar.events.list({
-        'calendarId': 'stellaservice.com_bpkdnnmn30ddtc0e9pe96ekt8s@group.calendar.google.com',
+        'calendarId': 'stellaservice.com_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx@group.calendar.google.com',
         'timeMin': now.toISOString(),
         'showDeleted': false,
         'singleEvents': true,
